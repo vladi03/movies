@@ -23,9 +23,8 @@ const ItemUpdate = z.object({
   description: z.string().optional()
 });
 
-const server = new Server({ name: 'firestore-mcp', version: '1.0.0' }, {
-  tools: {
-    listItems: {
+export const tools = {
+  listItems: {
       description: 'List items ordered by createdAt desc',
       inputSchema: { type: 'object', properties: { limit: { type: 'number' } } },
       handler: async ({ limit }) => {
@@ -79,8 +78,11 @@ const server = new Server({ name: 'firestore-mcp', version: '1.0.0' }, {
         return { content: [{ type: 'text', text: JSON.stringify({ ok: true, id }) }] };
       }
     }
-  }
-});
+  };
 
-const transport = new StdioServerTransport();
-await server.connect(transport);
+export const server = new Server({ name: 'firestore-mcp', version: '1.0.0' }, { tools });
+
+if (process.env.NODE_ENV !== 'test') {
+  const transport = new StdioServerTransport();
+  server.connect(transport);
+}
