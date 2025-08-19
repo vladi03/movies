@@ -200,4 +200,3 @@ Pull Requests should include instructions, screenshots (optional), and an accept
 
 ---
 
-Would you also like me to include a **Zod schema definition** for the movie object right in the README so it’s clear how validation should look in both MCP and client code?
