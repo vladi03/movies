@@ -1,0 +1,7 @@
+{
+  "name": "movies",
+  "private": true,
+  "scripts": {
+    "test": "npm --prefix web test && npm --prefix mcp test"
+  }
+}

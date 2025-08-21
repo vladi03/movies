@@ -1,0 +1,21 @@
+{
+  "name": "firestore-mcp",
+  "version": "1.0.0",
+  "type": "module",
+  "bin": {
+    "firestore-mcp": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.3",
+    "dotenv": "^17.2.1",
+    "firebase-admin": "^13.4.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
+  }
+}
