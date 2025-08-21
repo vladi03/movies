@@ -2,6 +2,8 @@
   "name": "movies",
   "private": true,
   "scripts": {
-    "test": "npm --prefix web test && npm --prefix mcp test"
+    "test": "npm --prefix web test && npm --prefix mcp test",
+    "ui": "npm --prefix web run dev",
+    "functions": "firebase emulators:start --only functions"
   }
 }
