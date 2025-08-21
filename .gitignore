@@ -3,3 +3,4 @@ web/dist
 .env
 .firebase
 firebase-debug.log
+.idea
