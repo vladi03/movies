@@ -3,6 +3,7 @@ import { auth, provider } from '../firebase.js';
 import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 
 const AuthContext = createContext(null);
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);
 
 export default function AuthGate({ children }) {

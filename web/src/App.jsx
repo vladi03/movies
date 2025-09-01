@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
 import AuthGate from './auth/AuthGate.jsx';
-import ItemsPage from './pages/ItemsPage.jsx';
+import MoviesPage from './pages/MoviesPage.jsx';
 
 export default function App() {
   return (
     <AuthGate>
       <Routes>
-        <Route path="/" element={<ItemsPage />} />
+        <Route path="/" element={<MoviesPage />} />
       </Routes>
     </AuthGate>
   );
