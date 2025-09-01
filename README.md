@@ -59,6 +59,8 @@ Each movie document stored in Firestore follows this JSON structure:
 }
 ```
 
+Formal specification [JSON Schema](docs/schemas/movie.schema.json)
+
 **Field Descriptions**:
 
 * **name** *(string)* – Internal or display name of the movie.
