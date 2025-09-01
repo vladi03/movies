@@ -1,0 +1,2869 @@
+[
+  {
+    "name": "A Few Good Men",
+    "title": "A Few Good Men",
+    "year": 1992,
+    "actors": [
+      "Tom Cruise",
+      "Jack Nicholson",
+      "Demi Moore"
+    ],
+    "genre": [
+      "Drama",
+      "Thriller"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BOGVhMTUwYzEtZGQ1ZC00Nzg1LTk0OGUtMDk0NDM0ZmZlN2E0XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Heat",
+    "title": "Heat",
+    "year": 1995,
+    "actors": [
+      "Al Pacino",
+      "Robert De Niro",
+      "Val Kilmer"
+    ],
+    "genre": [
+      "Action",
+      "Crime",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTkxYjU1OTMtYWViZC00ZjAzLWI3MDktZGQ2N2VmMjVjNDRlXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Gladiator",
+    "title": "Gladiator",
+    "year": 2000,
+    "actors": [
+      "Russell Crowe",
+      "Joaquin Phoenix",
+      "Connie Nielsen"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BYWQ4YmNjYjEtOWE1Zi00Y2U4LWI4NTAtMTU0MjkxNWQ1ZmJiXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "K-PAX",
+    "title": "K-PAX",
+    "year": 2001,
+    "actors": [
+      "Kevin Spacey",
+      "Jeff Bridges",
+      "Mary McCormack"
+    ],
+    "genre": [
+      "Drama",
+      "Mystery",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZWU5MTJiNDMtMmI0Yy00MWRjLTgwZjktODEyY2NmZThhM2EwXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Accountant",
+    "title": "The Accountant",
+    "year": 2016,
+    "actors": [
+      "Ben Affleck",
+      "Anna Kendrick",
+      "J.K. Simmons"
+    ],
+    "genre": [
+      "Action",
+      "Crime",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNDc5Mzg2NTYxNV5BMl5BanBnXkFtZTgwMjQ2ODAwOTE@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Bone Collector",
+    "title": "The Bone Collector",
+    "year": 1999,
+    "actors": [
+      "Denzel Washington",
+      "Angelina Jolie",
+      "Queen Latifah"
+    ],
+    "genre": [
+      "Crime",
+      "Drama",
+      "Mystery"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BOWY0NjY0M2ItYmNjYy00YWZiLWE3ZjktM2Q3YmU2NWY0YmVmXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "No Country for Old Men",
+    "title": "No Country for Old Men",
+    "year": 2007,
+    "actors": [
+      "Tommy Lee Jones",
+      "Javier Bardem",
+      "Josh Brolin"
+    ],
+    "genre": [
+      "Crime",
+      "Drama",
+      "Thriller"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjA5Njk3MjM4OV5BMl5BanBnXkFtZTcwMTc5MTE1MQ@@._V1_SX300.jpg"
+  },
+  {
+    "name": "Limitless",
+    "title": "Limitless",
+    "year": 2011,
+    "actors": [
+      "Bradley Cooper",
+      "Anna Friel",
+      "Abbie Cornish"
+    ],
+    "genre": [
+      "Sci-Fi",
+      "Thriller"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMWQ4OTQ4YzYtODlmMi00ZjA0LTg5M2QtZWUzNjA5N2NmODE5XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Devil's Advocate",
+    "title": "The Devil's Advocate",
+    "year": 1997,
+    "actors": [
+      "Keanu Reeves",
+      "Al Pacino",
+      "Charlize Theron"
+    ],
+    "genre": [
+      "Drama",
+      "Fantasy",
+      "Mystery"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNGIxZmU2ZjEtYjc3OC00Y2FiLWE2ZTQtZGI3NzE0YmRhOTMxXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "City of Angels",
+    "title": "City of Angels",
+    "year": 1998,
+    "actors": [
+      "Nicolas Cage",
+      "Meg Ryan",
+      "Andre Braugher"
+    ],
+    "genre": [
+      "Drama",
+      "Fantasy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BODYwMzM3ODEtZWZjOS00NWZhLWE2MWUtMDFlMWNiNGEwOWNlXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Meet Joe Black",
+    "title": "Meet Joe Black",
+    "year": 1998,
+    "actors": [
+      "Brad Pitt",
+      "Anthony Hopkins",
+      "Claire Forlani"
+    ],
+    "genre": [
+      "Drama",
+      "Fantasy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjVjNjAwYWItMDc0ZC00MTEwLWJiN2MtM2U4YThjNWE5YTZmXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Seven",
+    "title": "Seven",
+    "year": 1995,
+    "actors": [
+      "Brad Pitt" , "Morgan Freeman" , "Gwyneth Paltrow", "R. Lee Ermey"
+    ],
+    "genre": [
+      "Suspense",
+      "Dark",
+      "Psychological"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/I/71VT4EwvAAL._AC_UY327_FMwebp_QL65_.jpg"
+  },
+  {
+    "name": "The Client",
+    "title": "The Client",
+    "year": 1994,
+    "actors": [
+      "Susan Sarandon",
+      "Tommy Lee Jones",
+      "Brad Renfro"
+    ],
+    "genre": [
+      "Crime",
+      "Drama",
+      "Mystery"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNWQzNGEyODctZGY4My00ZjA3LWI0OWUtMWQ3NzVkMzQyN2ZjXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Constantine",
+    "title": "Constantine",
+    "year": 2005,
+    "actors": [
+      "Keanu Reeves",
+      "Rachel Weisz",
+      "Djimon Hounsou"
+    ],
+    "genre": [
+      "Action",
+      "Fantasy",
+      "Horror"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjNhNTlmYmYtYjcxZi00ZDU1LTkxMWYtYzFlMWMzY2RiODM1XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Matrix",
+    "title": "The Matrix",
+    "year": 1999,
+    "actors": [
+      "Keanu Reeves",
+      "Laurence Fishburne",
+      "Carrie-Anne Moss"
+    ],
+    "genre": [
+      "Action",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Matrix Reloaded",
+    "title": "The Matrix Reloaded",
+    "year": 2003,
+    "actors": [
+      "Keanu Reeves",
+      "Laurence Fishburne",
+      "Carrie-Anne Moss"
+    ],
+    "genre": [
+      "Action",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNjAxYjkxNjktYTU0YS00NjFhLWIyMDEtMzEzMTJjMzRkMzQ1XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Matrix Revolutions",
+    "title": "The Matrix Revolutions",
+    "year": 2003,
+    "actors": [
+      "Keanu Reeves",
+      "Laurence Fishburne",
+      "Carrie-Anne Moss"
+    ],
+    "genre": [
+      "Action",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMmNmMTEzODQtNmExMS00OGUxLWFkNTItMTM3NzBlNDk0YWU5XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Green Mile",
+    "title": "The Green Mile",
+    "year": 1999,
+    "actors": [
+      "Tom Hanks",
+      "Michael Clarke Duncan",
+      "David Morse"
+    ],
+    "genre": [
+      "Crime",
+      "Drama",
+      "Fantasy"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTUxMzQyNjA5MF5BMl5BanBnXkFtZTYwOTU2NTY3._V1_SX300.jpg"
+  },
+  {
+    "name": "The Family Man",
+    "title": "The Family Man",
+    "year": 2000,
+    "actors": [
+      "Nicolas Cage",
+      "Téa Leoni",
+      "Don Cheadle"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama",
+      "Fantasy"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BN2I4ODE3YzQtMzZhMy00YjhlLWE1MmMtYTA0MjkxNTJmMTZlXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Silence of the Lambs",
+    "title": "The Silence of the Lambs",
+    "year": 1991,
+    "actors": [
+      "Jodie Foster",
+      "Anthony Hopkins",
+      "Scott Glenn"
+    ],
+    "genre": [
+      "Crime",
+      "Drama",
+      "Horror"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNDdhOGJhYzctYzYwZC00YmI2LWI0MjctYjg4ODdlMDExYjBlXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Uncharted",
+    "title": "Uncharted",
+    "year": 2022,
+    "actors": [
+      "Tom Holland",
+      "Mark Wahlberg",
+      "Antonio Banderas"
+    ],
+    "genre": [
+      "Action",
+      "Adventure"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BYjQxYWNiNzgtOTc2Yi00OGEwLTk5MjAtODdiZTk0ZDJlZGY4XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Twister",
+    "title": "Twister",
+    "year": 1996,
+    "actors": [
+      "Helen Hunt",
+      "Bill Paxton",
+      "Jami Gertz"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Thriller"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNGVhY2JjYzgtYjAyOC00ODg0LTliYWEtMzliZWYzMjA2NjYyXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Ford v Ferrari",
+    "title": "Ford v Ferrari",
+    "year": 2019,
+    "actors": [
+      "Matt Damon",
+      "Christian Bale",
+      "Jon Bernthal"
+    ],
+    "genre": [
+      "Action",
+      "Biography",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BOTBjNTEyNjYtYjdkNi00YzE5LTljYzUtZjVlYmYwZmJmZWYxXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Stigmata",
+    "title": "Stigmata",
+    "year": 1999,
+    "actors": [
+      "Patricia Arquette",
+      "Gabriel Byrne",
+      "Jonathan Pryce"
+    ],
+    "genre": [
+      "Horror",
+      "Mystery"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTQwMDA1NzI4OV5BMl5BanBnXkFtZTcwNzM4MjM3NA@@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Devil's Own",
+    "title": "The Devil's Own",
+    "year": 1997,
+    "actors": [
+      "Harrison Ford",
+      "Brad Pitt",
+      "Margaret Colin"
+    ],
+    "genre": [
+      "Action",
+      "Crime",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNDU1ODI0ZGUtZDA3My00NGViLWFhM2QtNmI1NzU0ZTA1ODc5XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Top Gun",
+    "title": "Top Gun",
+    "year": 1986,
+    "actors": [
+      "Tom Cruise",
+      "Tim Robbins",
+      "Kelly McGillis"
+    ],
+    "genre": [
+      "Action",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZmVjNzQ3MjYtYTZiNC00Y2YzLWExZTEtMTM2ZDllNDI0MzgyXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Top Gun: Maverick",
+    "title": "Top Gun: Maverick",
+    "year": 2022,
+    "actors": [
+      "Tom Cruise",
+      "Jennifer Connelly",
+      "Miles Teller"
+    ],
+    "genre": [
+      "Action",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMDBkZDNjMWEtOTdmMi00NmExLTg5MmMtNTFlYTJlNWY5YTdmXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Amateur",
+    "title": "The Amateur",
+    "year": 2025,
+    "actors": [
+      "Rami Malek",
+      "Rachel Brosnahan",
+      "Jon Bernthal"
+    ],
+    "genre": [
+      "Action",
+      "Thriller"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BYjhkZjM3ZWYtMjUxMS00YzhlLTkxZWYtMzhkMzFhOTQ1NjRkXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Someone Like You",
+    "title": "Someone Like You",
+    "year": 2001,
+    "actors": [
+      "Ashley Judd",
+      "Greg Kinnear",
+      "Hugh Jackman"
+    ],
+    "genre": [
+      "Comedy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZGM5MWFmN2ItNDA1Zi00ODliLTgxMzMtNTJiNWYzZDY5ZDljXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Proposal",
+    "title": "The Proposal",
+    "year": 2009,
+    "actors": [
+      "Sandra Bullock",
+      "Ryan Reynolds",
+      "Mary Steenburgen"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BYWU3ZmFhYTktNzU4NS00ZTEyLTkwNTYtMWE1M2JjMTFmODVkXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Born",
+    "title": "A Star Is Born",
+    "year": 2018,
+    "actors": [
+      "Lady Gaga",
+      "Bradley Cooper",
+      "Sam Elliott"
+    ],
+    "genre": [
+      "Drama",
+      "Music",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNGUxZTc0NTAtNzQwMy00MmM2LTgzMGYtZWIyY2E1MGFjYmM5XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Anyone but You",
+    "title": "Anyone But You",
+    "year": 2023,
+    "actors": [
+      "Sydney Sweeney",
+      "Glen Powell",
+      "Alexandra Shipp"
+    ],
+    "genre": [
+      "Comedy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZWUxYTFhMzItMmE0ZC00ODgzLTkwZWItOGUwMTI1YjQwMDJjXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Good Will Hunting",
+    "title": "Good Will Hunting",
+    "year": 1997,
+    "actors": [
+      "Robin Williams",
+      "Matt Damon",
+      "Ben Affleck"
+    ],
+    "genre": [
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNDdjZGQ5YzEtNTc2My00Mjc0LWFlMTctYzkwMzZlNzdiZWYzXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Contact",
+    "title": "Contact",
+    "year": 1997,
+    "actors": [
+      "Jodie Foster",
+      "Matthew McConaughey",
+      "Tom Skerritt"
+    ],
+    "genre": [
+      "Drama",
+      "Mystery",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BM2JiYmE1Y2UtNDQ3YS00YTZhLTk5MzAtYzEzMzIyNTM4OTRlXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Iron Man",
+    "title": "Iron Man",
+    "year": 2008,
+    "actors": [
+      "Robert Downey Jr.",
+      "Gwyneth Paltrow",
+      "Terrence Howard"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_SX300.jpg"
+  },
+  {
+    "name": "Trouble with the Curve",
+    "title": "Trouble with the Curve",
+    "year": 2012,
+    "actors": [
+      "Clint Eastwood",
+      "Amy Adams",
+      "John Goodman"
+    ],
+    "genre": [
+      "Drama",
+      "Romance",
+      "Sport"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTUwNjMyMzQ3M15BMl5BanBnXkFtZTcwMjcwNDMyOA@@._V1_SX300.jpg"
+  },
+  {
+    "name": "Sleepless in Seattle",
+    "title": "Sleepless in Seattle",
+    "year": 1993,
+    "actors": [
+      "Tom Hanks",
+      "Meg Ryan",
+      "Ross Malinger"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMzYwNzNlYWEtY2NiMC00Y2ZkLWFmYzUtYWU4ZTQ5YTAyNTZmXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Field of Dreams",
+    "title": "Field of Dreams",
+    "year": 1989,
+    "actors": [
+      "Kevin Costner",
+      "James Earl Jones",
+      "Ray Liotta"
+    ],
+    "genre": [
+      "Drama",
+      "Family",
+      "Fantasy"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZTEwMGYzNDktOWEyMi00NTJjLWE5MGQtNmNlNDkxOTYyZDA5XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Intern",
+    "title": "The Intern",
+    "year": 2015,
+    "actors": [
+      "Robert De Niro",
+      "Anne Hathaway",
+      "Rene Russo"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTUyNjE5NjI5OF5BMl5BanBnXkFtZTgwNzYzMzU3NjE@._V1_SX300.jpg"
+  },
+  {
+    "name": "Phenomenon",
+    "title": "Phenomenon",
+    "year": 1996,
+    "actors": [
+      "John Travolta",
+      "Kyra Sedgwick",
+      "Forest Whitaker"
+    ],
+    "genre": [
+      "Drama",
+      "Fantasy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjAwMDA2NzEyMl5BMl5BanBnXkFtZTgwNTA2MjgxMTE@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Fifth Element",
+    "title": "The Fifth Element",
+    "year": 1997,
+    "actors": [
+      "Bruce Willis",
+      "Milla Jovovich",
+      "Gary Oldman"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BODU4ZTE5MWYtNmY2MC00NDkyLTk0NDgtNTk5YjgzMzc4NmQwXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Back to the Future",
+    "title": "Back to the Future",
+    "year": 1985,
+    "actors": [
+      "Michael J. Fox",
+      "Christopher Lloyd",
+      "Lea Thompson"
+    ],
+    "genre": [
+      "Adventure",
+      "Comedy",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZmM3ZjE0NzctNjBiOC00MDZmLTgzMTUtNGVlOWFlOTNiZDJiXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Chef",
+    "title": "Chef",
+    "year": 2014,
+    "actors": [
+      "Jon Favreau",
+      "Robert Downey Jr.",
+      "Scarlett Johansson"
+    ],
+    "genre": [
+      "Adventure",
+      "Comedy",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BODkyNTI4YjUtNjEyNC00NWQ5LTk4M2YtM2Q3NjBiYmJmMGUyXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Message in a Bottle",
+    "title": "Message in a Bottle",
+    "year": 1999,
+    "actors": [
+      "Kevin Costner",
+      "Robin Wright",
+      "Paul Newman"
+    ],
+    "genre": [
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTg4OWVhMDUtYjQwNS00NjRiLTgyN2ItMDE2NTVlYzk5MzRkXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Super 8",
+    "title": "Super 8",
+    "year": 2011,
+    "actors": [
+      "Elle Fanning",
+      "AJ Michalka",
+      "Kyle Chandler"
+    ],
+    "genre": [
+      "Action",
+      "Sci-Fi",
+      "Thriller"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjIzNjEyMzcwOF5BMl5BanBnXkFtZTcwMTkyMjE0NQ@@._V1_SX300.jpg"
+  },
+  {
+    "name": "Guardians of the Galaxy",
+    "title": "Guardians of the Galaxy",
+    "year": 2014,
+    "actors": [
+      "Chris Pratt",
+      "Vin Diesel",
+      "Bradley Cooper"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Comedy"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BM2ZmNjQ2MzAtNDlhNi00MmQyLWJhZDMtNmJiMjFlOWY4MzcxXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Alien",
+    "title": "Alien",
+    "year": 1979,
+    "actors": [
+      "Sigourney Weaver",
+      "Tom Skerritt",
+      "John Hurt"
+    ],
+    "genre": [
+      "Horror",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BN2NhMDk2MmEtZDQzOC00MmY5LThhYzAtMDdjZGFjOGZjMjdjXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Aliens",
+    "title": "Aliens",
+    "year": 1986,
+    "actors": [
+      "Sigourney Weaver",
+      "Michael Biehn",
+      "Carrie Henn"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Horror"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZjIyNGJhYzYtN2I1My00OTVhLWEyMzItZTVjNDMzOTVkYWViXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Alien 3",
+    "title": "The Making of 'Alien 3'",
+    "year": 1992,
+    "actors": [
+      "Michael Biehn",
+      "Ralph Brown",
+      "James Cameron"
+    ],
+    "genre": [
+      "Documentary"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMzI1YmFjNWMtYjE1NS00NTMzLTkxMmEtZTA3MWRkNTJjYWZhXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Dead Poets Society",
+    "title": "Dead Poets Society",
+    "year": 1989,
+    "actors": [
+      "Robin Williams",
+      "Robert Sean Leonard",
+      "Ethan Hawke"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMDYwNGVlY2ItMWYxMS00YjZiLWE5MTAtYWM5NWQ2ZWJjY2Q3XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Thank You for Smoking",
+    "title": "Thank You for Smoking",
+    "year": 2005,
+    "actors": [
+      "Aaron Eckhart",
+      "Cameron Bright",
+      "Maria Bello"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTI2MDk5MjE4NV5BMl5BanBnXkFtZTYwMjkwNTU3._V1_SX300.jpg"
+  },
+  {
+    "name": "Jurassic Park",
+    "title": "Jurassic Park",
+    "year": 1993,
+    "actors": [
+      "Sam Neill",
+      "Laura Dern",
+      "Jeff Goldblum"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Lost World: Jurassic Park",
+    "title": "The Lost World: Jurassic Park",
+    "year": 1997,
+    "actors": [
+      "Jeff Goldblum",
+      "Julianne Moore",
+      "Pete Postlethwaite"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMGI3NDg5N2ItZGIyZi00ZWNkLWFlODUtZDA1Y2Q1M2U4NGM2XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Jurassic Park III",
+    "title": "Jurassic Park III",
+    "year": 2001,
+    "actors": [
+      "Sam Neill",
+      "William H. Macy",
+      "Téa Leoni"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BN2FmMjhlZDYtNmYyMy00NTdjLTlhYzYtZWNlMDY2MmUzOGM2XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Jurassic World",
+    "title": "Jurassic World",
+    "year": 2015,
+    "actors": [
+      "Chris Pratt",
+      "Bryce Dallas Howard",
+      "Ty Simpkins"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNzBhNzlkM2UtZTQyOC00NjUyLTkzMmMtNDQ1YTM5N2NmMGE5XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Jurassic World: Fallen Kingdom",
+    "title": "Jurassic World: Fallen Kingdom",
+    "year": 2018,
+    "actors": [
+      "Chris Pratt",
+      "Bryce Dallas Howard",
+      "Rafe Spall"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNzIxMjYwNDEwN15BMl5BanBnXkFtZTgwMzk5MDI3NTM@._V1_SX300.jpg"
+  },
+  {
+    "name": "Jurassic World Dominion",
+    "title": "Jurassic World: Dominion",
+    "year": 2022,
+    "actors": [
+      "Chris Pratt",
+      "Bryce Dallas Howard",
+      "Laura Dern"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZGExMWU2NWMtNzczYi00NjQ4LTk2YzctZGZkYmRmMDdhMjllXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Begin Again",
+    "title": "Begin Again",
+    "year": 2013,
+    "actors": [
+      "Keira Knightley",
+      "Mark Ruffalo",
+      "Adam Levine"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama",
+      "Music"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNjAxMTI4MTgzMV5BMl5BanBnXkFtZTgwOTAwODEwMjE@._V1_SX300.jpg"
+  },
+  {
+    "name": "Great Expectations",
+    "title": "Great Expectations",
+    "year": 1998,
+    "actors": [
+      "Ethan Hawke",
+      "Gwyneth Paltrow",
+      "Hank Azaria"
+    ],
+    "genre": [
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjY2MTVhYmQtNDk0MS00MjFjLTkwNjItYzJhMjFiODllYzk1XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Cutting Edge",
+    "title": "The Cutting Edge",
+    "year": 1992,
+    "actors": [
+      "D.B. Sweeney",
+      "Moira Kelly",
+      "Roy Dotrice"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZmRiNTc0NzktNDc5Yy00OTg4LTljZGMtZjAzY2JiNWNjYzUxXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Ex Machina",
+    "title": "Ex Machina",
+    "year": 2014,
+    "actors": [
+      "Alicia Vikander",
+      "Domhnall Gleeson",
+      "Oscar Isaac"
+    ],
+    "genre": [
+      "Drama",
+      "Sci-Fi",
+      "Thriller"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTUxNzc0OTIxMV5BMl5BanBnXkFtZTgwNDI3NzU2NDE@._V1_SX300.jpg"
+  },
+  {
+    "name": "I, Robot",
+    "title": "I, Robot",
+    "year": 2004,
+    "actors": [
+      "Will Smith",
+      "Bridget Moynahan",
+      "Bruce Greenwood"
+    ],
+    "genre": [
+      "Action",
+      "Mystery",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZDdhNTY3YTgtYmQwMC00MjM1LTgzYzMtMGM1N2E0NWM1NDlkXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Longest Ride",
+    "title": "The Longest Ride",
+    "year": 2015,
+    "actors": [
+      "Scott Eastwood",
+      "Britt Robertson",
+      "Alan Alda"
+    ],
+    "genre": [
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMzIzMjg0NjQwNF5BMl5BanBnXkFtZTgwODAwOTE4MzE@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Perks of Being a Wallflower",
+    "title": "The Perks of Being a Wallflower",
+    "year": 2012,
+    "actors": [
+      "Logan Lerman",
+      "Emma Watson",
+      "Ezra Miller"
+    ],
+    "genre": [
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNTY0ZTI2NzQtYWI1YS00ZWM3LWFmMjMtZWYxNmNmOTI0MGJjXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Pawn Sacrifice",
+    "title": "Pawn Sacrifice",
+    "year": 2014,
+    "actors": [
+      "Tobey Maguire",
+      "Liev Schreiber",
+      "Peter Sarsgaard"
+    ],
+    "genre": [
+      "Biography",
+      "Drama",
+      "History"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTk0MDYxNTE0OV5BMl5BanBnXkFtZTgwODgyNjU3NTE@._V1_SX300.jpg"
+  },
+  {
+    "name": "IQ",
+    "title": "IQ (Power of student)",
+    "year": 1994,
+    "actors": [
+      "Pallavi",
+      "Lekha Prajapati",
+      "Satya Prakash"
+    ],
+    "genre": [
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/I/91l1M2KFq1L._AC_UY327_FMwebp_QL65_.jpg"
+  },
+  {
+    "name": "Little Women",
+    "title": "Little Women",
+    "year": 2019,
+    "actors": [
+      "Saoirse Ronan",
+      "Emma Watson",
+      "Florence Pugh"
+    ],
+    "genre": [
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMWMzYjNiZWMtMDg4NS00MDgyLTk5MWItOTFmNjg4NzRhZmExXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Terminator",
+    "title": "The Terminator",
+    "year": 1984,
+    "actors": [
+      "Arnold Schwarzenegger",
+      "Linda Hamilton",
+      "Michael Biehn"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZmE0YzIxM2QtMGNlMi00MjRmLWE3MWMtOWQzMGVjMmU0YTFmXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Terminator 2: Judgment Day",
+    "title": "Terminator 2: Judgment Day",
+    "year": 1991,
+    "actors": [
+      "Arnold Schwarzenegger",
+      "Linda Hamilton",
+      "Edward Furlong"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNGMyMGNkMDUtMjc2Ni00NWFlLTgyODEtZTY2MzBiZTg0OWZiXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Terminator 3: Rise of the Machines",
+    "title": "Terminator 3: Rise of the Machines",
+    "year": 2003,
+    "actors": [
+      "Arnold Schwarzenegger",
+      "Nick Stahl",
+      "Kristanna Loken"
+    ],
+    "genre": [
+      "Action",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTk5NzM1ODgyN15BMl5BanBnXkFtZTcwMzA5MjAzMw@@._V1_SX300.jpg"
+  },
+  {
+    "name": "Terminator Salvation",
+    "title": "Terminator Salvation",
+    "year": 2009,
+    "actors": [
+      "Christian Bale",
+      "Sam Worthington",
+      "Anton Yelchin"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMWY1OWQ4ZWQtYzZkOS00ZTU0LWE3MDItOTg3YzdmODRkMDVjXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Terminator Genisys",
+    "title": "Terminator Genisys",
+    "year": 2015,
+    "actors": [
+      "Arnold Schwarzenegger",
+      "Jason Clarke",
+      "Emilia Clarke"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjM1NTc0NzE4OF5BMl5BanBnXkFtZTgwNDkyNjQ1NTE@._V1_SX300.jpg"
+  },
+  {
+    "name": "Terminator: Dark Fate",
+    "title": "Terminator: Dark Fate",
+    "year": 2019,
+    "actors": [
+      "Linda Hamilton",
+      "Arnold Schwarzenegger",
+      "Mackenzie Davis"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BOTU2OGFhYjktNDJhMC00NmU5LWE1OWItNzg5ODU1MzdmNTZkXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Lost Boys",
+    "title": "The Lost Boys",
+    "year": 1987,
+    "actors": [
+      "Jason Patric",
+      "Corey Haim",
+      "Dianne Wiest"
+    ],
+    "genre": [
+      "Comedy",
+      "Horror"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTc4NzljMDQtMWYxMS00ZDIxLTkwY2ItMjZhMzIzNjQ4NDNkXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Lake House",
+    "title": "The Lake House",
+    "year": 2006,
+    "actors": [
+      "Keanu Reeves",
+      "Sandra Bullock",
+      "Christopher Plummer"
+    ],
+    "genre": [
+      "Drama",
+      "Fantasy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTYxMTgxNDI3MV5BMl5BanBnXkFtZTcwMzIxMTIzMw@@._V1_SX300.jpg"
+  },
+  {
+    "name": "Transcendence",
+    "title": "Transcendence",
+    "year": 2014,
+    "actors": [
+      "Johnny Depp",
+      "Rebecca Hall",
+      "Morgan Freeman"
+    ],
+    "genre": [
+      "Drama",
+      "Sci-Fi",
+      "Thriller"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTc1MjQ3ODAyOV5BMl5BanBnXkFtZTgwNjI1NDQ0MTE@._V1_SX300.jpg"
+  },
+  {
+    "name": "Return to Me",
+    "title": "Return to Me",
+    "year": 2000,
+    "actors": [
+      "David Duchovny",
+      "Minnie Driver",
+      "Carroll O'Connor"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjIwNDEzODU3Nl5BMl5BanBnXkFtZTcwMjI0NzU2NA@@._V1_SX300.jpg"
+  },
+  {
+    "name": "Fame",
+    "title": "Fame",
+    "year": 1980,
+    "actors": [
+      "Eddie Barth",
+      "Irene Cara",
+      "Lee Curreri"
+    ],
+    "genre": [
+      "Drama",
+      "Music",
+      "Musical"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BY2UxMGYxZjAtMzFiOS00NTU5LWE2MjgtYjI1NWE3ODVmNjk5XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Bodyguard",
+    "title": "The Bodyguard",
+    "year": 1992,
+    "actors": [
+      "Kevin Costner",
+      "Whitney Houston",
+      "Gary Kemp"
+    ],
+    "genre": [
+      "Drama",
+      "Music",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNTM4ZWNjZmItMmUxNy00Y2M2LTlhZmItMjc0NjQzZmNiOWY5XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "No Hard Feelings",
+    "title": "No Hard Feelings",
+    "year": 2023,
+    "actors": [
+      "Jennifer Lawrence",
+      "Andrew Barth Feldman",
+      "Laura Benanti"
+    ],
+    "genre": [
+      "Comedy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZjk1NmZiNzYtZGUyYi00YzEwLTgwNWQtM2VmOWFmMGIwZDM2XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Ugly Truth",
+    "title": "The Ugly Truth",
+    "year": 2009,
+    "actors": [
+      "Katherine Heigl",
+      "Gerard Butler",
+      "Bree Turner"
+    ],
+    "genre": [
+      "Comedy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTM2MTM2OTUwNl5BMl5BanBnXkFtZTcwNTgwNTE0Mg@@._V1_SX300.jpg"
+  },
+  {
+    "name": "While You Were Sleeping",
+    "title": "While You Were Sleeping",
+    "year": 1995,
+    "actors": [
+      "Sandra Bullock",
+      "Bill Pullman",
+      "Peter Gallagher"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZTJmOWIzY2YtYmE2ZC00NDRiLWIzYmMtNTkyNmNlMTA0N2NkXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Two Weeks Notice",
+    "title": "Two Weeks Notice",
+    "year": 2002,
+    "actors": [
+      "Sandra Bullock",
+      "Hugh Grant",
+      "Alicia Witt"
+    ],
+    "genre": [
+      "Comedy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMzNlMTBiNDctOGJmYS00ZTk2LTgwY2QtNjFmNTFlODIwYzYyXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Righteous Kill",
+    "title": "Righteous Kill",
+    "year": 2008,
+    "actors": [
+      "Robert De Niro",
+      "Al Pacino",
+      "Carla Gugino"
+    ],
+    "genre": [
+      "Crime",
+      "Mystery",
+      "Thriller"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTYwMjg3MjY3OV5BMl5BanBnXkFtZTcwNTc4MDU3MQ@@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Hunt for Red October",
+    "title": "The Hunt for Red October",
+    "year": 1990,
+    "actors": [
+      "Sean Connery",
+      "Alec Baldwin",
+      "Scott Glenn"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Thriller"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMmNhYWJmN2EtZDYwNC00NzE0LWE5N2UtZTUyMDM4YjZmYWE3XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Hitch",
+    "title": "Hitch",
+    "year": 2005,
+    "actors": [
+      "Will Smith",
+      "Eva Mendes",
+      "Kevin James"
+    ],
+    "genre": [
+      "Comedy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNzYyNzM2NzM2NF5BMl5BanBnXkFtZTcwNjg5NTQzMw@@._V1_SX300.jpg"
+  },
+  {
+    "name": "Avatar",
+    "title": "Avatar",
+    "year": 2009,
+    "actors": [
+      "Sam Worthington",
+      "Zoe Saldaña",
+      "Sigourney Weaver"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Avatar: The Way of Water",
+    "title": "Avatar: The Way of Water",
+    "year": 2022,
+    "actors": [
+      "Sam Worthington",
+      "Zoe Saldaña",
+      "Sigourney Weaver"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNmQxNjZlZTctMWJiMC00NGMxLWJjNTctNTFiNjA1Njk3ZDQ5XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Sense and Sensibility",
+    "title": "Sense and Sensibility",
+    "year": 1995,
+    "actors": [
+      "Emma Thompson",
+      "Kate Winslet",
+      "James Fleet"
+    ],
+    "genre": [
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BY2MyZWJhNjktMWQ2My00OTgwLWI1NjEtYjUzM2M2N2M4Mzc4XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Pride and Prejudice",
+    "title": "Pride and Prejudice",
+    "year": 2005,
+    "actors": [
+      "Keira Knightley", "Matthew Macfadyen"
+    ],
+    "genre": [
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/I/81X55P6CozL._AC_UY327_FMwebp_QL65_.jpg"
+  },
+  {
+    "name": "The Hunger Games",
+    "title": "The Hunger Games",
+    "year": 2012,
+    "actors": [
+      "Jennifer Lawrence",
+      "Josh Hutcherson",
+      "Liam Hemsworth"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMWI1OGM4YjQtNmIxNi00YmE2LWJkNTAtY2Q0YjU4NTI5NWQyXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Hunger Games: Catching Fire",
+    "title": "The Hunger Games: Catching Fire",
+    "year": 2013,
+    "actors": [
+      "Jennifer Lawrence",
+      "Josh Hutcherson",
+      "Liam Hemsworth"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTAyMjQ3OTAxMzNeQTJeQWpwZ15BbWU4MDU0NzA1MzAx._V1_SX300.jpg"
+  },
+  {
+    "name": "The Hunger Games: Mockingjay – Part 1",
+    "title": "The Hunger Games: Mockingjay - Part 1",
+    "year": 2014,
+    "actors": [
+      "Jennifer Lawrence",
+      "Josh Hutcherson",
+      "Liam Hemsworth"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTcxNDI2NDAzNl5BMl5BanBnXkFtZTgwODM3MTc2MjE@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Hunger Games: Mockingjay – Part 2",
+    "title": "The Hunger Games: Mockingjay - Part 2",
+    "year": 2015,
+    "actors": [
+      "Jennifer Lawrence",
+      "Josh Hutcherson",
+      "Liam Hemsworth"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNjQzNDI2NTU1Ml5BMl5BanBnXkFtZTgwNTAyMDQ5NjE@._V1_SX300.jpg"
+  },
+  {
+    "name": "Analyze This",
+    "title": "Analyze This",
+    "year": 1999,
+    "actors": [
+      "Robert De Niro",
+      "Billy Crystal",
+      "Lisa Kudrow"
+    ],
+    "genre": [
+      "Comedy",
+      "Crime"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZDJmZTNmMmQtYWM2MC00YzM5LWI5MGEtODRmZTgzNDAyN2FjXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "As Good as It Gets",
+    "title": "As Good as It Gets",
+    "year": 1997,
+    "actors": [
+      "Jack Nicholson",
+      "Helen Hunt",
+      "Greg Kinnear"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMzBiMWJhYmQtOWYzNS00NjgxLWE5NDItNzZlZDQwODBmODNjXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "My Best Friend's Wedding",
+    "title": "My Best Friend's Wedding",
+    "year": 1997,
+    "actors": [
+      "Julia Roberts",
+      "Dermot Mulroney",
+      "Cameron Diaz"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNzhlZjE4NTYtZDBlOC00NTAwLWFmMTQtMWVjNDQwZGI1MjViXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Bull Durham",
+    "title": "Bull Durham",
+    "year": 1988,
+    "actors": [
+      "Kevin Costner",
+      "Susan Sarandon",
+      "Tim Robbins"
+    ],
+    "genre": [
+      "Comedy",
+      "Romance",
+      "Sport"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BOGJiNmFmZjYtYzQzZi00ZTk1LWI2MGUtZjI1NDI3YmU4Y2FhXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Seventh Sign",
+    "title": "The Seventh Sign",
+    "year": 1988,
+    "actors": [
+      "Demi Moore",
+      "Michael Biehn",
+      "Jürgen Prochnow"
+    ],
+    "genre": [
+      "Drama",
+      "Fantasy",
+      "Horror"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMmUzNTY3NzQtZDZkNC00ODQyLWIzNTQtMWFlMjVhYmYyOTUwXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Love and Other Drugs",
+    "title": "Love and Other Drugs",
+    "year": 2010,
+    "actors": [ "Jake Gyllenhaal", "Anne Hathaway", "Oliver Platt" ],
+    "genre": [ "Romance", "Comedy", "Drama" ],
+    "poster_link": "https://m.media-amazon.com/images/I/81KgTAIeHbL._AC_UY327_FMwebp_QL65_.jpg",
+    "error": "Movie not found!"
+  },
+  {
+    "name": "The Paper",
+    "title": "The Paper",
+    "year": 1994,
+    "actors": [
+      "Michael Keaton",
+      "Glenn Close",
+      "Robert Duvall"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMmZmYzZiNTAtNWFlNy00ZjQxLTlhMDQtZmVmOGZhMmRlZDYyXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Valerian and the City of a Thousand Planets",
+    "title": "Valerian and the City of a Thousand Planets",
+    "year": 2017,
+    "actors": [
+      "Dane DeHaan",
+      "Cara Delevingne",
+      "Clive Owen"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTkxMDAxNDUyNV5BMl5BanBnXkFtZTgwOTc3MzcxMjI@._V1_SX300.jpg"
+  },
+  {
+    "name": "Hooper",
+    "title": "Hooper",
+    "year": 1978,
+    "actors": [
+      "Burt Reynolds",
+      "Jan-Michael Vincent",
+      "Sally Field"
+    ],
+    "genre": [
+      "Action",
+      "Comedy"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BYjBlZmIwZGItNDc1Mi00MDIxLTllNjUtZjI3ZjBiYTc3YWEzXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Taking Lives",
+    "title": "Taking Lives",
+    "year": 2004,
+    "actors": [
+      "Angelina Jolie",
+      "Ethan Hawke",
+      "Kiefer Sutherland"
+    ],
+    "genre": [
+      "Crime",
+      "Mystery",
+      "Thriller"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTA3NDMyNzI5NTdeQTJeQWpwZ15BbWU3MDQxNDEyMzM@._V1_SX300.jpg"
+  },
+  {
+    "name": "Once Upon a Time in Hollywood",
+    "title": "Once Upon a Time in Hollywood",
+    "year": 2016,
+    "actors": [
+      "N/A"
+    ],
+    "genre": [
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/I/91xhpS9unLL._AC_UY327_FMwebp_QL65_.jpg"
+  },
+  {
+    "name": "Dune",
+    "title": "Dune",
+    "year": 1984,
+    "actors": [
+      "Kyle MacLachlan",
+      "Virginia Madsen",
+      "Francesca Annis"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMGJlMGM3NDAtOWNhMy00MWExLWI2MzEtMDQ0ZDIzZDY5ZmQ2XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Dune: Part Two",
+    "title": "Dune: Part Two",
+    "year": 2024,
+    "actors": [
+      "Timothée Chalamet",
+      "Zendaya",
+      "Rebecca Ferguson"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNTc0YmQxMjEtODI5MC00NjFiLTlkMWUtOGQ5NjFmYWUyZGJhXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Deep Impact",
+    "title": "Deep Impact",
+    "year": 1998,
+    "actors": [
+      "Robert Duvall",
+      "Téa Leoni",
+      "Elijah Wood"
+    ],
+    "genre": [
+      "Action",
+      "Drama",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BN2EwNjMxOWYtYWE5Zi00MWEyLWJlMGMtYzA1NDQyZGE5YWZjXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Guardian",
+    "title": "The Guardian",
+    "year": 2006,
+    "actors": [
+      "Kevin Costner",
+      "Ashton Kutcher",
+      "Sela Ward"
+    ],
+    "genre": [
+      "Adventure",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTI0MDkzMzQ1M15BMl5BanBnXkFtZTcwMDQ3MTQzMQ@@._V1_SX300.jpg"
+  },
+  {
+    "name": "Leap Year",
+    "title": "Leap Year",
+    "year": 2010,
+    "actors": [
+      "Amy Adams",
+      "Matthew Goode",
+      "Adam Scott"
+    ],
+    "genre": [
+      "Comedy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTgzMTQ2MDQxMF5BMl5BanBnXkFtZTcwODEzOTg5Mg@@._V1_SX300.jpg"
+  },
+  {
+    "name": "HouseSitter",
+    "title": "HouseSitter",
+    "year": 1992,
+    "actors": [
+      "Steve Martin",
+      "Goldie Hawn",
+      "Dana Delany"
+    ],
+    "genre": [
+      "Comedy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZTEzM2JlODAtZGFhZi00YjM3LTg0YjQtMGU4MTAxZTI4NTFmXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "New in Town",
+    "title": "New in Town",
+    "year": 2009,
+    "actors": [
+      "Renée Zellweger",
+      "Harry Connick Jr.",
+      "Siobhan Fallon Hogan"
+    ],
+    "genre": [
+      "Comedy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNDQwYWQwMjItNzFkNy00M2FjLWJhMmMtODk0NGIxNzc0ZmMwXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Peanut Butter Falcon",
+    "title": "The Peanut Butter Falcon",
+    "year": 2019,
+    "actors": [
+      "Zack Gottsagen",
+      "Ann Pierce",
+      "Dakota Johnson"
+    ],
+    "genre": [
+      "Adventure",
+      "Comedy",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BYjgxZTE4NDctZTM1MC00YjIwLTk0MmMtNWFkZGUwMGE2ZjNhXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Star Wars: Episode I – The Phantom Menace",
+    "title": "Star Wars: Episode I - The Phantom Menace",
+    "year": 1999,
+    "actors": [
+      "Ewan McGregor",
+      "Liam Neeson",
+      "Natalie Portman"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BODVhNGIxOGItYWNlMi00YTA0LWI3NTctZmQxZGUwZDEyZWI4XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Star Wars: Episode II – Attack of the Clones",
+    "title": "Star Wars: Episode II - Attack of the Clones",
+    "year": 2002,
+    "actors": [
+      "Hayden Christensen",
+      "Natalie Portman",
+      "Ewan McGregor"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNTgxMjY2YzUtZmVmNC00YjAwLWJlODMtNDBhNzllNzIzMjgxXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Star Wars: Episode III – Revenge of the Sith",
+    "title": "Star Wars: Episode III - Revenge of the Sith",
+    "year": 2005,
+    "actors": [
+      "Hayden Christensen",
+      "Natalie Portman",
+      "Ewan McGregor"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNTc4MTc3NTQ5OF5BMl5BanBnXkFtZTcwOTg0NjI4NA@@._V1_SX300.jpg"
+  },
+  {
+    "name": "Solo: A Star Wars Story",
+    "title": "Solo: A Star Wars Story",
+    "year": 2018,
+    "actors": [
+      "Alden Ehrenreich",
+      "Woody Harrelson",
+      "Emilia Clarke"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BOTM2NTI3NTc3Nl5BMl5BanBnXkFtZTgwNzM1OTQyNTM@._V1_SX300.jpg"
+  },
+  {
+    "name": "Rogue One: A Star Wars Story",
+    "title": "Rogue One: A Star Wars Story",
+    "year": 2016,
+    "actors": [
+      "Felicity Jones",
+      "Diego Luna",
+      "Alan Tudyk"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjEwMzMxODIzOV5BMl5BanBnXkFtZTgwNzg3OTAzMDI@._V1_SX300.jpg"
+  },
+  {
+    "name": "Star Wars: Episode IV – A New Hope",
+    "title": "Star Wars: Episode IV - A New Hope",
+    "year": 1977,
+    "actors": [
+      "Mark Hamill",
+      "Harrison Ford",
+      "Carrie Fisher"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BOGUwMDk0Y2MtNjBlNi00NmRiLTk2MWYtMGMyMDlhYmI4ZDBjXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Star Wars: Episode V – The Empire Strikes Back",
+    "title": "Star Wars: Episode V - The Empire Strikes Back",
+    "year": 1980,
+    "actors": [
+      "Mark Hamill",
+      "Harrison Ford",
+      "Carrie Fisher"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTkxNGFlNDktZmJkNC00MDdhLTg0MTEtZjZiYWI3MGE5NWIwXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Star Wars: Episode VI – Return of the Jedi",
+    "title": "Star Wars: Episode VI - Return of the Jedi",
+    "year": 1983,
+    "actors": [
+      "Mark Hamill",
+      "Harrison Ford",
+      "Carrie Fisher"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNWEwOTI0MmUtMGNmNy00ODViLTlkZDQtZTg1YmQ3MDgyNTUzXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Star Wars: Episode VII – The Force Awakens",
+    "title": "Star Wars: Episode VII - The Force Awakens",
+    "year": 2015,
+    "actors": [
+      "Daisy Ridley",
+      "John Boyega",
+      "Oscar Isaac"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SX300.jpg"
+  },
+  {
+    "name": "Star Wars: Episode VIII – The Last Jedi",
+    "title": "Star Wars: Episode VIII - The Last Jedi",
+    "year": 2017,
+    "actors": [
+      "Daisy Ridley",
+      "John Boyega",
+      "Mark Hamill"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjQ1MzcxNjg4N15BMl5BanBnXkFtZTgwNzgwMjY4MzI@._V1_SX300.jpg"
+  },
+  {
+    "name": "Star Wars: Episode IX – The Rise of Skywalker",
+    "title": "Star Wars: Episode IX - The Rise of Skywalker",
+    "year": 2019,
+    "actors": [
+      "Daisy Ridley",
+      "John Boyega",
+      "Oscar Isaac"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BODg5ZTNmMTUtYThlNy00NjljLWE0MGUtYmQ1NDg4NWU5MjQ1XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "27 Dresses",
+    "title": "27 Dresses",
+    "year": 2008,
+    "actors": [
+      "Katherine Heigl",
+      "James Marsden",
+      "Malin Akerman"
+    ],
+    "genre": [
+      "Comedy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZWM3ZjRiNGUtNmZkMy00YWNkLWI5MGUtYWI1NTc5NGVkODJkXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "True Romance",
+    "title": "True Romance",
+    "year": 1993,
+    "actors": [
+      "Christian Slater",
+      "Patricia Arquette",
+      "Dennis Hopper"
+    ],
+    "genre": [
+      "Crime",
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BYzQ5OGMwMDAtMzcyOS00YTA4LWEwM2MtOTA1MDZjZGEyYmI1XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Hunter Killer",
+    "title": "Hunter Killer",
+    "year": 2018,
+    "actors": [
+      "Gerard Butler",
+      "Gary Oldman",
+      "Common"
+    ],
+    "genre": [
+      "Action",
+      "Thriller"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjgxODllMTMtMzk1My00NGIyLTk0OGItMTEwNDUxZWRmN2YwXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Tombstone",
+    "title": "Tombstone",
+    "year": 1993,
+    "actors": [
+      "Kurt Russell",
+      "Val Kilmer",
+      "Sam Elliott"
+    ],
+    "genre": [
+      "Biography",
+      "Drama",
+      "History"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNmQyMzlhNjUtMzRjYS00MWY4LWI5MDAtZGU1MWE2M2E0OGMxXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Sicario",
+    "title": "Sicario",
+    "year": 2015,
+    "actors": [
+      "Emily Blunt",
+      "Josh Brolin",
+      "Benicio Del Toro"
+    ],
+    "genre": [
+      "Action",
+      "Crime",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjA5NjM3NTk1M15BMl5BanBnXkFtZTgwMzg1MzU2NjE@._V1_SX300.jpg"
+  },
+  {
+    "name": "Sicario: Day of the Soldado",
+    "title": "Sicario: Day of the Soldado",
+    "year": 2018,
+    "actors": [
+      "Benicio Del Toro",
+      "Josh Brolin",
+      "Isabela Merced"
+    ],
+    "genre": [
+      "Action",
+      "Crime",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTEzNjM2NTYxMjReQTJeQWpwZ15BbWU4MDU2NzAxNTUz._V1_SX300.jpg"
+  },
+  {
+    "name": "Music and Lyrics",
+    "title": "Music and Lyrics",
+    "year": 2007,
+    "actors": [
+      "Hugh Grant",
+      "Drew Barrymore",
+      "Scott Porter"
+    ],
+    "genre": [
+      "Comedy",
+      "Music",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNDY5MTQwODI3OV5BMl5BanBnXkFtZTcwODM2MjEzMw@@._V1_SX300.jpg"
+  },
+  {
+    "name": "Overboard",
+    "title": "Overboard",
+    "year": 1987,
+    "actors": [
+      "Goldie Hawn",
+      "Kurt Russell",
+      "Edward Herrmann"
+    ],
+    "genre": [
+      "Comedy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjIzMjMxOTgzM15BMl5BanBnXkFtZTcwMTAwODM2NA@@._V1_SX300.jpg"
+  },
+  {
+    "name": "Medicine Man",
+    "title": "Medicine Man",
+    "year": 1992,
+    "actors": [
+      "Sean Connery",
+      "Lorraine Bracco",
+      "José Wilker"
+    ],
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BYmU0NDc3N2QtMDkwYy00NTdkLTg5NzgtZjQ5MThjOTUyOWNjXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Lucy",
+    "title": "Lucy",
+    "year": 2014,
+    "actors": [
+      "Scarlett Johansson",
+      "Morgan Freeman",
+      "Choi Min-sik"
+    ],
+    "genre": [
+      "Action",
+      "Sci-Fi",
+      "Thriller"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BODcxMzY3ODY1NF5BMl5BanBnXkFtZTgwNzg1NDY4MTE@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Rewrite",
+    "title": "The Rewrite",
+    "year": 2014,
+    "actors": [
+      "Hugh Grant",
+      "Whit Baldwin",
+      "Vanessa Wasche"
+    ],
+    "genre": [
+      "Comedy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjQyMDAyODUxOV5BMl5BanBnXkFtZTgwODcxMDMxNDE@._V1_SX300.jpg"
+  },
+  {
+    "name": "Just Like Heaven",
+    "title": "Just Like Heaven",
+    "year": 2005,
+    "actors": [
+      "Reese Witherspoon",
+      "Mark Ruffalo",
+      "Donal Logue"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama",
+      "Fantasy"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BYjQ5MDc1OWEtOTAzZS00OWE1LWE5MmMtMGRlMDExZTRhZTQyXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Sweet Home Alabama",
+    "title": "Sweet Home Alabama",
+    "year": 2002,
+    "actors": [
+      "Reese Witherspoon",
+      "Patrick Dempsey",
+      "Josh Lucas"
+    ],
+    "genre": [
+      "Comedy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjEwMjIwMDQ4OV5BMl5BanBnXkFtZTYwNzc3OTY3._V1_SX300.jpg"
+  },
+  {
+    "name": "Stand by Me",
+    "title": "Stand by Me",
+    "year": 1986,
+    "actors": [
+      "Wil Wheaton",
+      "River Phoenix",
+      "Corey Feldman"
+    ],
+    "genre": [
+      "Adventure",
+      "Comedy",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNGJkNTUwM2MtZWE2MS00YjNkLWE3MjktNWQwZDQxMDIyZWVmXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Jaws",
+    "title": "Jaws",
+    "year": 1975,
+    "actors": [
+      "Roy Scheider",
+      "Robert Shaw",
+      "Richard Dreyfuss"
+    ],
+    "genre": [
+      "Adventure",
+      "Horror",
+      "Thriller"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BYjViNDQzNmUtYzkxZi00NTk5LTljMmItYjJlZmZkODIxNjU1XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Passengers",
+    "title": "Passengers",
+    "year": 2016,
+    "actors": [
+      "Jennifer Lawrence",
+      "Chris Pratt",
+      "Michael Sheen"
+    ],
+    "genre": [
+      "Drama",
+      "Romance",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BYzRjNTFmMzQtM2JhZi00ZTI0LTlhMjMtNzQ4YWRhZGVmZWRmXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Point Break",
+    "title": "Point Break",
+    "year": 1991,
+    "actors": [
+      "Patrick Swayze",
+      "Keanu Reeves",
+      "Gary Busey"
+    ],
+    "genre": [
+      "Action",
+      "Crime",
+      "Thriller"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNTI3YzY3N2MtODI1OC00NmU0LThlMDYtNmFjMGFkNzhhNTRlXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "That Thing You Do!",
+    "title": "That Thing You Do!",
+    "year": 1996,
+    "actors": [
+      "Tom Hanks",
+      "Liv Tyler",
+      "Charlize Theron"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama",
+      "Music"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BYTk4MmU0NTMtYzFiYi00NWRiLTkzYWEtNWM2Mzk5YTMwNThjXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Doc Hollywood",
+    "title": "Doc Hollywood",
+    "year": 1991,
+    "actors": [
+      "Michael J. Fox",
+      "Julie Warner",
+      "Barnard Hughes"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZWQ2NDk0YWQtNGNkMy00Nzc4LTgwMGEtMmFlNDVhZTI2MTEzXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "WarGames",
+    "title": "WarGames",
+    "year": 1983,
+    "actors": [
+      "Matthew Broderick",
+      "Ally Sheedy",
+      "John Wood"
+    ],
+    "genre": [
+      "Action",
+      "Drama",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMmM5MDlmZWUtYTE1Mi00M2JiLTk1NzYtMTg0NTdlMzM2N2RkXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Hacksaw Ridge",
+    "title": "Hacksaw Ridge",
+    "year": 2016,
+    "actors": [
+      "Andrew Garfield",
+      "Sam Worthington",
+      "Luke Bracey"
+    ],
+    "genre": [
+      "Biography",
+      "Drama",
+      "History"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjQ1NjM3MTUxNV5BMl5BanBnXkFtZTgwMDc5MTY5OTE@._V1_SX300.jpg"
+  },
+  {
+    "name": "Arrival",
+    "title": "Arrival",
+    "year": 2016,
+    "actors": [
+      "Amy Adams",
+      "Jeremy Renner",
+      "Forest Whitaker"
+    ],
+    "genre": [
+      "Drama",
+      "Mystery",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTExMzU0ODcxNDheQTJeQWpwZ15BbWU4MDE1OTI4MzAy._V1_SX300.jpg"
+  },
+  {
+    "name": "Ender's Game",
+    "title": "Ender's Game",
+    "year": 2013,
+    "actors": [
+      "Harrison Ford",
+      "Asa Butterfield",
+      "Hailee Steinfeld"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjAzMzI5OTgzMl5BMl5BanBnXkFtZTgwMTU5MTAwMDE@._V1_SX300.jpg"
+  },
+  {
+    "name": "Edge of Tomorrow",
+    "title": "Edge of Tomorrow",
+    "year": 2014,
+    "actors": [
+      "Tom Cruise",
+      "Emily Blunt",
+      "Bill Paxton"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTc5OTk4MTM3M15BMl5BanBnXkFtZTgwODcxNjg3MDE@._V1_SX300.jpg"
+  },
+  {
+    "name": "Star Trek",
+    "title": "Star Trek",
+    "year": 2009,
+    "actors": [
+      "Chris Pine",
+      "Zachary Quinto",
+      "Simon Pegg"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjE5NDQ5OTE4Ml5BMl5BanBnXkFtZTcwOTE3NDIzMw@@._V1_SX300.jpg"
+  },
+  {
+    "name": "Star Trek Into Darkness",
+    "title": "Star Trek Into Darkness",
+    "year": 2013,
+    "actors": [
+      "Chris Pine",
+      "Zachary Quinto",
+      "Zoe Saldaña"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTk2NzczOTgxNF5BMl5BanBnXkFtZTcwODQ5ODczOQ@@._V1_SX300.jpg"
+  },
+  {
+    "name": "Star Trek Beyond",
+    "title": "Star Trek Beyond",
+    "year": 2016,
+    "actors": [
+      "Chris Pine",
+      "Zachary Quinto",
+      "Karl Urban"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BN2FhNDI1YTYtNWI0OC00ZjYxLWJlYWEtN2ZiZjRmZDY1MWJjXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Martian",
+    "title": "The Martian",
+    "year": 2015,
+    "actors": [
+      "Matt Damon",
+      "Jessica Chastain",
+      "Kristen Wiig"
+    ],
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTc2MTQ3MDA1Nl5BMl5BanBnXkFtZTgwODA3OTI4NjE@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Day After Tomorrow",
+    "title": "The Day After Tomorrow",
+    "year": 2004,
+    "actors": [
+      "Dennis Quaid",
+      "Jake Gyllenhaal",
+      "Emmy Rossum"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BOGZmNDYyNmMtNDQyNy00OTkzLTg1OGUtYWJiNmQ5Y2Q5ZGU3XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Salt",
+    "title": "Salt",
+    "year": 2010,
+    "actors": [
+      "Angelina Jolie",
+      "Liev Schreiber",
+      "Chiwetel Ejiofor"
+    ],
+    "genre": [
+      "Action",
+      "Thriller"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjIyODA2NDg4NV5BMl5BanBnXkFtZTcwMjg4NDAwMw@@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Parent Trap",
+    "title": "The Parent Trap",
+    "year": 1998,
+    "actors": [
+      "Lindsay Lohan",
+      "Dennis Quaid",
+      "Natasha Richardson"
+    ],
+    "genre": [
+      "Adventure",
+      "Comedy",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNTRkYmY3Y2QtMGM2Ny00MTNmLTk4NjYtNjMwNTNmMGY5ZDllXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Battleship",
+    "title": "Battleship",
+    "year": 2012,
+    "actors": [
+      "Alexander Skarsgård",
+      "Brooklyn Decker",
+      "Liam Neeson"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjI5NTM5MDA2N15BMl5BanBnXkFtZTcwNjkwMzQxNw@@._V1_SX300.jpg"
+  },
+  {
+    "name": "Independence Day",
+    "title": "Independence Day",
+    "year": 1996,
+    "actors": [
+      "Will Smith",
+      "Bill Pullman",
+      "Jeff Goldblum"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BOGMwN2UwZjEtYjFjMi00ZDA1LWJlYTQtMjA1MTYxMzIyNTdiXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "You've Got Mail",
+    "title": "You've Got Mail",
+    "year": 1998,
+    "actors": [
+      "Tom Hanks",
+      "Meg Ryan",
+      "Greg Kinnear"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BN2FhMWRiODYtMTQwMy00OTE2LTlhZjMtNWRmYmIyZjYwYTk1XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The American President",
+    "title": "The American President",
+    "year": 1995,
+    "actors": [
+      "Michael Douglas",
+      "Annette Bening",
+      "Martin Sheen"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZTcyNDAzYTUtNjBjMC00YTk3LTg5MTItMzM3MjhlNGE5YWNlXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Crossroads",
+    "title": "Crossroads",
+    "year": 2002,
+    "actors": [
+      "Britney Spears",
+      "Anson Mount",
+      "Zoe Saldaña"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BOGYwMjJmMjQtYWMzOS00YmE0LTk0NzItODVmNGYwN2U4NGVjXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Prometheus",
+    "title": "Prometheus",
+    "year": 2012,
+    "actors": [
+      "Noomi Rapace",
+      "Logan Marshall-Green",
+      "Michael Fassbender"
+    ],
+    "genre": [
+      "Adventure",
+      "Mystery",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTY3NzIyNTA2NV5BMl5BanBnXkFtZTcwNzE2NjI4Nw@@._V1_SX300.jpg"
+  },
+  {
+    "name": "Silver Linings Playbook",
+    "title": "Silver Linings Playbook",
+    "year": 2012,
+    "actors": [
+      "Bradley Cooper",
+      "Jennifer Lawrence",
+      "Robert De Niro"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTM2MTI5NzA3MF5BMl5BanBnXkFtZTcwODExNTc0OA@@._V1_SX300.jpg"
+  },
+  {
+    "name": "Easy A",
+    "title": "Easy A",
+    "year": 2010,
+    "actors": [
+      "Emma Stone",
+      "Amanda Bynes",
+      "Penn Badgley"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjE1MzU1Mjg1OF5BMl5BanBnXkFtZTcwNDc3NDQ2Mw@@._V1_SX300.jpg"
+  },
+  {
+    "name": "Little Italy",
+    "title": "Little Italy",
+    "year": 2018,
+    "actors": [
+      "Emma Roberts",
+      "Hayden Christensen",
+      "Danny Aiello"
+    ],
+    "genre": [
+      "Comedy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjM3MDc2NDc2N15BMl5BanBnXkFtZTgwNzg2NjExNjM@._V1_SX300.jpg"
+  },
+  {
+    "name": "Benny and Joon",
+    "title": "Benny and Joon",
+    "year": 1993,
+    "actors": ["Johnny Depp", "Mary Stuart Masterson", "Aidan Quinn"],
+    "genre": [      
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/I/71wvSExFaUL._AC_UY327_FMwebp_QL65_.jpg",
+    "error": "Movie not found!"
+  },
+  {
+    "name": "I Could Never Be Your Woman",
+    "title": "I Could Never Be Your Woman",
+    "year": 2007,
+    "actors": [
+      "Michelle Pfeiffer",
+      "Paul Rudd",
+      "Saoirse Ronan"
+    ],
+    "genre": [
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZWE0MDZhNDUtYmJlNC00MjhmLTlhZjQtNTc2OTA4YjcwNDE0XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Erin Brockovich",
+    "title": "Erin Brockovich",
+    "year": 2000,
+    "actors": [
+      "Julia Roberts",
+      "Albert Finney",
+      "David Brisbin"
+    ],
+    "genre": [
+      "Biography",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZTNkNzkzYTEtYTJkMC00MTNkLWE0YjMtOGYxNGI0ODNiMzIwXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Runaway Bride",
+    "title": "Runaway Bride",
+    "year": 1999,
+    "actors": [
+      "Julia Roberts",
+      "Richard Gere",
+      "Joan Cusack"
+    ],
+    "genre": [
+      "Comedy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNzBjNjBhN2YtYzQwNi00OTVkLWFkNTMtNjU0OWFkNTFmZGQ4XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Pelican Brief",
+    "title": "The Pelican Brief",
+    "year": 1993,
+    "actors": [
+      "Julia Roberts",
+      "Denzel Washington",
+      "Sam Shepard"
+    ],
+    "genre": [
+      "Crime",
+      "Drama",
+      "Mystery"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZjA2NmE4MjEtOTkxYy00YjhkLWI2YjgtODFmMGY0Zjc3YTdhXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Godfather",
+    "title": "The Godfather",
+    "year": 1972,
+    "actors": [
+      "Marlon Brando",
+      "Al Pacino",
+      "James Caan"
+    ],
+    "genre": [
+      "Crime",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNGEwYjgwOGQtYjg5ZS00Njc1LTk2ZGEtM2QwZWQ2NjdhZTE5XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Godfather: Part II",
+    "title": "The Godfather Part II",
+    "year": 1974,
+    "actors": [
+      "Al Pacino",
+      "Robert De Niro",
+      "Robert Duvall"
+    ],
+    "genre": [
+      "Crime",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMDIxMzBlZDktZjMxNy00ZGI4LTgxNDEtYWRlNzRjMjJmOGQ1XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Scarface",
+    "title": "Scarface",
+    "year": 1983,
+    "actors": [
+      "Al Pacino",
+      "Michelle Pfeiffer",
+      "Steven Bauer"
+    ],
+    "genre": [
+      "Crime",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BNDUzYjY0NmUtMDM4OS00Y2Q5LWJiODYtNTk0ZTk0YjZhMTg1XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Donnie Brasco",
+    "title": "Donnie Brasco",
+    "year": 1997,
+    "actors": [
+      "Al Pacino",
+      "Johnny Depp",
+      "Michael Madsen"
+    ],
+    "genre": [
+      "Biography",
+      "Crime",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZWZkNDA2YTctZWJhZS00OTAzLThlODMtY2QyMzg1MTEwYjU2XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Insomnia",
+    "title": "Insomnia",
+    "year": 2002,
+    "actors": [
+      "Al Pacino",
+      "Robin Williams",
+      "Hilary Swank"
+    ],
+    "genre": [
+      "Drama",
+      "Mystery",
+      "Thriller"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BOWUyMTY3MzUtODBiZC00ZjRmLTlkYTMtNDYyODNhODcyOTNlXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "My Cousin Vinny",
+    "title": "My Cousin Vinny",
+    "year": 1992,
+    "actors": [
+      "Joe Pesci",
+      "Marisa Tomei",
+      "Ralph Macchio"
+    ],
+    "genre": [
+      "Comedy",
+      "Crime"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTQxNDYzMTg1M15BMl5BanBnXkFtZTgwNzk4MDgxMTE@._V1_SX300.jpg"
+  },
+  {
+    "name": "What Women Want",
+    "title": "What Women Want",
+    "year": 2000,
+    "actors": [
+      "Mel Gibson",
+      "Helen Hunt",
+      "Marisa Tomei"
+    ],
+    "genre": [
+      "Comedy",
+      "Fantasy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BZjA3ZDkzNGEtZmU1OS00YzNiLWJiMzItNTk0ZTZhOWM5ZTUxXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Autumn in New York",
+    "title": "Autumn in New York",
+    "year": 2000,
+    "actors": [
+      "Richard Gere",
+      "Winona Ryder",
+      "Anthony LaPaglia"
+    ],
+    "genre": [
+      "Drama",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BODIzZmQzMTItZGY1YS00MmU4LWE5ZjgtNmFlMjQyMGZiY2FhXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Predators",
+    "title": "Predators",
+    "year": 2010,
+    "actors": [
+      "Adrien Brody",
+      "Laurence Fishburne",
+      "Topher Grace"
+    ],
+    "genre": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BODNhMWY0MDQtNjgwZC00YjM3LWEwMDItMWM3MTg4ZjA5ODgwXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Rounders",
+    "title": "Rounders",
+    "year": 1998,
+    "actors": [
+      "Matt Damon",
+      "Edward Norton",
+      "Gretchen Mol"
+    ],
+    "genre": [
+      "Crime",
+      "Drama"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMWQ1NTVjZjYtNzlhYi00YmQ2LWFhM2EtMWY4MGE3NzVmZGQzXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "name": "Ondine",
+    "title": "Ondine",
+    "year": 2009,
+    "actors": [
+      "Colin Farrell",
+      "Alicja Bachleda",
+      "Dervla Kirwan"
+    ],
+    "genre": [
+      "Drama",
+      "Mystery",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTg0NDAxNjA4OV5BMl5BanBnXkFtZTcwODc1MjAyMw@@._V1_SX300.jpg"
+  },
+  {
+    "name": "The Recruit",
+    "title": "The Recruit",
+    "year": 2003,
+    "actors": [
+      "Al Pacino",
+      "Colin Farrell",
+      "Bridget Moynahan"
+    ],
+    "genre": [
+      "Action",
+      "Thriller"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjE5MDMzOTk3MV5BMl5BanBnXkFtZTYwNTE0NTg2._V1_SX300.jpg"
+  },
+  {
+    "name": "How to Lose a Guy in 10 Days",
+    "title": "How to Lose a Guy in 10 Days",
+    "year": 2003,
+    "actors": [
+      "Kate Hudson",
+      "Matthew McConaughey",
+      "Adam Goldberg"
+    ],
+    "genre": [
+      "Comedy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjE4NTA1NzExN15BMl5BanBnXkFtZTYwNjc3MjM3._V1_SX300.jpg"
+  },
+  {
+    "name": "13 Going on 30",
+    "title": "13 Going on 30",
+    "year": 2004,
+    "actors": [
+      "Jennifer Garner",
+      "Mark Ruffalo",
+      "Judy Greer"
+    ],
+    "genre": [
+      "Comedy",
+      "Fantasy",
+      "Romance"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMjE1NzI5NTkwMF5BMl5BanBnXkFtZTYwOTA4NzY2._V1_SX300.jpg"
+  },
+  {
+    "name": "Jimmy",
+    "title": "Jimmy",
+    "year": 2013,
+    "actors": [
+      "Ted Levine",
+      "Patrick Fabian",
+      "Jackson Pace"
+    ],
+    "genre": [
+      "Drama",
+      "Family",
+      "Fantasy"
+    ],
+    "poster_link": "https://m.media-amazon.com/images/M/MV5BMTc4MTQ2Mzg0MV5BMl5BanBnXkFtZTcwMDE3Mjg0OQ@@._V1_SX300.jpg"
+  }
+]

@@ -1,7 +1,13 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Read-only access for signed-in users to UI-visible collections
     match /items/{id} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    match /movies/{id} {
       allow read: if request.auth != null;
       allow write: if false;
     }

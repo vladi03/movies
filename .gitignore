@@ -4,3 +4,9 @@ web/dist
 .firebase
 firebase-debug.log
 .idea
+
+# Secret credentials (service accounts, etc.)
+/secrets/
+
+# Local environment for the web app
+/web/.env.local
