@@ -39,7 +39,8 @@ exports.listItems = onRequest(async (req, res) => {
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
   try {
     const limit = req.query.limit ? parseInt(String(req.query.limit), 10) : undefined;
-    let q = col().orderBy('createdAt', 'desc');
+    // Order by release year to include older imports that may lack createdAt
+    let q = col().orderBy('year', 'desc');
     if (limit && !Number.isNaN(limit)) q = q.limit(limit);
     const snap = await q.get();
     const items = snap.docs.map(d => ({ id: d.id, ...d.data() }));

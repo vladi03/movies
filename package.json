@@ -4,6 +4,7 @@
   "scripts": {
     "test": "npm --prefix web test && npm --prefix mcp test",
     "ui": "npm --prefix web run dev",
-    "functions": "firebase emulators:start --only functions"
+    "functions": "firebase emulators:start --only functions",
+    "deploy-ui": "firebase deploy --only hosting"
   }
 }

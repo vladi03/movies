@@ -1,7 +1,14 @@
 // Minimal client for calling HTTPS Functions
 const region = import.meta.env.VITE_FUNCTIONS_REGION || 'us-central1';
 const projectId = import.meta.env.VITE_FIREBASE_PROJECT_ID;
-const base = `https://${region}-${projectId}.cloudfunctions.net`;
+// Allow overriding base to hit the local emulator
+const useEmulator = String(import.meta.env.VITE_FUNCTIONS_EMULATOR || '').toLowerCase() === 'true';
+const overrideBase = import.meta.env.VITE_FUNCTIONS_BASE_URL;
+const base = overrideBase
+  ? overrideBase.replace(/\/$/, '')
+  : useEmulator
+    ? `http://127.0.0.1:5001/${projectId}/${region}`
+    : `https://${region}-${projectId}.cloudfunctions.net`;
 
 async function call(path, { method = 'GET', body, token } = {}) {
   const headers = { 'Content-Type': 'application/json' };
@@ -40,4 +47,3 @@ export async function listItems(limit, token) {
 export async function updateItem({ id, title, description }, token) {
   return call('updateItem', { method: 'PATCH', body: { id, title, description }, token });
 }
-
