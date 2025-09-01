@@ -12,8 +12,8 @@ export default function useMoviesQuery() {
   const [error, setError] = useState('');
   // Internal background pagination cursor
   const cursorRef = useRef(null);
-  const fetchingRef = useRef(false);
-  const doneRef = useRef(false);
+  // Track and cancel stale fetch runs when query changes rapidly
+  const runIdRef = useRef(0);
 
   const q = searchParams.get('q') || '';
   const genre = searchParams.get('genre') || '';
@@ -21,13 +21,13 @@ export default function useMoviesQuery() {
   const dir = searchParams.get('dir') || 'asc';
   const page = Number(searchParams.get('page') || 0);
 
-  async function fetchAllPagesBackground() {
-    if (fetchingRef.current || doneRef.current) return;
-    fetchingRef.current = true;
+  async function fetchAllPagesBackground(activeRunId) {
     try {
       const col = collection(db, import.meta.env.VITE_MOVIES_COLLECTION || 'items');
       let keepGoing = true;
       while (keepGoing) {
+        // If a newer query started, stop this run
+        if (runIdRef.current !== activeRunId) break;
         const constraints = [];
         if (genre) constraints.push(where('genre', 'array-contains', genre));
         constraints.push(orderBy(sort, dir));
@@ -35,6 +35,8 @@ export default function useMoviesQuery() {
         if (cursorRef.current) constraints.push(startAfter(cursorRef.current));
         const qRef = query(col, ...constraints);
         const snap = await getDocs(qRef);
+        // Bail out if this run became stale while awaiting
+        if (runIdRef.current !== activeRunId) break;
         let docs = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
         // Basic client-side search filter if q provided
         if (q) {
@@ -42,19 +44,24 @@ export default function useMoviesQuery() {
           docs = docs.filter((d) => (d.title || d.name || '').toLowerCase().includes(qlc));
         }
         if (docs.length > 0) {
-          setItems((prev) => prev.concat(docs));
+          // Only apply results if still the active run
+          if (runIdRef.current === activeRunId) {
+            setItems((prev) => prev.concat(docs));
+          } else {
+            break;
+          }
         }
         cursorRef.current = snap.docs[snap.docs.length - 1] || null;
         keepGoing = snap.size === PAGE_SIZE; // stop when last page smaller than limit
-        if (!keepGoing) {
-          doneRef.current = true;
-        }
+        // Loop continues until we reach the end or a new run supersedes
       }
     } catch (err) {
       setError(err.message || 'Failed to load');
     } finally {
-      fetchingRef.current = false;
-      setLoading(false);
+      // Only clear loading if this run is still current
+      if (runIdRef.current === activeRunId) {
+        setLoading(false);
+      }
     }
   }
 
@@ -66,11 +73,13 @@ export default function useMoviesQuery() {
       // reset state
       queryKeyRef.current = key;
       cursorRef.current = null;
-      doneRef.current = false;
       setItems([]);
     }
     setLoading(true);
-    fetchAllPagesBackground();
+    // Start a new run and invalidate previous runs
+    const newRunId = (runIdRef.current || 0) + 1;
+    runIdRef.current = newRunId;
+    fetchAllPagesBackground(newRunId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q, genre, sort, dir]);
 
