@@ -18,7 +18,8 @@ export default function useMoviesQuery() {
   const q = searchParams.get('q') || '';
   const genre = searchParams.get('genre') || '';
   const sort = searchParams.get('sort') || 'title';
-  const dir = searchParams.get('dir') || 'asc';
+  // Default to descending when sorting by year, otherwise ascending
+  const dir = searchParams.get('dir') || (sort === 'year' ? 'desc' : 'asc');
   const page = Number(searchParams.get('page') || 0);
 
   async function fetchAllPagesBackground(activeRunId) {

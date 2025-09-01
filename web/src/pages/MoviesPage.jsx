@@ -17,7 +17,9 @@ export default function MoviesPage() {
         genre={query.genre}
         setGenre={(g) => setQuery({ genre: g, page: 0 })}
         sort={query.sort}
-        setSort={(s) => setQuery({ sort: s })}
+        setSort={(s) =>
+          setQuery({ sort: s, dir: s === 'year' ? 'desc' : 'asc' })
+        }
       />
       {loading && items.length === 0 && (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4">
