@@ -69,17 +69,29 @@ exports.getItem = onRequest(async (req, res) => {
   }
 });
 
-// POST /createItem  { title, description? }
+// POST /createItem  { title, description?, ...movie fields }
 exports.createItem = onRequest(async (req, res) => {
   handleOptions(req, res);
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
   const body = await readJson(req);
   const title = typeof body.title === 'string' ? body.title.trim() : '';
-  const description = typeof body.description === 'string' ? body.description : undefined;
   if (!title) return res.status(400).json({ error: 'title is required' });
   try {
     const now = Date.now();
-    const ref = await col().add({ title, description, createdAt: now, updatedAt: now });
+    // Whitelist known movie fields and drop undefined values
+    const allowed = ['name', 'title', 'year', 'actors', 'genre', 'poster_link', 'description', 'createdAt', 'updatedAt'];
+    const doc = {};
+    for (const key of allowed) {
+      if (Object.prototype.hasOwnProperty.call(body, key) && body[key] !== undefined) {
+        doc[key] = body[key];
+      }
+    }
+    // Ensure required fields and timestamps
+    doc.title = title;
+    if (!('createdAt' in doc)) doc.createdAt = now;
+    doc.updatedAt = now;
+
+    const ref = await col().add(doc);
     const snap = await ref.get();
     setCors(res);
     return res.status(201).json({ id: ref.id, ...snap.data() });
@@ -89,16 +101,21 @@ exports.createItem = onRequest(async (req, res) => {
   }
 });
 
-// PATCH /updateItem  { id, title?, description? }
+// PATCH /updateItem  { id, ...movie fields }
 exports.updateItem = onRequest(async (req, res) => {
   handleOptions(req, res);
   if (req.method !== 'PATCH' && req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
   const body = await readJson(req);
   const id = typeof body.id === 'string' ? body.id : '';
   if (!id) return res.status(400).json({ error: 'id is required' });
+  // Whitelist updatable fields and ignore undefined values
+  const allowed = ['name', 'title', 'year', 'actors', 'genre', 'poster_link', 'description'];
   const patch = {};
-  if (typeof body.title === 'string') patch.title = body.title;
-  if (typeof body.description === 'string') patch.description = body.description;
+  for (const key of allowed) {
+    if (Object.prototype.hasOwnProperty.call(body, key) && body[key] !== undefined) {
+      patch[key] = body[key];
+    }
+  }
   try {
     const ref = col().doc(id);
     const snap = await ref.get();

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.com/schemas/movie.json",
-  "title": "Movie",
+  "name": "Movie",
   "description": "Schema for a movie document stored in the Firestore `items` collection.",
   "type": "object",
   "additionalProperties": false,
