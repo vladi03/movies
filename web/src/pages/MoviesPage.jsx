@@ -19,7 +19,7 @@ export default function MoviesPage() {
         sort={query.sort}
         setSort={(s) => setQuery({ sort: s })}
       />
-      {loading && (
+      {loading && items.length === 0 && (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
             <SkeletonCard key={i} />

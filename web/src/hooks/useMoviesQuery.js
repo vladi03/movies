@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { collection, getDocs, limit, orderBy, query, startAfter, where } from 'firebase/firestore';
 import { useSearchParams } from 'react-router-dom';
 import { db } from '../firebase.js';
@@ -10,7 +10,8 @@ export default function useMoviesQuery() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [cursor, setCursor] = useState(null);
+  // Keep a cursor per page index to avoid dependency loops and refetch jitter
+  const cursorsRef = useRef([]);
 
   const q = searchParams.get('q') || '';
   const genre = searchParams.get('genre') || '';
@@ -27,7 +28,10 @@ export default function useMoviesQuery() {
       if (genre) constraints.push(where('genre', 'array-contains', genre));
       constraints.push(orderBy(sort, dir));
       constraints.push(limit(PAGE_SIZE));
-      if (page > 0 && cursor) constraints.push(startAfter(cursor));
+      if (page > 0) {
+        const prevCursor = cursorsRef.current[page - 1];
+        if (prevCursor) constraints.push(startAfter(prevCursor));
+      }
       const qRef = query(col, ...constraints);
       const snap = await getDocs(qRef);
       let docs = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
@@ -35,17 +39,24 @@ export default function useMoviesQuery() {
         docs = docs.filter((d) => (d.title || '').toLowerCase().includes(q.toLowerCase()));
       }
       setItems(docs);
-      setCursor(snap.docs[snap.docs.length - 1]);
+      cursorsRef.current[page] = snap.docs[snap.docs.length - 1] || null;
     } catch (err) {
       setError(err.message || 'Failed to load');
     } finally {
       setLoading(false);
     }
-  }, [q, genre, sort, dir, page, cursor]);
+  }, [q, genre, sort, dir, page]);
 
+  // Reset cursors when the query shape (except page) changes
+  const queryKeyRef = useRef('');
   useEffect(() => {
+    const key = JSON.stringify({ q, genre, sort, dir });
+    if (key !== queryKeyRef.current) {
+      cursorsRef.current = [];
+      queryKeyRef.current = key;
+    }
     fetchMovies();
-  }, [fetchMovies]);
+  }, [fetchMovies, q, genre, sort, dir]);
 
   function setQuery(params) {
     const next = new URLSearchParams(searchParams);
