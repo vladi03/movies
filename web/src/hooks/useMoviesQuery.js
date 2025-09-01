@@ -42,7 +42,12 @@ export default function useMoviesQuery() {
         // Basic client-side search filter if q provided
         if (q) {
           const qlc = q.toLowerCase();
-          docs = docs.filter((d) => (d.title || d.name || '').toLowerCase().includes(qlc));
+          docs = docs.filter((d) => {
+            const primary = (d.title || d.name || '').toLowerCase();
+            const actors = Array.isArray(d.actors) ? d.actors : [];
+            const actorMatch = actors.some((a) => (a || '').toLowerCase().includes(qlc));
+            return primary.includes(qlc) || actorMatch;
+          });
         }
         if (docs.length > 0) {
           // Only apply results if still the active run
