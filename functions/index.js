@@ -145,3 +145,84 @@ exports.deleteItem = onRequest(async (req, res) => {
     return res.status(500).json({ error: 'Internal error' });
   }
 });
+
+// POST /aiFindMovie  { title, year }  or GET with ?title=&year=
+// Calls OpenAI Responses API with web_search tool to fetch authoritative movie info
+exports.aiFindMovie = onRequest(async (req, res) => {
+  handleOptions(req, res);
+  if (!['GET', 'POST'].includes(req.method)) return res.status(405).json({ error: 'Method not allowed' });
+  try {
+    const body = req.method === 'POST' ? await readJson(req) : req.query;
+    const title = typeof body.title === 'string' ? body.title.trim() : '';
+    const year = body.year !== undefined ? String(body.year).trim() : '';
+    if (!title || !year) return res.status(400).json({ error: 'title and year are required' });
+
+    const apiKey = process.env.OPENAI_API_KEY || process.env.OPENAI_API_TOKEN;
+    if (!apiKey) return res.status(500).json({ error: 'Server missing OPENAI_API_KEY' });
+
+    const input = `Find authoritative information about the movie "${title}" (${year}). the poster should be a working poster image URL (prefer TMDB or Wikipedia).`;
+
+    const payload = {
+      model: 'gpt-5-nano',
+      tools: [{ type: 'web_search' }],
+      input,
+    };
+    payload.text = {
+      format: {
+        type: 'json_schema',
+        name: 'movie_info',
+        schema: {
+          type: 'object',
+          properties: {
+            title: { type: 'string' },
+            name: { type: 'string', description: 'the title and year' },
+            year: { type: 'integer' },
+            actors: { type: 'array', items: { type: 'string' } },
+            genre: { type: 'array', items: { type: 'string' } },
+            poster_link: { type: 'string' }
+          },
+          required: ['title','name','year','actors','genre','poster_link'],
+          additionalProperties: false
+        }
+      }
+    };
+
+    const resp = await fetch('https://api.openai.com/v1/responses', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const text = await resp.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      data = { raw: text };
+    }
+
+    // Try to extract a JSON object if model returned text
+    let extracted = null;
+    try {
+      const tryStrings = [];
+      if (typeof data?.output_text === 'string') tryStrings.push(data.output_text);
+      if (Array.isArray(data?.output)) tryStrings.push(JSON.stringify(data.output));
+      if (Array.isArray(data?.content)) tryStrings.push(JSON.stringify(data.content));
+      for (const s of tryStrings) {
+        const m = typeof s === 'string' ? s.match(/\{[\s\S]*\}/) : null;
+        if (m) { extracted = JSON.parse(m[0]); break; }
+      }
+    } catch {
+      // ignore parse failures, return raw
+    }
+
+    setCors(res);
+    return res.status(200).json(extracted || data);
+  } catch (err) {
+    logger.error('aiFindMovie failed', err);
+    return res.status(500).json({ error: 'Internal error' });
+  }
+});
