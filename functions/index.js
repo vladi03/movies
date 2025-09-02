@@ -148,7 +148,7 @@ exports.deleteItem = onRequest(async (req, res) => {
 
 // POST /aiFindMovie  { title, year }  or GET with ?title=&year=
 // Calls OpenAI Responses API with web_search tool to fetch authoritative movie info
-exports.aiFindMovie = onRequest(async (req, res) => {
+exports.aiFindMovie = onRequest({ timeoutSeconds: 120 }, async (req, res) => {
   handleOptions(req, res);
   if (!['GET', 'POST'].includes(req.method)) return res.status(405).json({ error: 'Method not allowed' });
   try {
@@ -204,23 +204,34 @@ exports.aiFindMovie = onRequest(async (req, res) => {
       data = { raw: text };
     }
 
-    // Try to extract a JSON object if model returned text
-    let extracted = null;
-    try {
-      const tryStrings = [];
-      if (typeof data?.output_text === 'string') tryStrings.push(data.output_text);
-      if (Array.isArray(data?.output)) tryStrings.push(JSON.stringify(data.output));
-      if (Array.isArray(data?.content)) tryStrings.push(JSON.stringify(data.content));
-      for (const s of tryStrings) {
-        const m = typeof s === 'string' ? s.match(/\{[\s\S]*\}/) : null;
-        if (m) { extracted = JSON.parse(m[0]); break; }
+    // Extract the JSON object from OpenAI Responses output
+    function extractMovieObject(d) {
+      // 1) Direct output_text string
+      if (typeof d?.output_text === 'string') {
+        try { return JSON.parse(d.output_text); } catch {}
       }
-    } catch {
-      // ignore parse failures, return raw
+      // 2) New Responses shape: d.output[].content[].text
+      if (Array.isArray(d?.output)) {
+        for (const item of d.output) {
+          if (item?.type === 'message' && Array.isArray(item.content)) {
+            for (const c of item.content) {
+              if (c?.type === 'output_text' && typeof c.text === 'string') {
+                try { return JSON.parse(c.text); } catch {}
+              }
+            }
+          }
+        }
+      }
+      return null;
     }
 
+    const movie = extractMovieObject(data);
     setCors(res);
-    return res.status(200).json(extracted || data);
+    if (movie) {
+      return res.status(200).json(movie);
+    }
+    // Fallback: return raw API JSON to aid debugging
+    return res.status(200).json(data);
   } catch (err) {
     logger.error('aiFindMovie failed', err);
     return res.status(500).json({ error: 'Internal error' });
