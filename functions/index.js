@@ -174,7 +174,7 @@ exports.aiFindMovie = onRequest({ timeoutSeconds: 120 }, async (req, res) => {
         schema: {
           type: 'object',
           properties: {
-            title: { type: 'string' },
+            title: { type: 'string', description: 'only the title, not the year' },
             name: { type: 'string', description: 'the title and year' },
             year: { type: 'integer' },
             actors: { type: 'array', items: { type: 'string' } },
