@@ -228,6 +228,10 @@ exports.aiFindMovie = onRequest({ timeoutSeconds: 120 }, async (req, res) => {
     const movie = extractMovieObject(data);
     setCors(res);
     if (movie) {
+      if (typeof movie.poster_link === 'string') {
+        const match = movie.poster_link.match(/https?:\/\/\S+/);
+        if (match) movie.poster_link = match[0];
+      }
       return res.status(200).json(movie);
     }
     // Fallback: return raw API JSON to aid debugging
