@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import MoviesPage from './MoviesPage.jsx';
 import { vi, test, expect } from 'vitest';
 import '@testing-library/jest-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 vi.mock('../hooks/useMoviesQuery.js', () => ({
   default: () => ({
@@ -14,7 +15,11 @@ vi.mock('../hooks/useMoviesQuery.js', () => ({
 }));
 
 test('renders movie grid and search', () => {
-  render(<MoviesPage />);
+  render(
+    <MemoryRouter>
+      <MoviesPage />
+    </MemoryRouter>
+  );
   expect(screen.getByPlaceholderText(/search/i)).toBeInTheDocument();
   expect(screen.getByText('Movie 1')).toBeInTheDocument();
 });
