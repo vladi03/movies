@@ -8,6 +8,7 @@ export default function Header({ search, onSearchChange }) {
         <Link to="/" className="btn btn-ghost normal-case text-xl">Movie Catalog</Link>
       </div>
       <div className="flex-none">
+        <Link to="/home" className={`btn btn-ghost mr-2 ${pathname === '/home' ? 'btn-active' : ''}`}>Browse</Link>
         <Link to="/ai" className={`btn btn-ghost mr-2 ${pathname === '/ai' ? 'btn-active' : ''}`}>AI</Link>
         <input
           type="text"
