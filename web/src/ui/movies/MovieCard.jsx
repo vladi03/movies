@@ -1,9 +1,17 @@
-export default function MovieCard({ movie }) {
+export default function MovieCard({ movie, onSelect }) {
   const title = movie.title || movie.name || '(untitled)';
   const year = movie.year ? `(${movie.year})` : '';
   const genres = Array.isArray(movie.genre) ? movie.genre : [];
   return (
-    <div className="card bg-base-200 shadow">
+    <div
+      className="card bg-base-200 shadow cursor-pointer"
+      onClick={() => onSelect?.(movie)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') onSelect?.(movie);
+      }}
+    >
       {movie.poster_link && (
         <figure>
           <img src={movie.poster_link} alt={title} className="object-cover w-full h-72" />
