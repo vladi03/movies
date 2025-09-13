@@ -4,6 +4,7 @@ export default function MovieCard({ movie, onSelect }) {
   const genres = Array.isArray(movie.genre) ? movie.genre : [];
   return (
     <div
+      id={movie.id}
       className="card bg-base-200 shadow cursor-pointer"
       onClick={() => onSelect?.(movie)}
       role="button"

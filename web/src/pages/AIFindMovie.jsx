@@ -31,8 +31,6 @@ export default function AIFindMovie() {
     setError('');
     setAddOk('');
     try {
-      console.log("-------------");
-      console.log(result);
       const created = await createItem(result);
       setAddOk(`Added: ${created.id}`);
     } catch (err) {
@@ -70,16 +68,28 @@ export default function AIFindMovie() {
           <div className="card bg-base-200 shadow mb-6">
             <div className="card-body">
               <div className="flex gap-4">
-                {result.poster_link && (
-                  <img
-                    src={result.poster_link}
-                    alt={result.title || 'poster'}
-                    className="w-32 h-48 object-cover rounded"
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                    }}
-                  />
-                )}
+                <div className="flex gap-4">
+                  {result.poster_link && (
+                    <img
+                      src={result.poster_link}
+                      alt={result.title || 'poster'}
+                      className="w-32 h-48 object-cover rounded"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                  )}
+                  {result.landscape_poster_link && (
+                    <img
+                      src={result.landscape_poster_link}
+                      alt={result.title || 'landscape poster'}
+                      className="w-48 h-32 object-cover rounded"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                  )}
+                </div>
                 <div>
                   <h2 className="card-title">{result.title} {result.year ? `(${result.year})` : ''}</h2>
                   {Array.isArray(result.genre) && (

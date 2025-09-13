@@ -52,6 +52,36 @@ exports.listItems = onRequest(async (req, res) => {
   }
 });
 
+// GET /randomItems
+exports.randomItems = onRequest(async (req, res) => {
+  handleOptions(req, res);
+  if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
+  try {
+    const snap = await col().limit(50).get();
+    const docs = snap.docs
+      .map((d) => ({ id: d.id, ...d.data() }))
+      .filter((m) => m.landscape_poster_link || m.poster_link);
+    const withLandscape = docs.filter((m) => m.landscape_poster_link);
+    const others = docs.filter((m) => !m.landscape_poster_link);
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+    const selected = shuffle(withLandscape).slice(0, 4);
+    if (selected.length < 4) {
+      selected.push(...shuffle(others).slice(0, 4 - selected.length));
+    }
+    setCors(res);
+    return res.status(200).json({ movies: selected });
+  } catch (err) {
+    logger.error('randomItems failed', err);
+    return res.status(500).json({ error: 'Internal error' });
+  }
+});
+
 // GET /getItem?id=ABC
 exports.getItem = onRequest(async (req, res) => {
   handleOptions(req, res);
@@ -79,7 +109,7 @@ exports.createItem = onRequest(async (req, res) => {
   try {
     const now = Date.now();
     // Whitelist known movie fields and drop undefined values
-    const allowed = ['name', 'title', 'year', 'actors', 'genre', 'poster_link', 'description', 'createdAt', 'updatedAt'];
+    const allowed = ['name', 'title', 'year', 'actors', 'genre', 'poster_link', 'landscape_poster_link', 'description', 'createdAt', 'updatedAt'];
     const doc = {};
     for (const key of allowed) {
       if (Object.prototype.hasOwnProperty.call(body, key) && body[key] !== undefined) {
@@ -109,7 +139,7 @@ exports.updateItem = onRequest(async (req, res) => {
   const id = typeof body.id === 'string' ? body.id : '';
   if (!id) return res.status(400).json({ error: 'id is required' });
   // Whitelist updatable fields and ignore undefined values
-  const allowed = ['name', 'title', 'year', 'actors', 'genre', 'poster_link', 'description'];
+  const allowed = ['name', 'title', 'year', 'actors', 'genre', 'poster_link', 'landscape_poster_link', 'description'];
   const patch = {};
   for (const key of allowed) {
     if (Object.prototype.hasOwnProperty.call(body, key) && body[key] !== undefined) {
@@ -160,7 +190,7 @@ exports.aiFindMovie = onRequest({ timeoutSeconds: 120 }, async (req, res) => {
     const apiKey = process.env.OPENAI_API_KEY || process.env.OPENAI_API_TOKEN;
     if (!apiKey) return res.status(500).json({ error: 'Server missing OPENAI_API_KEY' });
 
-    const input = `Find authoritative information about the movie "${title}" (${year}). the poster should be a working poster image URL (prefer TMDB or Wikipedia).`;
+    const input = `Find authoritative information about the movie "${title}" (${year}). Provide both a vertical poster_link and a horizontal landscape_poster_link as working image URLs (prefer TMDB or Wikipedia).`;
 
     const payload = {
       model: 'gpt-5-nano',
@@ -179,9 +209,10 @@ exports.aiFindMovie = onRequest({ timeoutSeconds: 120 }, async (req, res) => {
             year: { type: 'integer' },
             actors: { type: 'array', items: { type: 'string' } },
             genre: { type: 'array', items: { type: 'string' } },
-            poster_link: { type: 'string' }
+            poster_link: { type: 'string' },
+            landscape_poster_link: { type: 'string' }
           },
-          required: ['title','name','year','actors','genre','poster_link'],
+          required: ['title','name','year','actors','genre','poster_link','landscape_poster_link'],
           additionalProperties: false
         }
       }
@@ -231,6 +262,10 @@ exports.aiFindMovie = onRequest({ timeoutSeconds: 120 }, async (req, res) => {
       if (typeof movie.poster_link === 'string') {
         const match = movie.poster_link.match(/https?:\/\/\S+/);
         if (match) movie.poster_link = match[0];
+      }
+      if (typeof movie.landscape_poster_link === 'string') {
+        const match2 = movie.landscape_poster_link.match(/https?:\/\/\S+/);
+        if (match2) movie.landscape_poster_link = match2[0];
       }
       return res.status(200).json(movie);
     }

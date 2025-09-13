@@ -55,7 +55,8 @@ Each movie document stored in Firestore follows this JSON structure:
   "year": 1992,
   "actors": ["Tom Cruise", "Jack Nicholson", "Demi Moore"],
   "genre": ["Drama", "Thriller"],
-  "poster_link": "https://m.media-amazon.com/images/M/MV5BOGVhMTUwYzEtZGQ1ZC00Nzg1LTk0OGUtMDk0NDM0ZmZlN2E0XkEyXkFqcGc@._V1_SX300.jpg"
+  "poster_link": "https://m.media-amazon.com/images/M/MV5BOGVhMTUwYzEtZGQ1ZC00Nzg1LTk0OGUtMDk0NDM0ZmZlN2E0XkEyXkFqcGc@._V1_SX300.jpg",
+  "landscape_poster_link": "https://m.media-amazon.com/images/L/landscape.jpg"
 }
 ```
 
@@ -69,6 +70,7 @@ Formal specification [JSON Schema](docs/schemas/movie.schema.json)
 * **actors** *(array of strings)* – List of main cast members.
 * **genre** *(array of strings)* – Genre tags (e.g., Drama, Thriller).
 * **poster\_link** *(string/URL)* – Link to the movie poster image.
+* **landscape\_poster\_link** *(string/URL)* – Link to a landscape-oriented poster image.
 
 ---
 
@@ -76,6 +78,7 @@ Formal specification [JSON Schema](docs/schemas/movie.schema.json)
 
 * 🔐 **Authentication**: Google (and optional email/password) sign-in with Firebase Auth.
 * 📖 **Read-only UI**: SPA displays `items` collection entries from Firestore in real-time.
+* 🎞️ **Hero Carousel**: Home page fetches four random movies via `/randomItems` and shows their landscape posters.
 * 🔧 **MCP tools** (for ChatGPT):
 
   * `listItems(limit?)`
@@ -83,6 +86,7 @@ Formal specification [JSON Schema](docs/schemas/movie.schema.json)
   * `createItem({ title, description? })`
   * `updateItem({ id, title?, description? })`
   * `deleteItem(id)`
+  * `randomItems()` – fetch four random movies for the hero carousel
 * 🛡️ **Security**: Firestore rules permit **reads only** for authenticated users; **writes are blocked** at the UI layer and reserved for MCP.
 * 🚀 **Hosting**: Deployable to Firebase Hosting.
 

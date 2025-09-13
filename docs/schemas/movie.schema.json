@@ -23,6 +23,7 @@
       "description": "Genre tags (e.g., Drama, Thriller)"
     },
     "poster_link": { "type": "string", "format": "uri", "description": "Poster image URL" },
+    "landscape_poster_link": { "type": "string", "format": "uri", "description": "Landscape poster image URL" },
     "createdAt": { "type": ["integer", "string"], "description": "ms since epoch or ISO string" },
     "updatedAt": { "type": ["integer", "string"], "description": "ms since epoch or ISO string" }
   },
@@ -34,7 +35,8 @@
       "year": 1987,
       "actors": ["Jason Patric", "Corey Haim", "Dianne Wiest"],
       "genre": ["Comedy", "Horror"],
-      "poster_link": "https://m.media-amazon.com/images/M/MV5B....jpg"
+      "poster_link": "https://m.media-amazon.com/images/M/MV5B....jpg",
+      "landscape_poster_link": "https://m.media-amazon.com/images/L/landscape....jpg"
     }
   ]
 }

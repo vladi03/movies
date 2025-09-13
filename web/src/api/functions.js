@@ -26,8 +26,8 @@ async function call(path, { method = 'GET', body, token } = {}) {
   return ct.includes('application/json') ? res.json() : res.text();
 }
 
-export async function createItem({ title, name, year, actors, genre, poster_link }, token) {
-  return call('createItem', { method: 'POST', body: { title, name, year, actors, genre, poster_link }, token });
+export async function createItem({ title, name, year, actors, genre, poster_link, landscape_poster_link }, token) {
+  return call('createItem', { method: 'POST', body: { title, name, year, actors, genre, poster_link, landscape_poster_link }, token });
 }
 
 export async function deleteItem(id, token) {
@@ -51,4 +51,8 @@ export async function updateItem({ id, title, description }, token) {
 // Call the AI endpoint to fetch structured movie info
 export async function aiFindMovie({ title, year }, token) {
   return call('aiFindMovie', { method: 'POST', body: { title, year }, token });
+}
+
+export async function randomItems(token) {
+  return call('randomItems', { method: 'GET', token });
 }

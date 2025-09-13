@@ -14,12 +14,16 @@ vi.mock('../hooks/useMoviesQuery.js', () => ({
   }),
 }));
 
-test('renders movie grid and search', () => {
+vi.mock('../api/functions.js', () => ({
+  randomItems: () => Promise.resolve({ movies: [] })
+}));
+
+test('renders movie grid and search', async () => {
   render(
     <MemoryRouter>
       <MoviesPage />
     </MemoryRouter>
   );
   expect(screen.getByPlaceholderText(/search/i)).toBeInTheDocument();
-  expect(screen.getByText('Movie 1')).toBeInTheDocument();
+  expect(await screen.findByText('Movie 1')).toBeInTheDocument();
 });
