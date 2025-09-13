@@ -146,6 +146,36 @@ exports.deleteItem = onRequest(async (req, res) => {
   }
 });
 
+// GET /randomItems
+exports.randomItems = onRequest(async (req, res) => {
+  handleOptions(req, res);
+  if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
+  try {
+    const snap = await col().limit(50).get();
+    const docs = snap.docs
+      .map((d) => ({ id: d.id, ...d.data() }))
+      .filter((m) => m.landscape_poster_link || m.poster_link);
+    const withLandscape = docs.filter((m) => m.landscape_poster_link);
+    const others = docs.filter((m) => !m.landscape_poster_link);
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+    const selected = shuffle(withLandscape).slice(0, 4);
+    if (selected.length < 4) {
+      selected.push(...shuffle(others).slice(0, 4 - selected.length));
+    }
+    setCors(res);
+    return res.status(200).json({ movies: selected });
+  } catch (err) {
+    logger.error('randomItems failed', err);
+    return res.status(500).json({ error: 'Internal error' });
+  }
+});
+
 // GET/POST /findMovie?title=&year=
 // Fetches movie data from TMDB, returning cast, genres and poster URLs
 exports.findMovie = onRequest({ timeoutSeconds: 60 }, async (req, res) => {

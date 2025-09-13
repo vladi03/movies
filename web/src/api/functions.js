@@ -52,3 +52,10 @@ export async function updateItem({ id, title, description }, token) {
 export async function findMovie({ title, year }, token) {
   return call('findMovie', { method: 'POST', body: { title, year }, token });
 }
+
+// Fetch a few random items suitable for hero carousel
+export async function randomItems(token) {
+  const res = await call('randomItems', { method: 'GET', token });
+  // Backend returns { movies: [...] }
+  return Array.isArray(res?.movies) ? res.movies : res;
+}
