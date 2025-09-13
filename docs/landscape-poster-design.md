@@ -3,6 +3,15 @@
 ## Summary
 Add support for AI-generated landscape poster images and surface them in a Netflix-style hero carousel. This requires expanding the AI prompt and schema, storing the landscape URL in Firestore, exposing an endpoint that returns four random movies, and updating the web UI to consume and display this data.
 
+## Goals
+- Store a second, landscape-oriented poster URL for each movie.
+- Serve four random movies for a hero carousel on the web client.
+- Keep the implementation small so it can be delivered incrementally.
+
+## Non-Goals
+- Building advanced recommendation logic; random selection is sufficient.
+- Updating existing movie records to retroactively include landscape posters.
+
 ## 1. AI Prompt and Schema
 - Extend the prompt in `functions/index.js` so the AI also returns a horizontal `landscape_poster_link` along with the existing `poster_link`.
 - Add `landscape_poster_link` to the JSON schema and `required` list used to validate AI responses.
@@ -14,6 +23,23 @@ Add support for AI-generated landscape poster images and surface them in a Netfl
 
 ## 3. Random-Movie Endpoint
 - Add a new HTTPS function `randomItems` that reads a limited batch of movie documents from Firestore and returns four random entries, each including the landscape poster URL.
+
+### API Contract
+- **Endpoint**: `GET https://<region>-<project>.cloudfunctions.net/randomItems`
+- **Response**:
+  ```json
+  {
+    "movies": [
+      {
+        "id": "movie-id",
+        "title": "Movie Title",
+        "poster_link": "https://...",
+        "landscape_poster_link": "https://..."
+      }
+    ]
+  }
+  ```
+  Returns up to four movie objects or fewer if the database contains less data.
 
 ## 4. Web Client API
 - In `web/src/api/functions.js`, expose a `randomItems()` helper that calls the new endpoint.
@@ -30,4 +56,8 @@ Add support for AI-generated landscape poster images and surface them in a Netfl
 ## 7. Documentation
 - Update project documentation to describe the new `landscape_poster_link` field, the `/randomItems` endpoint, and the steps to integrate the hero carousel.
 - This design doc tracks the required changes before implementation begins.
+
+## 8. Open Questions
+- Should landscape posters be mandatory, or can the UI fall back to portrait posters if missing?
+- What is the maximum size we want to allow for landscape images to balance quality and bandwidth?
 
