@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+
 export default function HeroCarousel({ items = [], onScrollTo }) {
   if (!items || items.length === 0) return null;
 
@@ -5,8 +7,19 @@ export default function HeroCarousel({ items = [], onScrollTo }) {
     return m.landscape_poster_link || m.poster_link || '';
   }
 
+  const containerRef = useRef(null);
+
+  function scrollToIndex(idx) {
+    const container = containerRef.current;
+    if (!container) return;
+    const target = container.querySelector(`#hero-slide-${idx}`);
+    if (target) {
+      container.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
+    }
+  }
+
   return (
-    <div className="carousel w-full mb-6 h-64 md:h-80 lg:h-96 rounded-box overflow-hidden">
+    <div ref={containerRef} className="carousel w-full mb-6 h-64 md:h-80 lg:h-96 rounded-box overflow-hidden">
       {items.map((m, idx) => {
         const bg = bgFor(m);
         const prev = (idx - 1 + items.length) % items.length;
@@ -48,8 +61,26 @@ export default function HeroCarousel({ items = [], onScrollTo }) {
               </div>
             </div>
             <div className="absolute left-4 right-4 top-1/2 -translate-y-1/2 flex justify-between">
-              <a href={`#hero-slide-${prev}`} className="btn btn-circle">❮</a>
-              <a href={`#hero-slide-${next}`} className="btn btn-circle">❯</a>
+              <button
+                type="button"
+                className="btn btn-circle"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToIndex(prev);
+                }}
+              >
+                ❮
+              </button>
+              <button
+                type="button"
+                className="btn btn-circle"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToIndex(next);
+                }}
+              >
+                ❯
+              </button>
             </div>
           </div>
         );
@@ -57,4 +88,3 @@ export default function HeroCarousel({ items = [], onScrollTo }) {
     </div>
   );
 }
-
