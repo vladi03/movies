@@ -8,7 +8,9 @@
   "scripts": {
     "start": "node index.js",
     "test": "vitest run",
-    "import": "node scripts/import_json.js"
+    "import": "node scripts/import_json.js",
+    "update-posters": "node scripts/update_posters.js",
+    "delete": "node scripts/delete_movies.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.3",
