@@ -1,7 +1,7 @@
 # Design: Landscape Poster Integration and Random Movie Carousel
 
 ## Summary
-Add support for AI-generated landscape poster images and surface them in a Netflix-style hero carousel. This requires expanding the AI prompt and schema, storing the landscape URL in Firestore, exposing an endpoint that returns four random movies, updating the web UI to consume and display this data, and providing a migration strategy so existing movies still render correctly.
+Add support for landscape poster images sourced from TMDB and surface them in a Netflix-style hero carousel. This requires expanding the data fetch and schema, storing the landscape URL in Firestore, exposing an endpoint that returns four random movies, updating the web UI to consume and display this data, and providing a migration strategy so existing movies still render correctly.
 
 ## Goals
 - Store a second, landscape-oriented poster URL for each movie.
@@ -12,10 +12,10 @@ Add support for AI-generated landscape poster images and surface them in a Netfl
 - Building advanced recommendation logic; random selection is sufficient.
 - Creating a perfect migration framework; a lightweight backfill and runtime fallback is acceptable.
 
-## 1. AI Prompt and Schema
-- Extend the prompt in `functions/index.js` so the AI also returns a horizontal `landscape_poster_link` along with the existing `poster_link`.
-- Add `landscape_poster_link` to the JSON schema and `required` list used to validate AI responses.
-- Normalize both URLs when parsing the AI response to ensure valid links are stored.
+## 1. Movie Fetch and Schema
+- Update the TMDB lookup in `functions/index.js` so it also returns a horizontal `landscape_poster_link` along with the existing `poster_link`.
+- Add `landscape_poster_link` to the JSON schema and `required` list used to validate responses.
+- Normalize both URLs when parsing the API response to ensure valid links are stored.
 
 ## 2. Firestore API Changes
 - Update `createItem` and `updateItem` in `functions/index.js` to whitelist `landscape_poster_link` so it can be saved and updated in Firestore.
@@ -43,22 +43,22 @@ Add support for AI-generated landscape poster images and surface them in a Netfl
 
 ## 4. Web Client API
 - In `web/src/api/functions.js`, expose a `randomItems()` helper that calls the new endpoint.
-- Update existing helpers (`createItem`, `aiFindMovie`) to pass through `landscape_poster_link`.
+- Update existing helpers (`createItem`, `findMovie`) to pass through `landscape_poster_link`.
 
 ## 5. UI Carousel
 - Create `HeroCarousel.jsx` in `web/src/ui/movies/` that renders a Netflix-style carousel using `landscape_poster_link` for full-width backgrounds, falling back to `poster_link` when necessary.
 - On `MoviesPage.jsx`, fetch four random movies on mount and render the `HeroCarousel` above the existing grid.
 - Ensure carousel items link to their detail pages or scroll to their card in the grid.
 
-## 6. AI Search Page
-- On `AIFindMovie.jsx`, display both portrait and landscape poster URLs returned from the AI so users can preview the stored images.
+## 6. Movie Search Page
+- On `AIFindMovie.jsx`, display both portrait and landscape poster URLs returned from the API so users can preview the stored images.
 
 ## 7. Documentation
 - Update project documentation to describe the new `landscape_poster_link` field, the `/randomItems` endpoint, and the steps to integrate the hero carousel.
 - This design doc tracks the required changes before implementation begins.
 
 ## 8. Backfill and Fallback Strategy
-- Run a one-time script that invokes the AI pipeline to backfill `landscape_poster_link` for existing movies.
+- Run a one-time script that invokes the TMDB lookup to backfill `landscape_poster_link` for existing movies.
 - Until backfill completes, both `/randomItems` and the `HeroCarousel` should gracefully fall back to `poster_link`.
 - Skip documents that lack both URLs to avoid broken imagery.
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Layout from '../ui/Layout.jsx';
-import { aiFindMovie, createItem } from '../api/functions.js';
+import { findMovie, createItem } from '../api/functions.js';
 
 export default function AIFindMovie() {
   const [title, setTitle] = useState('Jurassic World Rebirth');
@@ -17,7 +17,7 @@ export default function AIFindMovie() {
     setResult(null);
     setLoading(true);
     try {
-      const data = await aiFindMovie({ title, year });
+      const data = await findMovie({ title, year });
       setResult(data);
     } catch (err) {
       setError(err.message || 'Failed to fetch movie');
@@ -43,7 +43,7 @@ export default function AIFindMovie() {
   return (
     <Layout>
       <div className="max-w-2xl mx-auto">
-        <h1 className="text-2xl font-semibold mb-4">AI: Find Movie</h1>
+        <h1 className="text-2xl font-semibold mb-4">TMDB: Find Movie</h1>
         <form onSubmit={onSearch} className="flex gap-2 mb-4">
           <input
             className="input input-bordered flex-1"
@@ -70,16 +70,28 @@ export default function AIFindMovie() {
           <div className="card bg-base-200 shadow mb-6">
             <div className="card-body">
               <div className="flex gap-4">
-                {result.poster_link && (
-                  <img
-                    src={result.poster_link}
-                    alt={result.title || 'poster'}
-                    className="w-32 h-48 object-cover rounded"
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                    }}
-                  />
-                )}
+                <div className="flex flex-col gap-2">
+                  {result.poster_link && (
+                    <img
+                      src={result.poster_link}
+                      alt={result.title || 'poster'}
+                      className="w-32 h-48 object-cover rounded"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                  )}
+                  {result.landscape_poster_link && (
+                    <img
+                      src={result.landscape_poster_link}
+                      alt={result.title || 'landscape poster'}
+                      className="w-48 h-28 object-cover rounded"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                  )}
+                </div>
                 <div>
                   <h2 className="card-title">{result.title} {result.year ? `(${result.year})` : ''}</h2>
                   {Array.isArray(result.genre) && (

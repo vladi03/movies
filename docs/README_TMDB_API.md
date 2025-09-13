@@ -108,96 +108,37 @@ curl --request GET \
 ```
 ---
 
-## 3. Get Movie Credits
+## 3. Get Movie Details & Credits
+
+Fetch full movie details and cast in a single call.
 
 ### Endpoint
 ```
-GET /movie/{movie_id}/credits
+GET /movie/{movie_id}?append_to_response=credits
 ```
 
 ### Example
 ```bash
 curl --request GET \
-  --url 'https://api.themoviedb.org/3/movie/332562/credits?language=en-US' \
+  --url 'https://api.themoviedb.org/3/movie/332562?append_to_response=credits&language=en-US' \
   --header 'Authorization: Bearer ${TMDB_BEARER}' \
   --header 'accept: application/json'
 ```
 
-### Path Parameter
-- **`movie_id` (required)** — TMDB ID of the movie. Example: `332562`.
+### Response Highlights
+- `genres[]` – objects with `name` fields.
+- `credits.cast[]` – actor list; use the first few names.
+- `poster_path` – portrait poster.
+- `backdrop_path` – landscape backdrop.
 
-### Query Parameters
-- **`language` (optional, default: en-US)** — Language for translated fields.
-
-### Response Overview
-- **`cast`** — Array of actors with fields like `id`, `name`, `character`, `profile_path`, and `order` (billing order).  
-- **`crew`** — Array of crew members with fields like `id`, `name`, `job`, `department`, and `profile_path`.
-
-```
-{
-    "id": 332562,
-    "cast": [{
-            "adult": false,
-            "gender": 1,
-            "id": 237405,
-            "known_for_department": "Acting",
-            "name": "Lady Gaga",
-            "original_name": "Lady Gaga",
-            "popularity": 1.1999,
-            "profile_path": "/JHrvJgQ443QKdzcEpXirmWtjAx.jpg",
-            "cast_id": 1,
-            "character": "Ally Campana",
-            "credit_id": "57ea39dbc3a3687ffd007913",
-            "order": 0
-        }, {
-            "adult": false,
-            "gender": 2,
-            "id": 51329,
-            "known_for_department": "Acting",
-            "name": "Bradley Cooper",
-            "original_name": "Bradley Cooper",
-            "popularity": 1.7139,
-            "profile_path": "/sQq0nft6YZmJ7EMQwPcbaxym3AL.jpg",
-            "cast_id": 0,
-            "character": "Jackson Maine",
-            "credit_id": "57ea39cf925141374b0007e1",
-            "order": 1
-        }, {
-            "adult": false,
-            "gender": 2,
-            "id": 16431,
-            "known_for_department": "Acting",
-            "name": "Sam Elliott",
-            "original_name": "Sam Elliott",
-            "popularity": 2.057,
-            "profile_path": "/1K2IvGXFbKsgkExuUsRvy4F0c9e.jpg",
-            "cast_id": 12,
-            "character": "Bobby Maine",
-            "credit_id": "59218be0c3a3687a64058418",
-            "order": 2
-        }, {
-            "adult": false,
-            "gender": 2,
-            "id": 57906,
-            "known_for_department": "Acting",
-            "name": "Andrew Dice Clay",
-            "original_name": "Andrew Dice Clay",
-            "popularity": 0.4588,
-            "profile_path": "/xwNn8mJrhww89P2pIVkWnaTlqHw.jpg",
-            "cast_id": 13,
-            "character": "Lorenzo Campana",
-            "credit_id": "59218bfac3a3687a8e055c47",
-            "order": 3
-        }
-...
-```
+Use these image paths to build `poster_link` and `landscape_poster_link`.
 
 ---
 
 ## 4. Images
 
-TMDB responses include image paths (e.g., `poster_path`, `backdrop_path`, `profile_path`).  
-Construct full URLs as:
+TMDB responses include image paths such as `poster_path` (portrait posters) and `backdrop_path` (landscape backdrops).
+Construct full URLs for `poster_link` and `landscape_poster_link` as:
 
 ```
 https://image.tmdb.org/t/p/{SIZE}{PATH}
@@ -244,8 +185,8 @@ Best practices:
 - **Search Movies**:  
   `GET /search/movie`
 
-- **Movie Credits (Cast & Crew)**:  
-  `GET /movie/{movie_id}/credits`
+- **Movie Details & Credits**:
+  `GET /movie/{movie_id}?append_to_response=credits`
 
 - **Images (base)**:  
   `https://image.tmdb.org/t/p/{SIZE}{PATH}`

@@ -79,7 +79,7 @@ exports.createItem = onRequest(async (req, res) => {
   try {
     const now = Date.now();
     // Whitelist known movie fields and drop undefined values
-    const allowed = ['name', 'title', 'year', 'actors', 'genre', 'poster_link', 'description', 'createdAt', 'updatedAt'];
+    const allowed = ['name', 'title', 'year', 'actors', 'genre', 'poster_link', 'landscape_poster_link', 'description', 'createdAt', 'updatedAt'];
     const doc = {};
     for (const key of allowed) {
       if (Object.prototype.hasOwnProperty.call(body, key) && body[key] !== undefined) {
@@ -109,7 +109,7 @@ exports.updateItem = onRequest(async (req, res) => {
   const id = typeof body.id === 'string' ? body.id : '';
   if (!id) return res.status(400).json({ error: 'id is required' });
   // Whitelist updatable fields and ignore undefined values
-  const allowed = ['name', 'title', 'year', 'actors', 'genre', 'poster_link', 'description'];
+  const allowed = ['name', 'title', 'year', 'actors', 'genre', 'poster_link', 'landscape_poster_link', 'description'];
   const patch = {};
   for (const key of allowed) {
     if (Object.prototype.hasOwnProperty.call(body, key) && body[key] !== undefined) {
@@ -146,98 +146,62 @@ exports.deleteItem = onRequest(async (req, res) => {
   }
 });
 
-// POST /aiFindMovie  { title, year }  or GET with ?title=&year=
-// Calls OpenAI Responses API with web_search tool to fetch authoritative movie info
-exports.aiFindMovie = onRequest({ timeoutSeconds: 120 }, async (req, res) => {
+// GET/POST /findMovie?title=&year=
+// Fetches movie data from TMDB, returning cast, genres and poster URLs
+exports.findMovie = onRequest({ timeoutSeconds: 60 }, async (req, res) => {
   handleOptions(req, res);
-  if (!['GET', 'POST'].includes(req.method)) return res.status(405).json({ error: 'Method not allowed' });
+  if (!['GET', 'POST'].includes(req.method)) {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
   try {
     const body = req.method === 'POST' ? await readJson(req) : req.query;
     const title = typeof body.title === 'string' ? body.title.trim() : '';
     const year = body.year !== undefined ? String(body.year).trim() : '';
     if (!title || !year) return res.status(400).json({ error: 'title and year are required' });
 
-    const apiKey = process.env.OPENAI_API_KEY || process.env.OPENAI_API_TOKEN;
-    if (!apiKey) return res.status(500).json({ error: 'Server missing OPENAI_API_KEY' });
+    const token = process.env.TMDB_BEARER;
+    if (!token) return res.status(500).json({ error: 'Server missing TMDB_BEARER' });
 
-    const input = `Find authoritative information about the movie "${title}" (${year}). the poster should be a working poster image URL (prefer TMDB or Wikipedia).`;
-
-    const payload = {
-      model: 'gpt-5-nano',
-      tools: [{ type: 'web_search' }],
-      input,
-    };
-    payload.text = {
-      format: {
-        type: 'json_schema',
-        name: 'movie_info',
-        schema: {
-          type: 'object',
-          properties: {
-            title: { type: 'string', description: 'only the title, not the year' },
-            name: { type: 'string', description: 'the title and year' },
-            year: { type: 'integer' },
-            actors: { type: 'array', items: { type: 'string' } },
-            genre: { type: 'array', items: { type: 'string' } },
-            poster_link: { type: 'string' }
-          },
-          required: ['title','name','year','actors','genre','poster_link'],
-          additionalProperties: false
-        }
-      }
-    };
-
-    const resp = await fetch('https://api.openai.com/v1/responses', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    });
-
-    const text = await resp.text();
-    let data;
-    try {
-      data = JSON.parse(text);
-    } catch {
-      data = { raw: text };
+    const headers = { Authorization: `Bearer ${token}`, accept: 'application/json' };
+    const searchUrl = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(title)}&include_adult=false&language=en-US&year=${encodeURIComponent(year)}&page=1`;
+    const searchResp = await fetch(searchUrl, { headers });
+    const searchData = await searchResp.json();
+    const first = Array.isArray(searchData.results) ? searchData.results[0] : null;
+    if (!first) {
+      setCors(res);
+      return res.status(404).json({ error: 'Movie not found' });
     }
 
-    // Extract the JSON object from OpenAI Responses output
-    function extractMovieObject(d) {
-      // 1) Direct output_text string
-      if (typeof d?.output_text === 'string') {
-        try { return JSON.parse(d.output_text); } catch {}
-      }
-      // 2) New Responses shape: d.output[].content[].text
-      if (Array.isArray(d?.output)) {
-        for (const item of d.output) {
-          if (item?.type === 'message' && Array.isArray(item.content)) {
-            for (const c of item.content) {
-              if (c?.type === 'output_text' && typeof c.text === 'string') {
-                try { return JSON.parse(c.text); } catch {}
-              }
-            }
-          }
-        }
-      }
-      return null;
-    }
+    const detailUrl = `https://api.themoviedb.org/3/movie/${first.id}?append_to_response=credits`;
+    const detailResp = await fetch(detailUrl, { headers });
+    const detail = await detailResp.json();
 
-    const movie = extractMovieObject(data);
+    const genres = Array.isArray(detail.genres) ? detail.genres.map(g => g.name) : [];
+    const actors = Array.isArray(detail.credits?.cast)
+      ? detail.credits.cast.slice(0, 10).map(c => c.name).filter(Boolean)
+      : [];
+
+    const poster_link = first.poster_path
+      ? `https://image.tmdb.org/t/p/w500${first.poster_path}`
+      : undefined;
+    const landscape_poster_link = first.backdrop_path
+      ? `https://image.tmdb.org/t/p/w780${first.backdrop_path}`
+      : undefined;
+
+    const result = {
+      title: detail.title || first.title,
+      name: detail.title ? `${detail.title} (${year})` : first.title,
+      year: Number(year),
+      actors,
+      genre: genres,
+      poster_link,
+      landscape_poster_link,
+    };
+
     setCors(res);
-    if (movie) {
-      if (typeof movie.poster_link === 'string') {
-        const match = movie.poster_link.match(/https?:\/\/\S+/);
-        if (match) movie.poster_link = match[0];
-      }
-      return res.status(200).json(movie);
-    }
-    // Fallback: return raw API JSON to aid debugging
-    return res.status(200).json(data);
+    return res.status(200).json(result);
   } catch (err) {
-    logger.error('aiFindMovie failed', err);
+    logger.error('findMovie failed', err);
     return res.status(500).json({ error: 'Internal error' });
   }
 });
