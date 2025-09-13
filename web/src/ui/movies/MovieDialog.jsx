@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { deleteItem } from '../../api/functions.js';
 
-export default function MovieDialog({ movie, open, onClose }) {
+export default function MovieDialog({ movie, open, onClose, onDeleted }) {
   if (!movie) return null;
   const title = movie.title || movie.name || '(untitled)';
   const year = movie.year ? `(${movie.year})` : '';
   const genres = Array.isArray(movie.genre) ? movie.genre : [];
   const actors = Array.isArray(movie.actors) ? movie.actors : [];
+  const [deleting, setDeleting] = useState(false);
+
+  async function handleDelete() {
+    if (!movie?.id) return;
+    const ok = window.confirm('Are you sure you want to delete this movie?');
+    if (!ok) return;
+    try {
+      setDeleting(true);
+      await deleteItem(movie.id);
+      onDeleted?.(movie);
+      onClose?.();
+    } catch (err) {
+      // Basic error surfacing; keep it simple
+      alert(err?.message || 'Failed to delete');
+    } finally {
+      setDeleting(false);
+    }
+  }
   return (
     <dialog className={`modal ${open ? 'modal-open' : ''}`} onClose={onClose}>
       {/* Constrain dialog to viewport and use a portrait layout */}
@@ -50,6 +69,16 @@ export default function MovieDialog({ movie, open, onClose }) {
               </ul>
             </div>
           )}
+          <div className="mt-6 flex justify-end">
+            <button
+              type="button"
+              className={`btn btn-error ${deleting ? 'btn-disabled loading' : ''}`}
+              onClick={handleDelete}
+              disabled={deleting}
+            >
+              {deleting ? 'Deleting…' : 'Delete'}
+            </button>
+          </div>
         </div>
       </div>
       <form method="dialog" className="modal-backdrop" onClick={onClose}>

@@ -15,6 +15,7 @@ export default function MoviesPage() {
   const { items, loading, error, setQuery, query } = useMoviesQuery();
   const [selected, setSelected] = useState(null);
   const [hero, setHero] = useState([]);
+  const [hiddenIds, setHiddenIds] = useState(() => new Set());
 
   useEffect(() => {
     let cancelled = false;
@@ -39,6 +40,17 @@ export default function MoviesPage() {
     }
   }
 
+  function handleDeleted(movie) {
+    if (!movie?.id) return;
+    setHiddenIds((prev) => {
+      const next = new Set(prev);
+      next.add(movie.id);
+      return next;
+    });
+    setHero((prev) => prev.filter((m) => m.id !== movie.id));
+    setSelected(null);
+  }
+
   return (
     <Layout search={query.q} onSearchChange={(v) => setQuery({ q: v, page: 0 })}>
       <FiltersBar
@@ -61,7 +73,10 @@ export default function MoviesPage() {
         </div>
       )}
       {!loading && items.length > 0 && (
-        <MoviesGrid items={items} onSelect={(m) => setSelected(m)} />
+        <MoviesGrid
+          items={items.filter((m) => !hiddenIds.has(m.id))}
+          onSelect={(m) => setSelected(m)}
+        />
       )}
       {!loading && items.length === 0 && <EmptyState />}
       {error && <p className="text-error mt-4">{error}</p>}
@@ -69,6 +84,7 @@ export default function MoviesPage() {
         movie={selected}
         open={!!selected}
         onClose={() => setSelected(null)}
+        onDeleted={handleDeleted}
       />
     </Layout>
   );
