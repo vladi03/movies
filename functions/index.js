@@ -190,7 +190,7 @@ exports.aiFindMovie = onRequest({ timeoutSeconds: 120 }, async (req, res) => {
     const apiKey = process.env.OPENAI_API_KEY || process.env.OPENAI_API_TOKEN;
     if (!apiKey) return res.status(500).json({ error: 'Server missing OPENAI_API_KEY' });
 
-    const input = `Find authoritative information about the movie "${title}" (${year}). Provide both a vertical poster_link and a horizontal landscape_poster_link as working image URLs (prefer TMDB or Wikipedia).`;
+    const input = `Find authoritative information about the movie "${title}" (${year}).\n\nReturn JSON with: title, name, year, actors, genre, poster_link, landscape_poster_link.\n\nImage requirements:\n- poster_link: a standard vertical movie poster (aspect ~2:3 or 1:1.5).\n- landscape_poster_link: a website-friendly landscape backdrop/still (aspect 16:9 or 3:2, width >= 1000px). This must NOT be a vertical poster. Prefer official backdrops/stills from TMDB (image.tmdb.org) or Wikipedia/Wikimedia.\n- Both must be direct image URLs (ending in .jpg/.jpeg/.png), publicly accessible without JavaScript or viewer pages.\n- Avoid Pinterest, fanart.tv, blogs, watermarked or collage images, search thumbnails, or HTML pages.\n- If no true still exists, use the movie's official TMDB backdrop image.`;
 
     const payload = {
       model: 'gpt-5-nano',
@@ -204,13 +204,19 @@ exports.aiFindMovie = onRequest({ timeoutSeconds: 120 }, async (req, res) => {
         schema: {
           type: 'object',
           properties: {
-            title: { type: 'string', description: 'only the title, not the year' },
-            name: { type: 'string', description: 'the title and year' },
+            title: { type: 'string', description: 'Only the title, not the year' },
+            name: { type: 'string', description: 'The title and year together' },
             year: { type: 'integer' },
             actors: { type: 'array', items: { type: 'string' } },
             genre: { type: 'array', items: { type: 'string' } },
-            poster_link: { type: 'string' },
-            landscape_poster_link: { type: 'string' }
+            poster_link: {
+              type: 'string',
+              description: 'Direct URL to a vertical poster image (2:3 or ~1:1.5). Use official sources like TMDB or Wikipedia; must end with .jpg/.jpeg/.png.'
+            },
+            landscape_poster_link: {
+              type: 'string',
+              description: 'Direct URL to a landscape backdrop/still (16:9 or 3:2, width >= 1000px). Not a vertical poster. Prefer TMDB backdrops or Wikimedia; must end with .jpg/.jpeg/.png.'
+            }
           },
           required: ['title','name','year','actors','genre','poster_link','landscape_poster_link'],
           additionalProperties: false
