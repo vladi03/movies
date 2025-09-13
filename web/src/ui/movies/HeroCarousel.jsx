@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function HeroCarousel({ items = [], onScrollTo }) {
   if (!items || items.length === 0) return null;
@@ -8,6 +8,7 @@ export default function HeroCarousel({ items = [], onScrollTo }) {
   }
 
   const containerRef = useRef(null);
+  const [current, setCurrent] = useState(0);
 
   function scrollToIndex(idx) {
     const container = containerRef.current;
@@ -17,6 +18,19 @@ export default function HeroCarousel({ items = [], onScrollTo }) {
       container.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
     }
   }
+
+  // Auto-advance carousel every 5 seconds
+  useEffect(() => {
+    if (!items || items.length === 0) return undefined;
+    const id = setInterval(() => {
+      setCurrent((prev) => {
+        const next = (prev + 1) % items.length;
+        scrollToIndex(next);
+        return next;
+      });
+    }, 5000);
+    return () => clearInterval(id);
+  }, [items.length]);
 
   return (
     <div ref={containerRef} className="carousel w-full mb-6 h-64 md:h-80 lg:h-96 rounded-box overflow-hidden">
@@ -61,7 +75,11 @@ export default function HeroCarousel({ items = [], onScrollTo }) {
                 className="btn btn-circle"
                 onClick={(e) => {
                   e.preventDefault();
-                  scrollToIndex(prev);
+                  setCurrent((p) => {
+                    const idx = (p - 1 + items.length) % items.length;
+                    scrollToIndex(idx);
+                    return idx;
+                  });
                 }}
               >
                 ❮
@@ -71,7 +89,11 @@ export default function HeroCarousel({ items = [], onScrollTo }) {
                 className="btn btn-circle"
                 onClick={(e) => {
                   e.preventDefault();
-                  scrollToIndex(next);
+                  setCurrent((p) => {
+                    const idx = (p + 1) % items.length;
+                    scrollToIndex(idx);
+                    return idx;
+                  });
                 }}
               >
                 ❯
