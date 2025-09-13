@@ -35,7 +35,7 @@ export default function HeroCarousel({ items = [], onScrollTo }) {
             <div className="absolute inset-0 bg-gradient-to-t from-base-100/80 via-base-100/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 flex flex-col gap-3">
               <div className="inline-block max-w-[90%]">
-                <h2 className="text-xl md:text-3xl font-semibold inline-block bg-white/70 text-black rounded-xl px-3 py-1 shadow-sm backdrop-blur-sm">
+                <h2 className="text-xl md:text-3xl font-semibold inline-block bg-white/25 text-black rounded-xl px-3 py-1 shadow-sm backdrop-blur-sm">
                   <span>{title}</span>{' '}{year && <span className="opacity-80">{year}</span>}
                 </h2>
               </div>
