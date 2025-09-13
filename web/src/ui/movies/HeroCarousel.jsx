@@ -40,13 +40,6 @@ export default function HeroCarousel({ items = [], onScrollTo }) {
                 </h2>
               </div>
               <div className="flex gap-2">
-                <button
-                  type="button"
-                  className="btn btn-primary btn-sm md:btn-md"
-                  onClick={() => onScrollTo?.(m)}
-                >
-                  View in list
-                </button>
                 {m.id && (
                   <a
                     href={`#movie-${m.id}`}
@@ -55,7 +48,7 @@ export default function HeroCarousel({ items = [], onScrollTo }) {
                       e.preventDefault();
                       onScrollTo?.(m);
                     }}
-                    className="btn btn-ghost btn-sm md:btn-md"
+                    className="inline-flex items-center bg-white/25 text-black rounded-xl px-3 py-1.5 md:px-4 md:py-2 shadow-sm backdrop-blur-sm hover:bg-white/35 transition"
                   >
                     Jump to card
                   </a>
