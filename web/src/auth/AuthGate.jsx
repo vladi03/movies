@@ -26,7 +26,11 @@ export default function AuthGate({ children }) {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-base-200 text-base-content">
-        <span className="loading loading-spinner loading-lg" aria-label="Loading" />
+        <div className="flex flex-col items-center gap-4">
+          <img src="/movie-icon.svg" alt="Movie Catalog" className="w-12 h-12 opacity-90" />
+          <span className="loading loading-spinner loading-lg text-primary" aria-label="Loading" />
+          <p className="text-sm opacity-70">Signing you in…</p>
+        </div>
       </div>
     );
   }

@@ -6,6 +6,7 @@
     "ui": "npm --prefix web run dev",
     "functions": "firebase emulators:start --only functions",
     "deploy-ui": "firebase deploy --only hosting",
-    "deploy-function": "firebase deploy --only functions"
+    "deploy-function": "firebase deploy --only functions",
+    "deploy-filebase": "firebase deploy --only firestore:rules"
   }
 }
