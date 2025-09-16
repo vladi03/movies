@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../auth/AuthGate.jsx';
 
 export default function LoginPage() {
-  const { user, login } = useAuth();
+  const { user, login, authError, clearAuthError } = useAuth();
   const location = useLocation();
   const [error, setError] = useState('');
   const [signingIn, setSigningIn] = useState(false);
@@ -17,6 +17,7 @@ export default function LoginPage() {
 
   async function handleLogin() {
     setError('');
+    clearAuthError?.();
     setSigningIn(true);
     try {
       await login();
@@ -25,6 +26,12 @@ export default function LoginPage() {
       setSigningIn(false);
     }
   }
+
+  useEffect(() => {
+    if (authError && signingIn) {
+      setSigningIn(false);
+    }
+  }, [authError, signingIn]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 text-base-content p-4">
@@ -38,7 +45,11 @@ export default function LoginPage() {
             Sign in to view <span className="font-semibold">{fromPath}</span>.
           </div>
         )}
-        {error && <div className="alert alert-error text-sm">{error}</div>}
+        {(error || authError) && (
+          <div className="alert alert-error text-sm">
+            {error || authError?.message}
+          </div>
+        )}
         <button
           type="button"
           onClick={handleLogin}
