@@ -63,15 +63,11 @@ export default function AuthGate({ children }) {
 
   const login = useCallback(async () => {
     setAuthError(null);
-    // Prefer redirect to avoid COOP-related popup warnings and blockers
-    const preferRedirect = !import.meta.env.VITE_AUTH_POPUP || import.meta.env.PROD;
-    if (preferRedirect) {
-      return signInWithRedirect(auth, provider);
-    }
     try {
+      // Use popup first per request
       return await signInWithPopup(auth, provider);
     } catch (err) {
-      // Fallback to redirect on popup issues or COOP restrictions
+      // Optional fallback to redirect if popup is blocked
       try {
         return await signInWithRedirect(auth, provider);
       } catch (e) {
