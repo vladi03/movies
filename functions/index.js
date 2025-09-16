@@ -10,6 +10,8 @@ if (!admin.apps.length) {
 const db = admin.firestore();
 const collectionName = process.env.FIRESTORE_COLLECTION || 'items';
 const col = () => db.collection(collectionName);
+const weeklyCollectionName = process.env.WEEKLY_PICKS_COLLECTION || 'weeklyPicks';
+const weeklyCol = () => db.collection(weeklyCollectionName);
 
 const RECENT_WINDOW_MS = 14 * 24 * 60 * 60 * 1000; // 14 days
 
@@ -176,6 +178,9 @@ exports.randomItems = onRequest(async (req, res) => {
   handleOptions(req, res);
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
   try {
+    const countParam = req.query.count ? parseInt(String(req.query.count), 10) : undefined;
+    const requestedCount = Number.isFinite(countParam) && countParam > 0 ? countParam : 4;
+    const count = Math.min(requestedCount, 20);
     const snap = await col().limit(50).get();
     const docs = snap.docs
       .map((d) => ({ id: d.id, ...d.data() }))
@@ -195,14 +200,89 @@ exports.randomItems = onRequest(async (req, res) => {
       }
       return arr;
     }
-    const selected = shuffle(withLandscape).slice(0, 4);
-    if (selected.length < 4) {
-      selected.push(...shuffle(others).slice(0, 4 - selected.length));
-    }
+    const prioritized = shuffle([...withLandscape]);
+    const fallback = shuffle([...others]);
+    const combined = [...prioritized, ...fallback];
+    const selected = combined.slice(0, Math.min(count, combined.length));
     setCors(res);
     return res.status(200).json({ movies: selected });
   } catch (err) {
     logger.error('randomItems failed', err);
+    return res.status(500).json({ error: 'Internal error' });
+  }
+});
+
+function sanitizeMovie(movie) {
+  if (!movie || typeof movie !== 'object') return null;
+  const allowed = [
+    'id',
+    'title',
+    'name',
+    'year',
+    'actors',
+    'genre',
+    'poster_link',
+    'landscape_poster_link',
+  ];
+  const cleaned = {};
+  for (const key of allowed) {
+    if (Object.prototype.hasOwnProperty.call(movie, key) && movie[key] !== undefined) {
+      cleaned[key] = movie[key];
+    }
+  }
+  if (!cleaned.id && !cleaned.title && !cleaned.name) return null;
+  return cleaned;
+}
+
+function sanitizePick(pick) {
+  if (!pick || typeof pick !== 'object') return null;
+  const date = typeof pick.date === 'string' ? pick.date : '';
+  if (!date) return null;
+  const movie = sanitizeMovie(pick.movie);
+  if (!movie) return null;
+  return { date, movie };
+}
+
+// GET /getWeeklyPicks
+exports.getWeeklyPicks = onRequest(async (req, res) => {
+  handleOptions(req, res);
+  if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
+  try {
+    const snap = await weeklyCol().orderBy('createdAt', 'desc').limit(1).get();
+    const doc = snap.docs[0];
+    const data = doc ? { id: doc.id, ...doc.data() } : null;
+    setCors(res);
+    return res.status(200).json(data);
+  } catch (err) {
+    logger.error('getWeeklyPicks failed', err);
+    return res.status(500).json({ error: 'Internal error' });
+  }
+});
+
+// POST /saveWeeklyPicks { picks: [{ date, movie }] }
+exports.saveWeeklyPicks = onRequest(async (req, res) => {
+  handleOptions(req, res);
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+  try {
+    const body = await readJson(req);
+    const rawPicks = Array.isArray(body.picks) ? body.picks : [];
+    const picks = rawPicks.map(sanitizePick).filter(Boolean);
+    if (picks.length !== 7) {
+      return res.status(400).json({ error: 'picks must contain 7 valid entries' });
+    }
+    const now = Date.now();
+    const doc = {
+      picks,
+      createdAt: now,
+      updatedAt: now,
+      startDate: picks[0]?.date || null,
+    };
+    const ref = await weeklyCol().add(doc);
+    const saved = await ref.get();
+    setCors(res);
+    return res.status(201).json({ id: ref.id, ...saved.data() });
+  } catch (err) {
+    logger.error('saveWeeklyPicks failed', err);
     return res.status(500).json({ error: 'Internal error' });
   }
 });

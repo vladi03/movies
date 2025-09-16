@@ -57,8 +57,27 @@ export async function findMovie({ title, year }, token) {
 }
 
 // Fetch a few random items suitable for hero carousel
-export async function randomItems(token) {
-  const res = await call('randomItems', { method: 'GET', token });
+export async function randomItems(options, maybeToken) {
+  let count;
+  let token = maybeToken;
+  if (typeof options === 'number') {
+    count = options;
+  } else if (options && typeof options === 'object') {
+    ({ count } = options);
+    if (options.token && !token) token = options.token;
+  } else if (typeof options === 'string' && token === undefined) {
+    token = options;
+  }
+  const qp = typeof count === 'number' ? `?count=${count}` : '';
+  const res = await call(`randomItems${qp}`, { method: 'GET', token });
   // Backend returns { movies: [...] }
   return Array.isArray(res?.movies) ? res.movies : res;
+}
+
+export async function getWeeklyPicks(token) {
+  return call('getWeeklyPicks', { method: 'GET', token });
+}
+
+export async function saveWeeklyPicks(picks, token) {
+  return call('saveWeeklyPicks', { method: 'POST', body: { picks }, token });
 }
