@@ -44,8 +44,11 @@ export async function listItems(limit, token) {
   return call(`listItems${qp}`, { method: 'GET', token });
 }
 
-export async function updateItem({ id, title, description }, token) {
-  return call('updateItem', { method: 'PATCH', body: { id, title, description }, token });
+export async function updateItem(data, token) {
+  if (!data || typeof data !== 'object') {
+    throw new Error('updateItem requires an object with the fields to update');
+  }
+  return call('updateItem', { method: 'PATCH', body: data, token });
 }
 
 // Fetch movie info from TMDB

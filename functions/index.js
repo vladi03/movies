@@ -104,7 +104,7 @@ exports.createItem = onRequest(async (req, res) => {
   try {
     const now = Date.now();
     // Whitelist known movie fields and drop undefined values
-    const allowed = ['name', 'title', 'year', 'actors', 'genre', 'poster_link', 'landscape_poster_link', 'description', 'createdAt', 'updatedAt'];
+    const allowed = ['name', 'title', 'year', 'actors', 'genre', 'poster_link', 'landscape_poster_link', 'description', 'createdAt', 'updatedAt', 'lastWatched'];
     const doc = {};
     for (const key of allowed) {
       if (Object.prototype.hasOwnProperty.call(body, key) && body[key] !== undefined) {
@@ -134,7 +134,7 @@ exports.updateItem = onRequest(async (req, res) => {
   const id = typeof body.id === 'string' ? body.id : '';
   if (!id) return res.status(400).json({ error: 'id is required' });
   // Whitelist updatable fields and ignore undefined values
-  const allowed = ['name', 'title', 'year', 'actors', 'genre', 'poster_link', 'landscape_poster_link', 'description'];
+  const allowed = ['name', 'title', 'year', 'actors', 'genre', 'poster_link', 'landscape_poster_link', 'description', 'lastWatched'];
   const patch = {};
   for (const key of allowed) {
     if (Object.prototype.hasOwnProperty.call(body, key) && body[key] !== undefined) {
