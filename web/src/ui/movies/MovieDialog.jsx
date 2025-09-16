@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { deleteItem } from '../../api/functions.js';
 
 export default function MovieDialog({ movie, open, onClose, onDeleted }) {
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    if (!movie) setDeleting(false);
+  }, [movie]);
+
   if (!movie) return null;
   const title = movie.title || movie.name || '(untitled)';
   const year = movie.year ? `(${movie.year})` : '';
   const genres = Array.isArray(movie.genre) ? movie.genre : [];
   const actors = Array.isArray(movie.actors) ? movie.actors : [];
-  const [deleting, setDeleting] = useState(false);
 
   async function handleDelete() {
     if (!movie?.id) return;
