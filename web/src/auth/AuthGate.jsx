@@ -1,6 +1,14 @@
 import { createContext, useContext, useEffect, useMemo, useState, useCallback } from 'react';
 import { auth, provider } from '../firebase.js';
-import { onAuthStateChanged, signInWithPopup, signInWithRedirect, signOut } from 'firebase/auth';
+import {
+  onAuthStateChanged,
+  signInWithPopup,
+  signInWithRedirect,
+  signOut,
+  getRedirectResult,
+  setPersistence,
+  browserLocalPersistence,
+} from 'firebase/auth';
 
 const AuthContext = createContext(null);
 // eslint-disable-next-line react-refresh/only-export-components
@@ -11,11 +19,40 @@ export default function AuthGate({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (u) => {
-      setUser(u);
-      setLoading(false);
-    });
-    return () => unsub();
+    let mounted = true;
+    let unsub = () => {};
+
+    (async () => {
+      try {
+        await setPersistence(auth, browserLocalPersistence);
+      } catch (_) {
+        // ignore, defaults will apply
+      }
+
+      // Start listening for auth state; resolve once we get the first value
+      await new Promise((resolve) => {
+        unsub = onAuthStateChanged(auth, (u) => {
+          if (!mounted) return;
+          setUser(u);
+          resolve();
+        });
+      });
+
+      // Complete any pending redirect sign-in to avoid transient null states
+      try {
+        await getRedirectResult(auth);
+      } catch (e) {
+        // swallow redirect errors; user may still be signed in
+        // console.warn('Auth redirect result error', e);
+      }
+
+      if (mounted) setLoading(false);
+    })();
+
+    return () => {
+      mounted = false;
+      unsub && unsub();
+    };
   }, []);
 
   const login = useCallback(async () => {
