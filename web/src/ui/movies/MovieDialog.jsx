@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { deleteItem } from '../../api/functions.js';
+import { deleteItem, updateItem } from '../../api/functions.js';
 
 export default function MovieDialog({ movie, open, onClose, onDeleted }) {
   const [deleting, setDeleting] = useState(false);
@@ -13,6 +13,49 @@ export default function MovieDialog({ movie, open, onClose, onDeleted }) {
   const year = movie.year ? `(${movie.year})` : '';
   const genres = Array.isArray(movie.genre) ? movie.genre : [];
   const actors = Array.isArray(movie.actors) ? movie.actors : [];
+  const [deleting, setDeleting] = useState(false);
+  const [markingWatched, setMarkingWatched] = useState(false);
+  const [lastWatched, setLastWatched] = useState(movie.lastWatched);
+
+  useEffect(() => {
+    setLastWatched(movie.lastWatched);
+    setMarkingWatched(false);
+    setDeleting(false);
+  }, [movie]);
+
+  let lastWatchedInfo = null;
+  if (lastWatched !== undefined && lastWatched !== null) {
+    let date;
+    if (typeof lastWatched === 'number' || typeof lastWatched === 'string') {
+      date = new Date(lastWatched);
+    } else if (
+      typeof lastWatched === 'object' &&
+      lastWatched !== null &&
+      typeof lastWatched.seconds === 'number'
+    ) {
+      date = new Date(lastWatched.seconds * 1000);
+    }
+    if (date && !Number.isNaN(date.getTime())) {
+      lastWatchedInfo = {
+        iso: date.toISOString(),
+        label: date.toLocaleString(),
+      };
+    }
+  }
+
+  async function handleWatched() {
+    if (!movie?.id || markingWatched) return;
+    try {
+      setMarkingWatched(true);
+      const now = Date.now();
+      const updated = await updateItem({ id: movie.id, lastWatched: now });
+      setLastWatched(updated?.lastWatched ?? now);
+    } catch (err) {
+      alert(err?.message || 'Failed to update movie');
+    } finally {
+      setMarkingWatched(false);
+    }
+  }
 
   async function handleDelete() {
     if (!movie?.id) return;
@@ -31,7 +74,7 @@ export default function MovieDialog({ movie, open, onClose, onDeleted }) {
     }
   }
   return (
-    <dialog className={`modal ${open ? 'modal-open' : ''}`} onClose={onClose}>
+    <dialog open={open} className={`modal ${open ? 'modal-open' : ''}`} onClose={onClose}>
       {/* Constrain dialog to viewport and use a portrait layout */}
       <div className="modal-box w-[92vw] max-w-sm sm:max-w-md md:max-w-lg max-h-[92dvh] overflow-y-auto p-0">
         <button
@@ -74,15 +117,31 @@ export default function MovieDialog({ movie, open, onClose, onDeleted }) {
               </ul>
             </div>
           )}
-          <div className="mt-6 flex justify-end">
-            <button
-              type="button"
-              className={`btn btn-error ${deleting ? 'btn-disabled loading' : ''}`}
-              onClick={handleDelete}
-              disabled={deleting}
-            >
-              {deleting ? 'Deleting…' : 'Delete'}
-            </button>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            {lastWatchedInfo && (
+              <p className="text-sm text-base-content/70">
+                Last watched:{' '}
+                <time dateTime={lastWatchedInfo.iso}>{lastWatchedInfo.label}</time>
+              </p>
+            )}
+            <div className="flex justify-end gap-2">
+              <button
+                type="button"
+                className={`btn btn-primary ${markingWatched ? 'btn-disabled loading' : ''}`}
+                onClick={handleWatched}
+                disabled={markingWatched || deleting}
+              >
+                {markingWatched ? 'Saving…' : 'Watched'}
+              </button>
+              <button
+                type="button"
+                className={`btn btn-error ${deleting ? 'btn-disabled loading' : ''}`}
+                onClick={handleDelete}
+                disabled={deleting}
+              >
+                {deleting ? 'Deleting…' : 'Delete'}
+              </button>
+            </div>
           </div>
         </div>
       </div>
