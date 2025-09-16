@@ -32,14 +32,6 @@ export default function MoviesPage() {
     };
   }, []);
 
-  function scrollToCard(movie) {
-    if (!movie?.id) return;
-    const el = document.getElementById(`movie-${movie.id}`);
-    if (el && typeof el.scrollIntoView === 'function') {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  }
-
   function handleDeleted(movie) {
     if (!movie?.id) return;
     setHiddenIds((prev) => {
@@ -63,7 +55,7 @@ export default function MoviesPage() {
         }
       />
       {hero.length > 0 && (
-        <HeroCarousel items={hero} onScrollTo={scrollToCard} />
+        <HeroCarousel items={hero} onSelect={setSelected} />
       )}
       {loading && items.length === 0 && (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4">

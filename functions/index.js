@@ -13,6 +13,31 @@ const col = () => db.collection(collectionName);
 const weeklyCollectionName = process.env.WEEKLY_PICKS_COLLECTION || 'weeklyPicks';
 const weeklyCol = () => db.collection(weeklyCollectionName);
 
+const RECENT_WINDOW_MS = 14 * 24 * 60 * 60 * 1000; // 14 days
+
+function toMillis(value) {
+  if (value === undefined || value === null) return undefined;
+  if (typeof value === 'number' && Number.isFinite(value)) return value;
+  if (typeof value === 'string') {
+    const parsed = Date.parse(value);
+    return Number.isNaN(parsed) ? undefined : parsed;
+  }
+  if (typeof value?.toMillis === 'function') {
+    try {
+      return value.toMillis();
+    } catch (err) {
+      logger.warn('Failed to convert lastWatched via toMillis', err);
+      return undefined;
+    }
+  }
+  if (typeof value === 'object' && value !== null && typeof value.seconds === 'number') {
+    const msFromSeconds = value.seconds * 1000;
+    const msFromNanos = value.nanoseconds ? Math.floor(value.nanoseconds / 1e6) : 0;
+    return msFromSeconds + msFromNanos;
+  }
+  return undefined;
+}
+
 function setCors(res) {
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Methods', 'GET,POST,PATCH,DELETE,OPTIONS');
@@ -81,7 +106,7 @@ exports.createItem = onRequest(async (req, res) => {
   try {
     const now = Date.now();
     // Whitelist known movie fields and drop undefined values
-    const allowed = ['name', 'title', 'year', 'actors', 'genre', 'poster_link', 'landscape_poster_link', 'description', 'createdAt', 'updatedAt'];
+    const allowed = ['name', 'title', 'year', 'actors', 'genre', 'poster_link', 'landscape_poster_link', 'description', 'createdAt', 'updatedAt', 'lastWatched'];
     const doc = {};
     for (const key of allowed) {
       if (Object.prototype.hasOwnProperty.call(body, key) && body[key] !== undefined) {
@@ -111,7 +136,7 @@ exports.updateItem = onRequest(async (req, res) => {
   const id = typeof body.id === 'string' ? body.id : '';
   if (!id) return res.status(400).json({ error: 'id is required' });
   // Whitelist updatable fields and ignore undefined values
-  const allowed = ['name', 'title', 'year', 'actors', 'genre', 'poster_link', 'landscape_poster_link', 'description'];
+  const allowed = ['name', 'title', 'year', 'actors', 'genre', 'poster_link', 'landscape_poster_link', 'description', 'lastWatched'];
   const patch = {};
   for (const key of allowed) {
     if (Object.prototype.hasOwnProperty.call(body, key) && body[key] !== undefined) {
@@ -160,8 +185,14 @@ exports.randomItems = onRequest(async (req, res) => {
     const docs = snap.docs
       .map((d) => ({ id: d.id, ...d.data() }))
       .filter((m) => m.landscape_poster_link || m.poster_link);
-    const withLandscape = docs.filter((m) => m.landscape_poster_link);
-    const others = docs.filter((m) => !m.landscape_poster_link);
+    const now = Date.now();
+    const eligible = docs.filter((movie) => {
+      const watched = toMillis(movie.lastWatched);
+      if (watched === undefined) return true;
+      return now - watched > RECENT_WINDOW_MS;
+    });
+    const withLandscape = eligible.filter((m) => m.landscape_poster_link);
+    const others = eligible.filter((m) => !m.landscape_poster_link);
     function shuffle(arr) {
       for (let i = arr.length - 1; i > 0; i -= 1) {
         const j = Math.floor(Math.random() * (i + 1));
