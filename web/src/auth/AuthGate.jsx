@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState, useCallback } from 'react';
 import { auth, provider } from '../firebase.js';
-import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { onAuthStateChanged, signInWithPopup, signInWithRedirect, signOut } from 'firebase/auth';
 
 const AuthContext = createContext(null);
 // eslint-disable-next-line react-refresh/only-export-components
@@ -18,7 +18,19 @@ export default function AuthGate({ children }) {
     return () => unsub();
   }, []);
 
-  const login = useCallback(() => signInWithPopup(auth, provider), []);
+  const login = useCallback(async () => {
+    // Prefer redirect to avoid COOP-related popup warnings and blockers
+    const preferRedirect = !import.meta.env.VITE_AUTH_POPUP || import.meta.env.PROD;
+    if (preferRedirect) {
+      return signInWithRedirect(auth, provider);
+    }
+    try {
+      return await signInWithPopup(auth, provider);
+    } catch (err) {
+      // Fallback to redirect on popup issues or COOP restrictions
+      return signInWithRedirect(auth, provider);
+    }
+  }, []);
   const logout = useCallback(() => signOut(auth), []);
 
   const value = useMemo(() => ({ user, login, logout, loading }), [user, login, logout, loading]);
