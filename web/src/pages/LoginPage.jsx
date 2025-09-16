@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthGate.jsx';
 
 export default function LoginPage() {
   const { user, login, authError, clearAuthError } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   const [error, setError] = useState('');
   const [signingIn, setSigningIn] = useState(false);
 
+  // Always send the user to root after a successful sign-in
   const fromPath = location.state?.from?.pathname;
-  const redirectTo = fromPath && fromPath !== '/login' ? fromPath : '/';
+  const redirectTo = '/';
 
   if (user) {
     return <Navigate to={redirectTo} replace />;
@@ -21,6 +23,8 @@ export default function LoginPage() {
     setSigningIn(true);
     try {
       await login();
+      // If popup completes successfully, navigate to root
+      navigate('/', { replace: true });
     } catch (err) {
       setError(err.message || 'Failed to sign in. Please try again.');
       setSigningIn(false);
