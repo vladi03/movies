@@ -2,11 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { deleteItem, updateItem } from '../../api/functions.js';
 
 export default function MovieDialog({ movie, open, onClose, onDeleted }) {
-  const [deleting, setDeleting] = useState(false);
 
-  useEffect(() => {
-    if (!movie) setDeleting(false);
-  }, [movie]);
+
 
   if (!movie) return null;
   const title = movie.title || movie.name || '(untitled)';
@@ -16,6 +13,10 @@ export default function MovieDialog({ movie, open, onClose, onDeleted }) {
   const [deleting, setDeleting] = useState(false);
   const [markingWatched, setMarkingWatched] = useState(false);
   const [lastWatched, setLastWatched] = useState(movie.lastWatched);
+
+  useEffect(() => {
+    if (!movie) setDeleting(false);
+  }, [movie]);
 
   useEffect(() => {
     setLastWatched(movie.lastWatched);
