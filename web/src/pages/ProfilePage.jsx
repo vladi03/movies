@@ -81,6 +81,7 @@ export default function ProfilePage() {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [avatarError, setAvatarError] = useState(false);
 
   useEffect(() => {
     if (!user?.uid) {
@@ -117,6 +118,10 @@ export default function ProfilePage() {
   const displayName = docData.displayName || user?.displayName || 'Movie fan';
   const email = docData.email || user?.email || '';
 
+  useEffect(() => {
+    setAvatarError(false);
+  }, [avatarUrl]);
+
   const detailEntries = useMemo(() => {
     const entries = Object.entries(docData).filter(
       ([key]) => !['displayName', 'email', 'photoURL'].includes(key),
@@ -136,8 +141,17 @@ export default function ProfilePage() {
             <div className="flex flex-col sm:flex-row sm:items-center gap-6">
               <div className="avatar">
                 <div className="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 bg-base-300 overflow-hidden flex items-center justify-center">
-                  {avatarUrl ? (
-                    <img src={avatarUrl} alt={displayName} className="w-full h-full object-cover" />
+                  {avatarUrl && !avatarError ? (
+                    <img
+                      src={avatarUrl}
+                      alt={displayName}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      referrerPolicy="no-referrer"
+                      crossOrigin="anonymous"
+                      onError={() => setAvatarError(true)}
+                    />
                   ) : (
                     <UserCircleIcon className="w-16 h-16 text-base-content/60" />
                   )}

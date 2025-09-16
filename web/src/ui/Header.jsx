@@ -1,14 +1,21 @@
 import { Link, useLocation } from 'react-router-dom';
 import { UserCircleIcon } from '@heroicons/react/24/solid';
 import { useAuth } from '../auth/AuthGate.jsx';
+import { useEffect, useState } from 'react';
 
 function UserMenu() {
   const { user, logout } = useAuth();
 
   if (!user) return null;
 
+  const [avatarError, setAvatarError] = useState(false);
   const avatar = user.photoURL;
   const name = user.displayName || user.email || 'Signed in user';
+
+  useEffect(() => {
+    // Reset error state when avatar URL changes
+    setAvatarError(false);
+  }, [avatar]);
 
   async function handleLogout() {
     try {
@@ -27,8 +34,17 @@ function UserMenu() {
         aria-label="User menu"
       >
         <div className="w-10 rounded-full overflow-hidden bg-base-300 flex items-center justify-center">
-          {avatar ? (
-            <img src={avatar} alt={name} className="w-full h-full object-cover" />
+          {avatar && !avatarError ? (
+            <img
+              src={avatar}
+              alt={name}
+              className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+              referrerPolicy="no-referrer"
+              crossOrigin="anonymous"
+              onError={() => setAvatarError(true)}
+            />
           ) : (
             <UserCircleIcon className="w-7 h-7 text-base-content/70" />
           )}
