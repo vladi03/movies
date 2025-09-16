@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState, useCallback } from 'react';
 import { auth, provider } from '../firebase.js';
 import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 
@@ -18,18 +18,18 @@ export default function AuthGate({ children }) {
     return () => unsub();
   }, []);
 
-  const login = () => signInWithPopup(auth, provider);
-  const logout = () => signOut(auth);
+  const login = useCallback(() => signInWithPopup(auth, provider), []);
+  const logout = useCallback(() => signOut(auth), []);
 
-  if (loading) return <p>Loading...</p>;
-  if (!user) return <button onClick={login}>Sign in with Google</button>;
+  const value = useMemo(() => ({ user, login, logout, loading }), [user, login, logout, loading]);
 
-  return (
-    <AuthContext.Provider value={{ user }}>
-      <div>
-        <button onClick={logout}>Sign out</button>
-        {children}
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-base-200 text-base-content">
+        <span className="loading loading-spinner loading-lg" aria-label="Loading" />
       </div>
-    </AuthContext.Provider>
-  );
+    );
+  }
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
