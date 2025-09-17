@@ -270,6 +270,7 @@ export default function WeeklyPicks() {
         if (data && Array.isArray(data.picks) && data.picks.length > 0) {
           const sorted = sortAndFormatPicks(data.picks);
           rememberMovies(seenMovieKeysRef, sorted);
+          logSpinMemoryStatus(0);
           setPicks(sorted);
           setLastSavedDoc(data);
           setHasUnsavedChanges(false);
@@ -298,6 +299,15 @@ export default function WeeklyPicks() {
     }
   }, [selectedDay]);
 
+  function logSpinMemoryStatus(remainingCount = 0) {
+    const parsed = Number(remainingCount);
+    const safeRemaining = Number.isFinite(parsed) ? Math.max(0, Math.trunc(parsed)) : 0;
+    console.log('[WeeklyPicks] spin memory', {
+      totalCount: seenMovieKeysRef.current.size,
+      remainingCount: safeRemaining,
+    });
+  }
+
   async function fetchUniqueMovies(desiredCount, additionalBanned) {
     const count = Number(desiredCount);
     if (!Number.isInteger(count) || count <= 0) {
@@ -320,6 +330,7 @@ export default function WeeklyPicks() {
     const collectedKeys = new Set();
     const maxAttempts = 8;
     let attempts = 0;
+    logSpinMemoryStatus(count - collected.length);
     while (collected.length < count && attempts < maxAttempts) {
       attempts += 1;
       const remaining = count - collected.length;
@@ -336,6 +347,7 @@ export default function WeeklyPicks() {
         collected.push(movie);
         collectedKeys.add(key);
         banned.add(key);
+        logSpinMemoryStatus(count - collected.length);
         if (collected.length >= count) {
           break;
         }
@@ -376,6 +388,7 @@ export default function WeeklyPicks() {
         throw new Error('Missing movie data for one or more days');
       }
       rememberMovies(seenMovieKeysRef, next);
+      logSpinMemoryStatus(0);
       setPicks(next);
       setHasUnsavedChanges(true);
     } catch (err) {
@@ -412,6 +425,7 @@ export default function WeeklyPicks() {
         current.map((slot, index) => (index === resolvedIndex ? { ...slot, movie } : slot)),
       );
       rememberMovies(seenMovieKeysRef, movie);
+      logSpinMemoryStatus(0);
       setHasUnsavedChanges(true);
     } catch (err) {
       setError(err.message || 'Failed to pick a movie');
@@ -442,6 +456,7 @@ export default function WeeklyPicks() {
       if (saved && Array.isArray(saved.picks)) {
         const sorted = sortAndFormatPicks(saved.picks);
         rememberMovies(seenMovieKeysRef, sorted);
+        logSpinMemoryStatus(0);
         setPicks(sorted);
         setLastSavedDoc(saved);
       }
