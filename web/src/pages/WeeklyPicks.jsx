@@ -127,6 +127,8 @@ export default function WeeklyPicks() {
   const [success, setSuccess] = useState('');
   const [lastSavedDoc, setLastSavedDoc] = useState(null);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [singleSpinIndex, setSingleSpinIndex] = useState(0);
+  const [singleSpinLoading, setSingleSpinLoading] = useState(false);
 
   const hasMovies = useMemo(() => picks.some((pick) => !!pick.movie), [picks]);
   const lastSavedMillis = useMemo(() => extractMillis(lastSavedDoc?.updatedAt || lastSavedDoc?.createdAt), [lastSavedDoc]);
@@ -162,6 +164,31 @@ export default function WeeklyPicks() {
     };
   }, []);
 
+  useEffect(() => {
+    setSingleSpinIndex((currentIndex) => {
+      if (!Array.isArray(picks) || picks.length === 0) {
+        return 0;
+      }
+      const normalized = Number.isInteger(currentIndex) ? currentIndex : 0;
+      if (
+        normalized >= 0 &&
+        normalized < picks.length &&
+        picks[normalized] &&
+        picks[normalized].movie
+      ) {
+        return normalized;
+      }
+      const firstWithMovie = picks.findIndex((pick) => !!pick.movie);
+      if (firstWithMovie !== -1) {
+        return firstWithMovie;
+      }
+      if (normalized >= 0 && normalized < picks.length) {
+        return normalized;
+      }
+      return 0;
+    });
+  }, [picks]);
+
   async function handlePickMovies() {
     setError('');
     setSuccess('');
@@ -185,6 +212,36 @@ export default function WeeklyPicks() {
       setError(err.message || 'Failed to pick movies');
     } finally {
       setSpinLoading(false);
+    }
+  }
+
+  async function handleSpinOne() {
+    if (!Array.isArray(picks) || picks.length === 0) {
+      setError('No schedule available to update.');
+      return;
+    }
+    const targetIndex = Number(singleSpinIndex);
+    if (!Number.isFinite(targetIndex) || targetIndex < 0 || targetIndex >= picks.length) {
+      setError('Select a valid day to spin.');
+      return;
+    }
+    setError('');
+    setSuccess('');
+    setSingleSpinLoading(true);
+    try {
+      const movies = await randomItems({ count: 1 });
+      const movie = Array.isArray(movies) ? movies[0] : null;
+      if (!movie) {
+        throw new Error('No movie returned from picker');
+      }
+      setPicks((current) =>
+        current.map((slot, index) => (index === targetIndex ? { ...slot, movie } : slot)),
+      );
+      setHasUnsavedChanges(true);
+    } catch (err) {
+      setError(err.message || 'Failed to pick a movie');
+    } finally {
+      setSingleSpinLoading(false);
     }
   }
 
@@ -233,7 +290,7 @@ export default function WeeklyPicks() {
               type="button"
               onClick={handlePickMovies}
               className={`btn btn-primary ${spinLoading ? 'loading' : ''}`}
-              disabled={spinLoading}
+              disabled={spinLoading || singleSpinLoading}
             >
               {spinLoading ? 'Picking…' : 'Pick Movies'}
             </button>
@@ -243,7 +300,7 @@ export default function WeeklyPicks() {
                 type="button"
                 onClick={handleSave}
                 className={`btn btn-primary ${saving ? 'loading' : ''}`}
-                disabled={saving || !hasUnsavedChanges}
+                disabled={saving || !hasUnsavedChanges || singleSpinLoading}
               >
                 {saving ? 'Saving…' : hasUnsavedChanges ? 'Save Picks' : 'Saved'}
               </button>
@@ -251,13 +308,49 @@ export default function WeeklyPicks() {
                 type="button"
                 onClick={handlePickMovies}
                 className={`btn btn-secondary ${spinLoading ? 'loading' : ''}`}
-                disabled={spinLoading}
+                disabled={spinLoading || singleSpinLoading}
               >
                 {spinLoading ? 'Spinning…' : 'Spin Again'}
               </button>
             </div>
           )}
         </div>
+
+        {hasMovies && !initialLoading && (
+          <div className="card bg-base-200 shadow-sm mb-6">
+            <div className="card-body gap-4">
+              <div>
+                <h2 className="card-title text-lg">Spin a single day</h2>
+                <p className="text-sm opacity-70">
+                  Replace one pick without changing the rest of the schedule.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                <select
+                  aria-label="Select the day to spin"
+                  className="select select-bordered w-full sm:w-48"
+                  value={singleSpinIndex}
+                  onChange={(event) => setSingleSpinIndex(Number(event.target.value))}
+                  disabled={spinLoading || singleSpinLoading || saving}
+                >
+                  {picks.map((pick, index) => (
+                    <option key={`${pick.date}-${index}`} value={index}>
+                      {pick.label}
+                    </option>
+                  ))}
+                </select>
+                <button
+                  type="button"
+                  onClick={handleSpinOne}
+                  className={`btn btn-secondary ${singleSpinLoading ? 'loading' : ''}`}
+                  disabled={singleSpinLoading || spinLoading || saving}
+                >
+                  {singleSpinLoading ? 'Spinning…' : 'Spin One'}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {lastSavedMillis && (
           <p className="text-sm opacity-70 mb-3">
