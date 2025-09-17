@@ -1,4 +1,75 @@
 import { Link, useLocation } from 'react-router-dom';
+import { UserCircleIcon } from '@heroicons/react/24/solid';
+import { useAuth } from '../auth/AuthGate.jsx';
+import { useEffect, useState } from 'react';
+
+function UserMenu() {
+  const { user, logout } = useAuth();
+
+  if (!user) return null;
+
+  const [avatarError, setAvatarError] = useState(false);
+  const avatar = user.photoURL;
+  const name = user.displayName || user.email || 'Signed in user';
+
+  useEffect(() => {
+    // Reset error state when avatar URL changes
+    setAvatarError(false);
+  }, [avatar]);
+
+  async function handleLogout() {
+    try {
+      await logout();
+    } catch (err) {
+      console.error('Failed to sign out', err);
+    }
+  }
+
+  return (
+    <div className="dropdown dropdown-end">
+      <button
+        type="button"
+        className="btn btn-ghost btn-circle avatar"
+        tabIndex={0}
+        aria-label="User menu"
+      >
+        <div className="w-10 rounded-full overflow-hidden bg-base-300 flex items-center justify-center">
+          {avatar && !avatarError ? (
+            <img
+              src={avatar}
+              alt={name}
+              className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+              referrerPolicy="no-referrer"
+              crossOrigin="anonymous"
+              onError={() => setAvatarError(true)}
+            />
+          ) : (
+            <UserCircleIcon className="w-7 h-7 text-base-content/70" />
+          )}
+        </div>
+      </button>
+      <ul
+        tabIndex={0}
+        className="menu menu-sm dropdown-content mt-3 w-56 rounded-box bg-base-200 p-2 shadow"
+      >
+        <li className="mb-2 px-2 py-2 text-sm">
+          <p className="font-semibold leading-tight">{name}</p>
+          {user.email && <p className="text-xs opacity-70">{user.email}</p>}
+        </li>
+        <li>
+          <Link to="/profile">View profile</Link>
+        </li>
+        <li>
+          <button type="button" onClick={handleLogout}>
+            Log out
+          </button>
+        </li>
+      </ul>
+    </div>
+  );
+}
 
 export default function Header({ search, onSearchChange }) {
   const { pathname } = useLocation();
@@ -31,6 +102,7 @@ export default function Header({ search, onSearchChange }) {
             onChange={(e) => onSearchChange(e.target.value)}
           />
         )}
+        <UserMenu />
       </div>
     </header>
   );

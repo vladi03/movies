@@ -1,28 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { deleteItem, updateItem } from '../../api/functions.js';
 
 export default function MovieDialog({ movie, open, onClose, onDeleted }) {
-
-
-
-  if (!movie) return null;
-  const title = movie.title || movie.name || '(untitled)';
-  const year = movie.year ? `(${movie.year})` : '';
-  const genres = Array.isArray(movie.genre) ? movie.genre : [];
-  const actors = Array.isArray(movie.actors) ? movie.actors : [];
+  const hasMovie = Boolean(movie);
+  const title = movie?.title || movie?.name || '(untitled)';
+  const year = movie?.year ? `(${movie.year})` : '';
+  const genres = Array.isArray(movie?.genre) ? movie.genre : [];
+  const actors = Array.isArray(movie?.actors) ? movie.actors : [];
   const [deleting, setDeleting] = useState(false);
   const [markingWatched, setMarkingWatched] = useState(false);
-  const [lastWatched, setLastWatched] = useState(movie.lastWatched);
+  const [lastWatched, setLastWatched] = useState(movie?.lastWatched);
 
   useEffect(() => {
-    if (!movie) setDeleting(false);
-  }, [movie]);
-
-  useEffect(() => {
+    if (!hasMovie) {
+      setDeleting(false);
+      setMarkingWatched(false);
+      setLastWatched(undefined);
+      return;
+    }
     setLastWatched(movie.lastWatched);
     setMarkingWatched(false);
     setDeleting(false);
-  }, [movie]);
+  }, [hasMovie, movie?.id, movie?.lastWatched]);
 
   let lastWatchedInfo = null;
   if (lastWatched !== undefined && lastWatched !== null) {
@@ -74,6 +73,9 @@ export default function MovieDialog({ movie, open, onClose, onDeleted }) {
       setDeleting(false);
     }
   }
+
+  if (!hasMovie) return null;
+
   return (
     <dialog open={open} className={`modal ${open ? 'modal-open' : ''}`} onClose={onClose}>
       {/* Constrain dialog to viewport and use a portrait layout */}
@@ -121,8 +123,7 @@ export default function MovieDialog({ movie, open, onClose, onDeleted }) {
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             {lastWatchedInfo && (
               <p className="text-sm text-base-content/70">
-                Last watched:{' '}
-                <time dateTime={lastWatchedInfo.iso}>{lastWatchedInfo.label}</time>
+                Last watched: <time dateTime={lastWatchedInfo.iso}>{lastWatchedInfo.label}</time>
               </p>
             )}
             <div className="flex justify-end gap-2">

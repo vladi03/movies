@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/schemas/profile.json",
+  "name": "UserProfile",
+  "description": "Schema for a user profile document stored in the Firestore `profiles` collection.",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "id": { "type": "string", "description": "Firestore document ID", "readOnly": true },
+    "uid": { "type": "string", "description": "Firebase Authentication user ID (mirrors the document ID)" },
+    "displayName": { "type": "string", "description": "Preferred name to show in the UI" },
+    "email": { "type": "string", "format": "email", "description": "Primary email address" },
+    "photoURL": { "type": "string", "format": "uri", "description": "Avatar image URL" },
+    "bio": { "type": "string", "description": "Short biography or profile description" },
+    "location": { "type": "string", "description": "Free-form location text" },
+    "website": { "type": "string", "format": "uri", "description": "Personal website or portfolio URL" },
+    "favoriteGenres": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of preferred movie genres"
+    },
+    "favoriteMovies": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of all-time favorite movies"
+    },
+    "links": {
+      "type": "object",
+      "description": "Mapping of social handles or related URLs",
+      "additionalProperties": { "type": "string", "format": "uri" }
+    },
+    "createdAt": {
+      "description": "Creation timestamp (milliseconds since epoch, ISO string, or Firestore Timestamp)",
+      "oneOf": [
+        { "type": "integer" },
+        { "type": "string", "format": "date-time" },
+        {
+          "type": "object",
+          "properties": {
+            "seconds": { "type": "integer" },
+            "nanoseconds": { "type": "integer" }
+          },
+          "required": ["seconds"],
+          "additionalProperties": true
+        }
+      ]
+    },
+    "updatedAt": {
+      "description": "Last update timestamp (milliseconds since epoch, ISO string, or Firestore Timestamp)",
+      "oneOf": [
+        { "type": "integer" },
+        { "type": "string", "format": "date-time" },
+        {
+          "type": "object",
+          "properties": {
+            "seconds": { "type": "integer" },
+            "nanoseconds": { "type": "integer" }
+          },
+          "required": ["seconds"],
+          "additionalProperties": true
+        }
+      ]
+    }
+  },
+  "examples": [
+    {
+      "uid": "abc123",
+      "displayName": "Jamie Rivera",
+      "email": "jamie@example.com",
+      "photoURL": "https://example.com/avatars/jamie.png",
+      "bio": "Movie enthusiast and weekend critic.",
+      "location": "Austin, TX",
+      "favoriteGenres": ["Sci-Fi", "Thriller", "Drama"],
+      "favoriteMovies": ["Arrival", "Blade Runner", "Dune"],
+      "links": {
+        "letterboxd": "https://letterboxd.com/jamie",
+        "instagram": "https://instagram.com/jamiewatches"
+      },
+      "createdAt": 1736467200000,
+      "updatedAt": {
+        "seconds": 1737058800,
+        "nanoseconds": 0
+      }
+    }
+  ]
+}
