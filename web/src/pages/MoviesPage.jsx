@@ -7,7 +7,7 @@ import SkeletonCard from '../ui/movies/SkeletonCard.jsx';
 import MovieDialog from '../ui/movies/MovieDialog.jsx';
 import useMoviesQuery from '../hooks/useMoviesQuery.js';
 import HeroCarousel from '../ui/movies/HeroCarousel.jsx';
-import { randomItems } from '../api/functions.js';
+import { getWeeklyPicks, randomItems } from '../api/functions.js';
 
 const GENRES = ['Action', 'Adventure', 'Comedy', 'Drama', 'Sci-Fi'];
 
@@ -21,10 +21,26 @@ export default function MoviesPage() {
     let cancelled = false;
     (async () => {
       try {
+        const weekly = await getWeeklyPicks();
+        if (!cancelled) {
+          const picks = Array.isArray(weekly?.picks)
+            ? weekly.picks
+                .map((pick) => (pick && typeof pick === 'object' ? pick.movie : null))
+                .filter(Boolean)
+            : [];
+          if (picks.length > 0) {
+            setHero(picks);
+            return;
+          }
+        }
+      } catch {
+        // Ignore weekly picks errors and fall back to random items
+      }
+      try {
         const movies = await randomItems();
         if (!cancelled) setHero(movies || []);
       } catch {
-        // ignore; hero is optional UI
+        if (!cancelled) setHero([]);
       }
     })();
     return () => {
