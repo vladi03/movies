@@ -5,17 +5,16 @@ import { useEffect, useState } from 'react';
 
 function UserMenu() {
   const { user, logout } = useAuth();
-
-  if (!user) return null;
-
   const [avatarError, setAvatarError] = useState(false);
-  const avatar = user.photoURL;
-  const name = user.displayName || user.email || 'Signed in user';
+  const avatar = user?.photoURL;
+  const name = user?.displayName || user?.email || 'Signed in user';
 
   useEffect(() => {
     // Reset error state when avatar URL changes
     setAvatarError(false);
   }, [avatar]);
+
+  if (!user) return null;
 
   async function handleLogout() {
     try {
@@ -56,7 +55,7 @@ function UserMenu() {
       >
         <li className="mb-2 px-2 py-2 text-sm">
           <p className="font-semibold leading-tight">{name}</p>
-          {user.email && <p className="text-xs opacity-70">{user.email}</p>}
+          {user?.email && <p className="text-xs opacity-70">{user.email}</p>}
         </li>
         <li>
           <Link to="/profile">View profile</Link>
