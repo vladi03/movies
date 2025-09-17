@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Layout from '../ui/Layout.jsx';
 import { randomItems, getWeeklyPicks, saveWeeklyPicks } from '../api/functions.js';
 import { useAuth } from '../auth/AuthGate.jsx';
@@ -72,6 +72,35 @@ function extractMillis(value) {
   if (typeof value.toDate === 'function') return value.toDate().getTime();
   if (typeof value._seconds === 'number') return value._seconds * 1000;
   return null;
+}
+
+function getMovieKey(movie) {
+  if (!movie || typeof movie !== 'object') return null;
+  if (movie.id) return `id:${movie.id}`;
+  if (movie.tmdb_id) return `tmdb:${movie.tmdb_id}`;
+  if (movie.imdb_id) return `imdb:${movie.imdb_id}`;
+  const title = typeof movie.title === 'string' ? movie.title : movie.name;
+  if (title) {
+    const normalized = title.trim().toLowerCase();
+    const year = typeof movie.year === 'number' || typeof movie.year === 'string' ? `${movie.year}` : '';
+    if (normalized || year) {
+      return `fallback:${normalized}|${year}`;
+    }
+  }
+  return null;
+}
+
+function rememberMovies(seenRef, entries) {
+  if (!entries) return;
+  const list = Array.isArray(entries) ? entries : [entries];
+  const seen = seenRef.current;
+  for (const entry of list) {
+    const movie = entry?.movie && typeof entry.movie === 'object' ? entry.movie : entry;
+    const key = getMovieKey(movie);
+    if (key) {
+      seen.add(key);
+    }
+  }
 }
 
 function WeeklyPickCard({ pick, onSelect, disabled }) {
@@ -216,6 +245,7 @@ export default function WeeklyPicks() {
   const [selectedDayIndex, setSelectedDayIndex] = useState(null);
   const [dayDialogOpen, setDayDialogOpen] = useState(false);
   const [singleSpinLoading, setSingleSpinLoading] = useState(false);
+  const seenMovieKeysRef = useRef(new Set());
 
   const hasMovies = useMemo(() => picks.some((pick) => !!pick.movie), [picks]);
   const lastSavedMillis = useMemo(() => extractMillis(lastSavedDoc?.updatedAt || lastSavedDoc?.createdAt), [lastSavedDoc]);
@@ -238,7 +268,10 @@ export default function WeeklyPicks() {
         const data = await getWeeklyPicks();
         if (cancelled) return;
         if (data && Array.isArray(data.picks) && data.picks.length > 0) {
-          setPicks(sortAndFormatPicks(data.picks));
+          const sorted = sortAndFormatPicks(data.picks);
+          rememberMovies(seenMovieKeysRef, sorted);
+          logSpinMemoryStatus(0);
+          setPicks(sorted);
           setLastSavedDoc(data);
           setHasUnsavedChanges(false);
         } else {
@@ -266,6 +299,66 @@ export default function WeeklyPicks() {
     }
   }, [selectedDay]);
 
+  function logSpinMemoryStatus(remainingCount = 0) {
+    const parsed = Number(remainingCount);
+    const safeRemaining = Number.isFinite(parsed) ? Math.max(0, Math.trunc(parsed)) : 0;
+    console.log('[WeeklyPicks] spin memory', {
+      totalCount: seenMovieKeysRef.current.size,
+      remainingCount: safeRemaining,
+    });
+  }
+
+  async function fetchUniqueMovies(desiredCount, additionalBanned) {
+    const count = Number(desiredCount);
+    if (!Number.isInteger(count) || count <= 0) {
+      return [];
+    }
+    const banned = new Set();
+    for (const key of seenMovieKeysRef.current) {
+      banned.add(key);
+    }
+    if (additionalBanned instanceof Set) {
+      for (const key of additionalBanned) {
+        if (key) banned.add(key);
+      }
+    } else if (Array.isArray(additionalBanned)) {
+      for (const key of additionalBanned) {
+        if (key) banned.add(key);
+      }
+    }
+    const collected = [];
+    const collectedKeys = new Set();
+    const maxAttempts = 8;
+    let attempts = 0;
+    logSpinMemoryStatus(count - collected.length);
+    while (collected.length < count && attempts < maxAttempts) {
+      attempts += 1;
+      const remaining = count - collected.length;
+      const requested = Math.max(remaining, Math.min(DAYS_TO_PICK * 2, remaining * 2));
+      const movies = await randomItems({ count: requested });
+      if (!Array.isArray(movies)) {
+        continue;
+      }
+      for (const movie of movies) {
+        const key = getMovieKey(movie);
+        if (!key) continue;
+        if (banned.has(key)) continue;
+        if (collectedKeys.has(key)) continue;
+        collected.push(movie);
+        collectedKeys.add(key);
+        banned.add(key);
+        logSpinMemoryStatus(count - collected.length);
+        if (collected.length >= count) {
+          break;
+        }
+      }
+    }
+    if (collected.length < count) {
+      throw new Error('Not enough unique movies available right now.');
+    }
+    return collected;
+  }
+
   function handleDayClick(index) {
     if (spinLoading || singleSpinLoading || saving) {
       return;
@@ -285,10 +378,7 @@ export default function WeeklyPicks() {
     setSelectedDayIndex(null);
     setSpinLoading(true);
     try {
-      const movies = await randomItems({ count: DAYS_TO_PICK });
-      if (!Array.isArray(movies) || movies.length < DAYS_TO_PICK) {
-        throw new Error('Not enough movies returned from picker');
-      }
+      const movies = await fetchUniqueMovies(DAYS_TO_PICK);
       const schedule = createEmptySchedule();
       const next = schedule.map((slot, index) => ({
         ...slot,
@@ -297,6 +387,8 @@ export default function WeeklyPicks() {
       if (next.some((slot) => !slot.movie)) {
         throw new Error('Missing movie data for one or more days');
       }
+      rememberMovies(seenMovieKeysRef, next);
+      logSpinMemoryStatus(0);
       setPicks(next);
       setHasUnsavedChanges(true);
     } catch (err) {
@@ -324,7 +416,7 @@ export default function WeeklyPicks() {
     setSuccess('');
     setSingleSpinLoading(true);
     try {
-      const movies = await randomItems({ count: 1 });
+      const movies = await fetchUniqueMovies(1);
       const movie = Array.isArray(movies) ? movies[0] : null;
       if (!movie) {
         throw new Error('No movie returned from picker');
@@ -332,6 +424,8 @@ export default function WeeklyPicks() {
       setPicks((current) =>
         current.map((slot, index) => (index === resolvedIndex ? { ...slot, movie } : slot)),
       );
+      rememberMovies(seenMovieKeysRef, movie);
+      logSpinMemoryStatus(0);
       setHasUnsavedChanges(true);
     } catch (err) {
       setError(err.message || 'Failed to pick a movie');
@@ -360,7 +454,10 @@ export default function WeeklyPicks() {
       const payload = picks.map((pick) => ({ date: pick.date, movie: pick.movie }));
       const saved = await saveWeeklyPicks(payload, token);
       if (saved && Array.isArray(saved.picks)) {
-        setPicks(sortAndFormatPicks(saved.picks));
+        const sorted = sortAndFormatPicks(saved.picks);
+        rememberMovies(seenMovieKeysRef, sorted);
+        logSpinMemoryStatus(0);
+        setPicks(sorted);
         setLastSavedDoc(saved);
       }
       setHasUnsavedChanges(false);
