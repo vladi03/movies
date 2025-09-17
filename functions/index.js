@@ -181,12 +181,49 @@ exports.randomItems = onRequest(async (req, res) => {
     const countParam = req.query.count ? parseInt(String(req.query.count), 10) : undefined;
     const requestedCount = Number.isFinite(countParam) && countParam > 0 ? countParam : 4;
     const count = Math.min(requestedCount, 20);
-    const snap = await col().limit(50).get();
-    const docs = snap.docs
-      .map((d) => ({ id: d.id, ...d.data() }))
-      .filter((m) => m.landscape_poster_link || m.poster_link);
+    const maxPoolSize = 500;
+    const initialLimit = Math.max(60, count * 5);
+    let fetchLimit = Math.min(maxPoolSize, initialLimit);
+    let docs = [];
+    let movies = [];
+    let snap;
+
+    do {
+      snap = await col().limit(fetchLimit).get();
+      docs = snap.docs;
+      movies = docs.map((d) => ({ id: d.id, ...d.data() }));
+      const withPosterCount = movies.filter((m) => m.landscape_poster_link || m.poster_link).length;
+      if (snap.size < fetchLimit || fetchLimit >= maxPoolSize) {
+        break;
+      }
+      if (withPosterCount >= count * 3) {
+        break;
+      }
+      const nextLimit = Math.min(maxPoolSize, fetchLimit + 100);
+      if (nextLimit === fetchLimit) {
+        break;
+      }
+      fetchLimit = nextLimit;
+    } while (docs.length < count * 3);
+
+    if (snap.size === fetchLimit && fetchLimit < maxPoolSize) {
+      // If we've exhausted the incremental limits and still might have more docs,
+      // fall back to fetching the full collection to avoid prematurely exhausting
+      // the pool of available movies.
+      const fullSnap = await col().get();
+      if (fullSnap.size > docs.length) {
+        docs = fullSnap.docs;
+        movies = docs.map((d) => ({ id: d.id, ...d.data() }));
+      }
+    }
+
+    if (movies.length === 0) {
+      movies = docs.map((d) => ({ id: d.id, ...d.data() }));
+    }
+
+    const candidates = movies.filter((m) => m.landscape_poster_link || m.poster_link);
     const now = Date.now();
-    const eligible = docs.filter((movie) => {
+    const eligible = candidates.filter((movie) => {
       const watched = toMillis(movie.lastWatched);
       if (watched === undefined) return true;
       return now - watched > RECENT_WINDOW_MS;
