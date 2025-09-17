@@ -23,7 +23,7 @@ if (import.meta.env.DEV && import.meta.env.VITE_FIRESTORE_EMULATOR_HOST) {
   if (host && port) {
     try {
       connectFirestoreEmulator(db, host, Number(port));
-    } catch (e) {
+    } catch {
       // no-op if already connected
     }
   }

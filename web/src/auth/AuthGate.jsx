@@ -26,7 +26,7 @@ export default function AuthGate({ children }) {
     (async () => {
       try {
         await setPersistence(auth, browserLocalPersistence);
-      } catch (_) {
+      } catch {
         // ignore, defaults will apply
       }
 
@@ -66,7 +66,7 @@ export default function AuthGate({ children }) {
     try {
       // Use popup first per request
       return await signInWithPopup(auth, provider);
-    } catch (err) {
+    } catch {
       // Optional fallback to redirect if popup is blocked
       try {
         return await signInWithRedirect(auth, provider);

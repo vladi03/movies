@@ -1,8 +1,22 @@
-import { render, screen } from '@testing-library/react';
-import MoviesPage from './MoviesPage.jsx';
 import { vi, test, expect } from 'vitest';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
+
+vi.mock('../auth/AuthGate.jsx', () => {
+  const mockAuth = {
+    user: null,
+    login: vi.fn(),
+    logout: vi.fn(),
+    loading: false,
+    authError: null,
+    clearAuthError: vi.fn(),
+  };
+  return {
+    useAuth: () => mockAuth,
+    default: ({ children }) => children,
+  };
+});
 
 vi.mock('../hooks/useMoviesQuery.js', () => ({
   default: () => ({
@@ -13,6 +27,8 @@ vi.mock('../hooks/useMoviesQuery.js', () => ({
     query: { q: '', genre: '', sort: 'title', dir: 'asc', page: 0 },
   }),
 }));
+
+import MoviesPage from './MoviesPage.jsx';
 
 test('renders movie grid and search', () => {
   render(

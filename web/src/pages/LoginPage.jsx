@@ -13,6 +13,12 @@ export default function LoginPage() {
   const fromPath = location.state?.from?.pathname;
   const redirectTo = '/';
 
+  useEffect(() => {
+    if (authError && signingIn) {
+      setSigningIn(false);
+    }
+  }, [authError, signingIn]);
+
   if (user) {
     return <Navigate to={redirectTo} replace />;
   }
@@ -30,12 +36,6 @@ export default function LoginPage() {
       setSigningIn(false);
     }
   }
-
-  useEffect(() => {
-    if (authError && signingIn) {
-      setSigningIn(false);
-    }
-  }, [authError, signingIn]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 text-base-content p-4">
