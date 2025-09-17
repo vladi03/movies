@@ -74,11 +74,20 @@ function extractMillis(value) {
   return null;
 }
 
-function WeeklyPickCard({ pick }) {
+function WeeklyPickCard({ pick, onSelect, disabled }) {
   const { label, date, movie } = pick;
   const poster = movie?.landscape_poster_link || movie?.poster_link;
+  const interactive = typeof onSelect === 'function';
+
   return (
-    <div className="card bg-base-200 shadow-sm">
+    <button
+      type="button"
+      onClick={onSelect}
+      disabled={disabled || !interactive}
+      className={`card bg-base-200 shadow-sm text-left transition-shadow w-full disabled:cursor-not-allowed ${
+        interactive ? 'hover:shadow-md focus-visible:ring focus-visible:ring-primary/60 focus:outline-none' : ''
+      } ${disabled ? 'opacity-60' : ''}`}
+    >
       <div className="card-body">
         <h3 className="card-title text-lg">{label}</h3>
         <p className="text-sm opacity-70">{date}</p>
@@ -112,8 +121,11 @@ function WeeklyPickCard({ pick }) {
         ) : (
           <p className="italic opacity-70 mt-3">No movie selected yet.</p>
         )}
+        {interactive && (
+          <p className="mt-4 text-sm font-medium text-primary">Click to spin this day</p>
+        )}
       </div>
-    </div>
+    </button>
   );
 }
 
@@ -399,41 +411,6 @@ export default function WeeklyPicks() {
           )}
         </div>
 
-        {hasMovies && !initialLoading && (
-          <div className="card bg-base-200 shadow-sm mb-6">
-            <div className="card-body gap-4">
-              <div>
-                <h2 className="card-title text-lg">Spin a single day</h2>
-                <p className="text-sm opacity-70">
-                  Replace one pick without changing the rest of the schedule.
-                </p>
-              </div>
-              <p className="text-sm opacity-70">
-                Tap a day to view the pick details and spin just that day.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {picks.map((pick, index) => {
-                  const title = pick.movie?.title || pick.movie?.name;
-                  return (
-                    <button
-                      key={`${pick.date}-${index}`}
-                      type="button"
-                      className="border border-base-300 rounded-lg p-3 text-left hover:bg-base-200 focus:outline-none focus-visible:ring focus-visible:ring-primary/60 transition-colors disabled:opacity-60"
-                      onClick={() => handleDayClick(index)}
-                      disabled={spinLoading || singleSpinLoading || saving}
-                    >
-                      <p className="font-semibold">{pick.label}</p>
-                      <p className="text-sm opacity-80 mt-1 whitespace-normal break-words">
-                        {title || 'No movie selected yet.'}
-                      </p>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        )}
-
         <SingleDayDialog
           open={dayDialogOpen && Boolean(selectedDay)}
           pick={selectedDay}
@@ -464,8 +441,13 @@ export default function WeeklyPicks() {
           </div>
         ) : (
           <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {picks.map((pick) => (
-              <WeeklyPickCard key={pick.date} pick={pick} />
+            {picks.map((pick, index) => (
+              <WeeklyPickCard
+                key={pick.date || index}
+                pick={pick}
+                onSelect={() => handleDayClick(index)}
+                disabled={spinLoading || singleSpinLoading || saving}
+              />
             ))}
           </div>
         )}
