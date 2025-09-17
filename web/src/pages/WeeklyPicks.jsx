@@ -117,6 +117,80 @@ function WeeklyPickCard({ pick }) {
   );
 }
 
+function SingleDayDialog({ open, pick, onClose, onSpin, spinning, disabled }) {
+  if (!pick) return null;
+  const { label, date, movie } = pick;
+  const poster = movie?.landscape_poster_link || movie?.poster_link;
+  const title = movie?.title || movie?.name || 'Untitled Movie';
+  const genres = Array.isArray(movie?.genre) ? movie.genre.slice(0, 3) : [];
+  const actors = Array.isArray(movie?.actors) ? movie.actors.slice(0, 4) : [];
+
+  return (
+    <dialog open={open} className={`modal ${open ? 'modal-open' : ''}`} onClose={onClose}>
+      <div className="modal-box w-[92vw] max-w-md">
+        <button
+          type="button"
+          className="btn btn-sm btn-circle absolute right-2 top-2"
+          onClick={onClose}
+          aria-label="Close"
+        >
+          ✕
+        </button>
+        <div className="flex flex-col gap-4">
+          <div>
+            <h3 className="text-xl font-semibold">{label}</h3>
+            <p className="text-sm opacity-70">{date}</p>
+          </div>
+          {poster && (
+            <div className="w-full rounded-lg overflow-hidden bg-base-200" style={{ aspectRatio: '16 / 9' }}>
+              <img
+                src={poster}
+                alt={title}
+                className="w-full h-full object-cover"
+                onError={(event) => {
+                  event.currentTarget.style.visibility = 'hidden';
+                }}
+              />
+            </div>
+          )}
+          {movie ? (
+            <div className="space-y-2">
+              <p className="font-semibold text-base">{title}</p>
+              {movie.year && <p className="text-sm opacity-80">Released: {movie.year}</p>}
+              {genres.length > 0 && (
+                <p className="text-sm opacity-80">Genres: {genres.join(', ')}</p>
+              )}
+              {actors.length > 0 && (
+                <p className="text-sm opacity-80">Cast: {actors.join(', ')}</p>
+              )}
+            </div>
+          ) : (
+            <p className="italic opacity-70">
+              No movie selected yet. Spin to pick one for this day.
+            </p>
+          )}
+          <div className="modal-action mt-2">
+            <button type="button" className="btn btn-ghost" onClick={onClose}>
+              Close
+            </button>
+            <button
+              type="button"
+              className={`btn btn-secondary ${spinning ? 'loading' : ''}`}
+              onClick={onSpin}
+              disabled={spinning || disabled}
+            >
+              {spinning ? 'Spinning…' : 'Spin'}
+            </button>
+          </div>
+        </div>
+      </div>
+      <form method="dialog" className="modal-backdrop" onClick={onClose}>
+        <button>close</button>
+      </form>
+    </dialog>
+  );
+}
+
 export default function WeeklyPicks() {
   const { user } = useAuth();
   const [picks, setPicks] = useState(() => createEmptySchedule());
@@ -127,11 +201,21 @@ export default function WeeklyPicks() {
   const [success, setSuccess] = useState('');
   const [lastSavedDoc, setLastSavedDoc] = useState(null);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
-  const [singleSpinIndex, setSingleSpinIndex] = useState(0);
+  const [selectedDayIndex, setSelectedDayIndex] = useState(null);
+  const [dayDialogOpen, setDayDialogOpen] = useState(false);
   const [singleSpinLoading, setSingleSpinLoading] = useState(false);
 
   const hasMovies = useMemo(() => picks.some((pick) => !!pick.movie), [picks]);
   const lastSavedMillis = useMemo(() => extractMillis(lastSavedDoc?.updatedAt || lastSavedDoc?.createdAt), [lastSavedDoc]);
+  const selectedDay = useMemo(() => {
+    if (!Array.isArray(picks)) return null;
+    if (selectedDayIndex === null || selectedDayIndex === undefined) return null;
+    const index = Number(selectedDayIndex);
+    if (!Number.isInteger(index) || index < 0 || index >= picks.length) {
+      return null;
+    }
+    return picks[index] || null;
+  }, [picks, selectedDayIndex]);
 
   useEffect(() => {
     let cancelled = false;
@@ -165,33 +249,28 @@ export default function WeeklyPicks() {
   }, []);
 
   useEffect(() => {
-    setSingleSpinIndex((currentIndex) => {
-      if (!Array.isArray(picks) || picks.length === 0) {
-        return 0;
-      }
-      const normalized = Number.isInteger(currentIndex) ? currentIndex : 0;
-      if (
-        normalized >= 0 &&
-        normalized < picks.length &&
-        picks[normalized] &&
-        picks[normalized].movie
-      ) {
-        return normalized;
-      }
-      const firstWithMovie = picks.findIndex((pick) => !!pick.movie);
-      if (firstWithMovie !== -1) {
-        return firstWithMovie;
-      }
-      if (normalized >= 0 && normalized < picks.length) {
-        return normalized;
-      }
-      return 0;
-    });
-  }, [picks]);
+    if (!selectedDay) {
+      setDayDialogOpen(false);
+    }
+  }, [selectedDay]);
+
+  function handleDayClick(index) {
+    if (spinLoading || singleSpinLoading || saving) {
+      return;
+    }
+    setSelectedDayIndex(index);
+    setDayDialogOpen(true);
+  }
+
+  function handleCloseDayDialog() {
+    setDayDialogOpen(false);
+  }
 
   async function handlePickMovies() {
     setError('');
     setSuccess('');
+    setDayDialogOpen(false);
+    setSelectedDayIndex(null);
     setSpinLoading(true);
     try {
       const movies = await randomItems({ count: DAYS_TO_PICK });
@@ -215,13 +294,17 @@ export default function WeeklyPicks() {
     }
   }
 
-  async function handleSpinOne() {
+  async function handleSpinOne(targetIndex) {
     if (!Array.isArray(picks) || picks.length === 0) {
       setError('No schedule available to update.');
       return;
     }
-    const targetIndex = Number(singleSpinIndex);
-    if (!Number.isFinite(targetIndex) || targetIndex < 0 || targetIndex >= picks.length) {
+    if (targetIndex === null || targetIndex === undefined) {
+      setError('Select a valid day to spin.');
+      return;
+    }
+    const resolvedIndex = Number(targetIndex);
+    if (!Number.isFinite(resolvedIndex) || resolvedIndex < 0 || resolvedIndex >= picks.length) {
       setError('Select a valid day to spin.');
       return;
     }
@@ -235,7 +318,7 @@ export default function WeeklyPicks() {
         throw new Error('No movie returned from picker');
       }
       setPicks((current) =>
-        current.map((slot, index) => (index === targetIndex ? { ...slot, movie } : slot)),
+        current.map((slot, index) => (index === resolvedIndex ? { ...slot, movie } : slot)),
       );
       setHasUnsavedChanges(true);
     } catch (err) {
@@ -325,32 +408,40 @@ export default function WeeklyPicks() {
                   Replace one pick without changing the rest of the schedule.
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                <select
-                  aria-label="Select the day to spin"
-                  className="select select-bordered w-full sm:w-48"
-                  value={singleSpinIndex}
-                  onChange={(event) => setSingleSpinIndex(Number(event.target.value))}
-                  disabled={spinLoading || singleSpinLoading || saving}
-                >
-                  {picks.map((pick, index) => (
-                    <option key={`${pick.date}-${index}`} value={index}>
-                      {pick.label}
-                    </option>
-                  ))}
-                </select>
-                <button
-                  type="button"
-                  onClick={handleSpinOne}
-                  className={`btn btn-secondary ${singleSpinLoading ? 'loading' : ''}`}
-                  disabled={singleSpinLoading || spinLoading || saving}
-                >
-                  {singleSpinLoading ? 'Spinning…' : 'Spin One'}
-                </button>
+              <p className="text-sm opacity-70">
+                Tap a day to view the pick details and spin just that day.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {picks.map((pick, index) => {
+                  const title = pick.movie?.title || pick.movie?.name;
+                  return (
+                    <button
+                      key={`${pick.date}-${index}`}
+                      type="button"
+                      className="border border-base-300 rounded-lg p-3 text-left hover:bg-base-200 focus:outline-none focus-visible:ring focus-visible:ring-primary/60 transition-colors disabled:opacity-60"
+                      onClick={() => handleDayClick(index)}
+                      disabled={spinLoading || singleSpinLoading || saving}
+                    >
+                      <p className="font-semibold">{pick.label}</p>
+                      <p className="text-sm opacity-80 mt-1 whitespace-normal break-words">
+                        {title || 'No movie selected yet.'}
+                      </p>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>
         )}
+
+        <SingleDayDialog
+          open={dayDialogOpen && Boolean(selectedDay)}
+          pick={selectedDay}
+          onClose={handleCloseDayDialog}
+          onSpin={() => handleSpinOne(selectedDayIndex)}
+          spinning={singleSpinLoading}
+          disabled={spinLoading || saving}
+        />
 
         {lastSavedMillis && (
           <p className="text-sm opacity-70 mb-3">
