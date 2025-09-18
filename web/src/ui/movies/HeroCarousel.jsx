@@ -65,7 +65,10 @@ export default function HeroCarousel({ items = [], onSelect }) {
   if (length === 0) return null;
 
   return (
-    <div ref={containerRef} className="carousel w-full mb-6 h-64 md:h-80 lg:h-96 rounded-box overflow-hidden">
+    <div
+      ref={containerRef}
+      className="carousel w-full mb-6 aspect-[16/9] xl:aspect-[160/81] rounded-box overflow-hidden"
+    >
       {items.map((m, idx) => {
         const bg = bgFor(m);
         const title = m.title || m.name || '(untitled)';
@@ -74,7 +77,7 @@ export default function HeroCarousel({ items = [], onSelect }) {
         return (
           <div
             id={`hero-slide-${idx}`}
-            className="carousel-item relative w-full"
+            className="carousel-item relative w-full h-full"
             key={m.id || idx}
             aria-hidden={!isActive}
             data-active={isActive ? 'true' : undefined}
