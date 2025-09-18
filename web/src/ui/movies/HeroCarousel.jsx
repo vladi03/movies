@@ -1,9 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+const BASE_DELAY = 5000;
+const MANUAL_DELAY = BASE_DELAY * 2;
+
 export default function HeroCarousel({ items = [], onSelect }) {
   const containerRef = useRef(null);
   const [current, setCurrent] = useState(0);
   const length = Array.isArray(items) ? items.length : 0;
+  const timerRef = useRef(null);
 
   const scrollToIndex = useCallback((idx) => {
     const container = containerRef.current;
@@ -14,22 +18,47 @@ export default function HeroCarousel({ items = [], onSelect }) {
     }
   }, [containerRef]);
 
+  const clearTimer = useCallback(() => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+  }, []);
+
+  const startTimer = useCallback(
+    (delay = BASE_DELAY) => {
+      if (length <= 1) {
+        clearTimer();
+        return;
+      }
+      clearTimer();
+      timerRef.current = setTimeout(() => {
+        setCurrent((prev) => {
+          const next = (prev + 1) % length;
+          scrollToIndex(next);
+          startTimer();
+          return next;
+        });
+      }, delay);
+    },
+    [clearTimer, length, scrollToIndex]
+  );
+
   useEffect(() => {
-    if (length === 0) return undefined;
+    if (length === 0) {
+      clearTimer();
+      return undefined;
+    }
     setCurrent((prev) => {
       const safe = prev < length ? prev : 0;
       scrollToIndex(safe);
       return safe;
     });
-    const id = setInterval(() => {
-      setCurrent((prev) => {
-        const next = (prev + 1) % length;
-        scrollToIndex(next);
-        return next;
-      });
-    }, 5000);
-    return () => clearInterval(id);
-  }, [length, scrollToIndex]);
+    startTimer();
+    return () => {
+      clearTimer();
+    };
+  }, [length, scrollToIndex, clearTimer, startTimer]);
 
   const bgFor = (m) => m.landscape_poster_link || m.poster_link || '';
 
@@ -79,6 +108,7 @@ export default function HeroCarousel({ items = [], onSelect }) {
                     scrollToIndex(idx);
                     return idx;
                   });
+                  startTimer(MANUAL_DELAY);
                 }}
                 aria-label="Previous"
               >
@@ -94,6 +124,7 @@ export default function HeroCarousel({ items = [], onSelect }) {
                     scrollToIndex(idx);
                     return idx;
                   });
+                  startTimer(MANUAL_DELAY);
                 }}
                 aria-label="Next"
               >
